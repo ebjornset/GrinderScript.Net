@@ -1,0 +1,16 @@
+<assembly> 
+	<id>nupkg</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<fileSets> 
+		<fileSet> 
+			<directory>${project.build.directory}</directory> 
+			<outputDirectory>nupkg</outputDirectory> 
+			<includes> 
+				<include>*.nupkg</include> 
+			</includes> 
+		</fileSet> 
+	</fileSets> 
+</assembly> 

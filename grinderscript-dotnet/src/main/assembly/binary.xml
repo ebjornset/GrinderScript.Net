@@ -1,0 +1,16 @@
+<assembly> 
+	<id>binary</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<dependencySets>
+		<dependencySet>
+			<includes>
+				<include>${project.groupId}:*:zip:lib</include>
+				<include>${project.groupId}:*:zip:verifier</include>
+			</includes>
+			<unpack>true</unpack>
+		</dependencySet>
+	</dependencySets>
+</assembly> 

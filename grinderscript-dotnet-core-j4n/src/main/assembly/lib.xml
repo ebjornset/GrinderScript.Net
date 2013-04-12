@@ -1,0 +1,28 @@
+<assembly> 
+	<id>lib</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<fileSets> 
+		<fileSet> 
+			<directory>${project.basedir}/external/jni4net/lib</directory> 
+			<outputDirectory>lib</outputDirectory> 
+			<includes> 
+				<include>*</include> 
+			</includes> 
+		</fileSet> 
+	</fileSets> 
+	<files> 
+		<file> 
+			<source>${project.build.directory}/${project.build.finalName}.jar</source> 
+			<filtered>false</filtered> 
+			<outputDirectory>lib</outputDirectory> 
+		</file> 
+		<file> 
+			<source>${project.build.directory}/${core.j4n.assembly.name}.dll</source> 
+			<filtered>false</filtered> 
+			<outputDirectory>lib</outputDirectory> 
+		</file> 
+	</files> 
+</assembly> 

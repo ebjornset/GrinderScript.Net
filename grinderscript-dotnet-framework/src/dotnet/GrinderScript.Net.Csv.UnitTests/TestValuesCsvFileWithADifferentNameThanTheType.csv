@@ -1,0 +1,4 @@
+﻿# Testdata for CsvDatapoolValuesFactoryTests.cs; will be used to read in inline class TestValues
+StringProp1;StringProp2;iNTPROP;LongProp;BoolProp
+"StringProp1;";stringprop2;23;234;true
+#AAK;aakaak

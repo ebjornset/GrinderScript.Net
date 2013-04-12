@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="Date-Revision-yyyymmdd" content="20130412" />
+		<meta http-equiv="Content-Language" content="en" />
+		<title>GrinderScript.Net samples</title>
+	</head>
+	<body>
+<h1>Welcome to the <a href="http://grinderscript.net/" title="GrinderScript.Net official homepage">GrinderScript.Net</a> examples</h1>
+
+We hope these samples will get you quickly up and running with your load testing.
+<br/><br/>
+<b>Please note that it's assumed that the default name space matches the assembly name of the project</b>. If this is not the case you'll need to adjust the names space in all type names in all <i>*.grinder.properties</i> files before using them.
+<br/><br/>
+If the installation went well you should be able to build the project without any problems. 
+<br/><br/>
+You can turn of copying of the <i>GrinderScript.Net.Core.dll</i> to your output directory if you like, since this assembly always will be loaded by The Grinder from the <i>GrinderScript.Net\lib</i> folder anyway. You do this by selecting <i>GrinderScript.Net.Core</i> in the project's <i>References</i> list, select properties and set <i>Copy local=false</i>.
+<br/><br/>
+You <b>must</b> have a working Grinder installation with GrinderScript.Net to run these samples
+<br/><br/>
+Please notet that all examples is setup with info logging by default, since all the example tests does info logging. There is some overhead in logging, especially when writing to a visible command window. If you experiences very few TPS, you can try to minitmize the Grinder Agent window, or to set log level to <i>warn</i>. You change the log level with the <i>grinder.jvm.arguments</i> propery, which is almost at the bottom of the <i>*.grinder.properties</i> files.
+
+<h2>Overview of the examples</h2>
+
+<h3>Example 1 - A worker extending the <i>DefaultWorker</i></h3>
+This example is configured in the <a href="./Core/WorkerThatThrowsExceptionAtRandom.grinder.properties" ><b>Core\WorkerThatThrowsExceptionAtRandom.grinder.properties</b></a> file. It uses the default script engine to load the <a href="./Core/WorkerThatThrowsExceptionAtRandom.cs" ><b>Core\WorkerThatThrowsExceptionAtRandom</b></a>.
+<h3>Example 2 - A custon <i>ScriptEngine</i></h3>
+This example is configured in the <a href="./Core/ScriptEngineThatCreateWorkerByCtor.grinder.properties" ><b>Core\ScriptEngineThatCreateWorkerByCtor.grinder.properties</b></a> file. It loads the custom script engine <a href="./Core/ScriptEngineThatCreateWorkerByCtor.cs" ><b>Core\ScriptEngineThatCreateWorkerByCtor</b></a>, which instansiates the <a href="./Core/WorkerThatLogs.cs" ><b>Core\WorkerThatLogs</b></a> directly from it's ctor.
+
+<h3>Example 3 - Using data pools</h3>
+This example is configured in the <a href="./Datapool/Datapool.grinder.properties" ><b>Datapool\Datapool.grinder.properties</b></a> file. The intention is that you can try out the different script engines and worker types under the <a href="./Datapool" ><b>Datapool</b></a> folder, by changing the properties in the file.
+
+
+<h3>Example 4 - A load test scenario</h3>
+This example is configured in the <a href="./Datapool/Scenario.grinder.properties" ><b>Datapool\Scenario.grinder.properties</b></a> file. It contains a scenario where all the worker types under the <a href="./Datapool" ><b>Datapool</b></a> folder are included. 
+
+<h2>How to use the examples</h2>
+Follow these six steps to explore the examples.
+<ol>
+<li>Build the project</li>
+<li>Start the <b>Grinder Console</b></li>
+<li>Start one or more <b>Grinder Agents</b></li>
+<li>Set the Grinder Console <b>root directory</b> to the build output folder of your project. (From the <i>Distribute -> "Set directory.."</i> menu)</li>
+<li>Select one of the <i>*.grinder.properties</i> files from one of the sub folders as the <b>active properties</b>. (From the <i>Script</i> tab, expand the folder structure, mark the file, right click and <i>Select properties</i>)</li>
+<li>Start a new run, either from the <i>Action -> "Start process"</i> menu or from the upper leftmost button.</li>
+</ol>
+
+Hopefully the run will start as expected, and you'll see the <b>TPS</b> ticking of and the <i>Graph</i> and <i>Results</i> tabs will contain information about the run. 
+<br/><br/>
+If the run doesn't start, or if it shutsdown without any data beeing collected by the Grinder Console, you'll have to troubleshoot the problem by looking in the agent console window and/or the agent logs.
+<br/><br/>
+The property <b>grinder.duration=30000</b>, so the verification will run for 30 seconds before it shuts down again.
+<br/><br/>
+Have fun!
+	</body>
+</html>

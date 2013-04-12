@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="GrinderScript.Net" 
+		xmlns="http://maven.apache.org/DECORATION/1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+		 
+	<!--
+	NB! NB! NB!
+	This site.xml is maintained in the parent directory and copied to all sub modules with 
+	the maven-resources-plugin bound to the pre-site phase.
+	
+	You MUST generate the site with the command
+	mvn pre-site site:site site:stage
+	each time you edit the site.xml
+	
+	See 
+	http://stackoverflow.com/questions/5976123/maven-site-for-multi-module
+	for details about why and how
+	-->
+	
+    <!--bannerLeft>
+        <name>A Regular Maven Site</name>
+        <src>http://html5-slides-template.googlecode.com/git/images/akquinet-logo-small.png</src>
+        <href>http://www.akquinet.de/en</href>
+    </bannerLeft-->
+
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>${maven-fluido-skin.version}</version>
+	</skin>
+	
+	<custom>
+		<fluidoSkin>
+			<topBarEnabled>false</topBarEnabled>
+			<sideBarEnabled>true</sideBarEnabled>
+			<sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>
+			<!--
+			<topBarIcon>
+				<name>GrinderScript.Net</name>
+				<alt>GrinderScript.Net</alt>
+				<src>/images/topbar-logo.png</src>
+				<href>./index.html</href>
+			</topBarIcon>
+			<googleSearch>
+				<sitesearch/>
+			</googleSearch>
+			<twitter>
+				<user>ebjornset</user>
+				<showUser>true</showUser>
+				<showFollowers>true</showFollowers>
+			</twitter>
+			<facebookLike />
+			<googlePlusOne />
+			<ohloh>
+				<projectId>xyz</projectId>
+				<widget>thin-badge</widget>
+			</ohloh>
+			-->
+	  </fluidoSkin>
+	</custom>
+
+	<publishDate format="dd MMM yyyy"/>
+    <version position="right"/>
+	
+    <body>
+	
+        <!--links>
+            <item name="GrinderScript.Net" href="http://GrinderScript.Net/"/>
+        </links-->
+
+        <menu name="Documentation">
+            <item name="Introduction" href="index.html"/>
+            <item name="Installation" href="installation.html"/>
+            <item name="Writing load tests" href="loadtests.html"/>
+            <item name="Using data pools" href="datapools.html"/>
+            <item name="Composing test scenarios" href="scenarios.html"/>
+            <item name="grinder.properties" href="properties.html"/>
+        </menu>
+
+        <menu ref="reports"/>
+    </body>
+</project>

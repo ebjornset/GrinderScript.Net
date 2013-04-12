@@ -1,0 +1,19 @@
+<assembly> 
+	<id>verifier</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<fileSets> 
+		<fileSet> 
+			<directory>${project.build.directory}/bin/Debug</directory> 
+			<outputDirectory>verifier</outputDirectory> 
+			<includes> 
+				<include>Samples/**</include> 
+				<include>README.md</include> 
+				<include>CsvHelper.*</include> 
+				<include>GrinderScript.Net.Verifier.*</include> 
+			</includes> 
+		</fileSet> 
+	</fileSets> 
+</assembly> 

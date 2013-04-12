@@ -1,0 +1,27 @@
+GrinderScript.Net
+=================
+
+>Bringing the awesomeness of [The Grinder](http://grinder.sourceforge.net "The Grinder, a Java Load Testing Framework") to the .Net community.
+
+>Bringing the awesomeness of the [.Net programming languages](http://en.wikipedia.org/wiki/List_of_CLI_languages "Wikipedia: List of CLI languages") to the Grinder community.
+
+What it is
+------------
+ 
+[GrinderScript.Net](http://grinderscript.net/ "GrinderScript.Net official homepage") is an [open source](http://en.wikipedia.org/wiki/Open_source_software "Wikipedia: Open-source software") project, licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html "Apache License 2.0"): It enables you to run load test written in a .Net language in [The Grinder](http://grinder.sourceforge.net "The Grinder, a Java Load Testing Framework"). It is **not** a port of The Grinder to the .Net platform. 
+
+You will need to install The Grinder on your load test machines to use GrinderScript.Net. You will also need to install Java on these machines, since The Grinder is a Java based framework. Se the [The Grinder download page](http://grinder.sourceforge.net/download.html "The Grinder download page") for details about how to get up and running with The Grinder.
+
+How it works
+------------
+
+GriderScript.Net integrates with The Grinder by implementing The Grider\'s ScriptEngine interface in a thin Java layer. This script engine is registered in The Grinder for `grinder.script` file names ending with a *.dll* extension. Internally it uses [Jni4Net](http://jni4net.sourceforge.net/ "Jni4Net official homepage") to load the CLR (Common Language Runtime) into The Grinder\'s java worker processes and to forward calls back and forth between The Grinder and your load tests.
+
+This means that you can use all the features of The Grinder to distribute and run your load tests and to harvest the result of the runs. You can also reuse all the reporting and analyzing tools of The Grinder it self, and those provided by the Grinder community.
+
+It adapts The Griders use of a *.properties* file to configure your load test run. So if you can configure a Grinder load test run, you\'ll also be able to configure a load test run using GrinderScript.Net. All you need to learn is the properties GrinderScript.Net uses. These are described in this documentation, and you can find a complete overview in [the properties page](./properties.html "Complete list of properties used by GrinderScript.Net page")
+
+Getting started
+------------
+
+The natural next step in exploring GrinderScript.Net is to install it, as described in [the installation page](./installation.html "GrinderScript.Net installation instructions page")

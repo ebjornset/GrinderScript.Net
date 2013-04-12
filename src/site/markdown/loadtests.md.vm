@@ -1,0 +1,208 @@
+Writing load tests with GrinderScript.Net
+====================
+
+The GrinderScript.Net NuGet samples package contains some ready to use examples. You should install the package into your load test project before you proceed, so you have some living code to play with while you read this. You install the sample package the normal NuGet way, from the *Visual Studio NuGet Package Manager*:
+
+`install-package GrinderScript.Net.Samples`
+
+A load test class is called a *Worker* in GrinderScript.Net. The Grinder will spin up as many instances of your worker class as you specify with the `grinder.threads` property in your `grinder.properties` file. It will also control the lifetime of these instances for you. You can safely use member variables to store state used by your test methods, as long as you don't start to do you own thread management inside your worker instance.
+
+The fundamental concepts of a Worker
+-----------------
+At its core a Worker type must implement the `GrinderScript.Net.Core.IGrinderWorker` interface:
+
+    public interface IGrinderWorker
+    {
+        void Initialize();
+
+        void Run();
+
+        void Shutdown();
+    }
+
+You will probably not implement this interface from scratch, since GrinderScript.Net comes with several base classes you can inherit from. Still, its good to know that the life cycle of an *IGrinderWorker*, which is
+
+1. *Initialize()* is called once after construction. In this method you setup the fixture you need for your test, like registering your test method(s) with GrinderScript.Net. You'll see examples of how you register your test methods further down.
+2. *Run()* is called as many times as specified in the `grinder.runs` property. You normally call your test methods from this method.
+3. *Shutdown()* is called once after the test run is complete. In this method you should close any open resources. You should also clear all references to objects living in the JVM, otherwise you'll might get circular references between the CLR and JVM, causing memory leaks. 
+
+When you register a test method in GrinderScript.Net it will be proxied by The Grinder as a JVM object that is returned to you as an *IGrinderTest* instance. Each time you call *Run()* on this proxy The Grinder will call your method, time the call duration, and update its statistics with the call metrics. A test method is just an Action, so any zero argument void method or lambda expression can be used. From each Run() you can call as many test methods as you need and also call them in loops if that makes sense in your test scenario.
+
+Writing a worker that inherits from GrinderScript.Net's DefaultWorker
+--------------------
+
+The easiest way to write a load test is to extend GrinderScript.Net\'s `GrinderScript.Net.Core.DefaultWorker`. *DefaultWorker* will help you manage the worker life cycle and test registration described above. Here is an example of a simple load test extending the *DefaultWorker*:
+	
+    public class WorkerThatLogs : DefaultWorker
+    {
+        protected override void DefaultInitialize()
+        {
+            AddTest(1001, "Logger.TraceMessage", TraceMessage);
+            AddTest(2001, "Logger.DebugMessage", DebugMessage);
+        }
+
+        private void TraceMessage()
+        {
+            Logger.Trace("Example trace message");
+        }
+
+        private void DebugMessage()
+        {
+            Logger.Debug("Example debug message");
+        }
+    }
+
+Here we use the *AddTest()* utility method to register two test methods, *TraceMessage()* and *DebugMessage()* with GrinderScript.Net. For each time The Grinder call our *Run()* method, the *DefaultWorker* will call the *IGrinderTest* proxies for two methods. If you run this test from The Grinder console, your *Results* tab will look something like this:
+
+![The Grinder Console Result tab when running the WorkerThatLogs test](./images/example-grinder-run-01.png)
+
+<table>
+    <tr>
+        <td colspan="4">The core of the <em>DefaultWorker</em> is the <em>AddTest()</em> utility method. If takes these arguments six argument, where the forst tree are mandatory</td>
+    </tr>
+    <tr>
+        <td><em>Name</em></td>
+        <td><em>Type</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+    <tr>
+        <td>testNumber</td>
+        <td>int</td>
+        <td>This is used by The Grinder to identify each test. The Grinder will accumulate test statistics for each test number. The Grinder allow you to register several test methods with the same test number, so you should make your own routine if you have special requirements regarding test numbers. The test number shows up in the The Grinder Console Results tab in the Test column. This argument is mandatory.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>testDescription</td>
+        <td>string</td>
+        <td>A human readable description of the test. The Grinder Console will display this in the Description column of the Results tab. This argument is mandatory.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>testAction</td>
+        <td>Action</td>
+        <td>The actual test method that will be called with instrumentation. This argument is mandatory.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>beforeTestAction</td>
+        <td>Action</td>
+        <td>If provided, this method will be called <strong>without</strong> instrumentation before the actual test method is called. Her you can perform test fixture setup, without impacting the metrics for the test.</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>afterTestAction</td>
+        <td>Action</td>
+        <td>If provided, this method will be called <strong>without</strong> instrumentation after the actual test method is called. Her you can perform test fixture cleanup, without impacting the metrics for the test.</td>
+        <td>null</td>
+    </tr>
+    <tr>
+        <td>sleepMillis</td>
+        <td>int</td>
+        <td>How many milliseconds should The Grinder sleep after this test method is called? You can use normal Grinder properties <em>grinder.sleepTimeFactor</em> and <em>grinder.sleepTimeVariation</em> to control this sleep time during your load test runs.</td>
+        <td>1000</td>
+    </tr>
+</table>
+
+Sometimes you want to call the same method several times from a load test. The *DefaultWorker* has an *AddTest()* overload for helping with this. This overload takes an already proxied test method as the only argument. Here is an extension of the example above, where the *TraceMessage()* is added twice:
+
+        protected override void DefaultInitialize()
+        {
+            var traceMessageTest = AddTest(1001, "Logger.TraceMessage", TraceMessage);
+            AddTest(2001, "Logger.DebugMessage", DebugMessage);
+            AddTest(traceMessageTest);
+        }
+
+With this test setup each call to *Run()* will perform the test sequence *TraceMessage()*, *DebugMessage()*, *TraceMessage()*, so your load test will perform twice as many *TraceMessage()* calls as *DebugMessage()* calls.
+
+<table>
+    <tr>
+        <td colspan="2">Beside the mandatory <em>DefaultInitialize()</em> described above, <em>DefaultWorker</em> also provide these extension tree points</td>
+    </tr>
+    <tr>
+        <td><em>Method</em></td>
+        <td><em>Description</em></td>
+    </tr>
+    <tr>
+        <td>DefaultBeforeRun()</td>
+        <td>This method is called for each <em>Run()</em>, <strong>before</strong> all the tests you've added with <em>AddTest()</em>. You can use this method if you have some test fixture setup you need to perform before each <em>Run()</em>.</td>
+    </tr>
+    <tr>
+        <td>DefaultAfterRun()</td>
+        <td>This method is called for each <em>Run()</em>, <strong>before</strong> all the tests you've added with <em>AddTest()</em>. You can use this method if you have some test fixture setup you need to perform before each <em>Run()</em></td>
+    </tr>
+    <tr>
+        <td>DefaultShutdown()</td>
+        <td>This method is called during <em>Shutdown()</em>, after all the test references has been cleared. Her you can close all resources you've hold for the whole load test run. You should also clear all JVM references you hold.</td>
+    </tr>
+</table>
+
+Writing a worker from scratch
+--------------------
+If you find the *DefaultWorker* to limiting, GrinderScript.Net also provide an `GrinderScript.Net.Core.AbstractWorker` that you can extend from. Beside the glue functionality described below the *AbstractWorker* provide you with tree methods to override, *OnInitialize()*, *OnRun()* and *OnShutdown()*. Hopefully you've picked up when and how to use these methods by now.
+
+<table>
+    <tr>
+        <td colspan="3">The <em>AbstractWorker</em> provide tree member variables for you to use when writing your load tests.</td>
+    </tr>
+    <tr>
+        <td><em>Member</em></td>
+        <td><em>Type</em></td>
+        <td><em>Description</em></td>
+    </tr>
+    <tr>
+        <td>GrinderContext</td>
+        <td>GrinderScript.Net.Core.IGrinderContext</td>
+        <td>This is your bridge to The Grinder it self. You use this to read various load run information, like the <em>grinder.properties</em>, to register test methods for timing by The Grinder and to interact with the sleep functionality in The Grinder. This is a singleton instance living in the JVM, so you must pass this on to any objects you create that need to interact with The Grinder.</td>
+    </tr>
+    <tr>
+        <td>Logger</td>
+        <td>GrinderScript.Net.Core.IGrinderLogger</td>
+        <td>This is a CLR wrapper around a logger instance in the JVM. It makes it possible to integrate your own logging into The Grinder's logs.</td>
+    </tr>
+    <tr>
+        <td>TypeHelper</td>
+        <td>GrinderScript.Net.Core.Framework.TypeHelper</td>
+        <td>As the name indicates, this is a helper object to instantiate a type, either from it's name, or from a value read from the <em>grinder.properties</em></td>
+    </tr>
+</table>
+
+As a side note, the *DefaultWorker* extends the *AbstractWorker*.
+
+Writing your own Script Engine
+--------------------
+<a id="ScriptEngine"></a>
+The purpose of a script engine is to create worker instances on demand of The Grinder. Beside that it's also notified when the load run process is initialized and shutdown, so it can do any process initialization/finalization work need by your workers. A Script Engine type must implement the `GrinderScript.Net.Core.IGrinderScriptEngine` interface:
+
+    public interface IGrinderScriptEngine
+    {
+        void Initialize();
+
+        IGrinderWorker CreateWorkerRunnable();
+
+        void Shutdown();
+    }
+
+GrinderScript.Net's default script engine, `GrinderScript.Net.Core.DefaultScriptEngine`, creates the workers by instantiating the type you configure with the *grinderscript-dotnet.workerType* property, and is ready for you to use right out of the box. But you might have special process initialization/finalization needs, or need some additional initialization of all your worker instances, or do not fancy using the *grinderscript-dotnet.workerType* property to specify your worker type. In any of these case you can extend the DefaultScriptEngineor it's base class, the `GrinderScript.Net.Core.AbstractScriptEngine`. Both options p provides you with tree methods to override, *OnInitialize()*, *OnCreateWorkerRunnable()* and *OnShutdown()*. You've probably figured out what code goes in each method already, if not you can look at the script engine types in the samples code. Below is all the code in the *DefaultWorker*, as an example of how to override the *OnCreateWorkerRunnable()*.
+
+    public class DefaultScriptEngine : AbstractScriptEngine, IDatapoolFactoryAware
+    {
+        protected override IGrinderWorker OnCreateWorkerRunnable()
+        {
+            Logger.Trace("OnCreateWorkerRunnable: Enter");
+            var result = CreateGrinderWorkerFromProperty();
+            Logger.Trace(m => m("OnCreateWorkerRunnable: Exit, result = {0}", result));
+            return result;
+        }
+
+        public IDatapoolFactory DatapoolFactory { get; set; }
+    }
+
+You replace the default script engine with your own by using the `grinderscript-dotnet.scriptEngineType` property in your `grinder.properties` file, e.g.
+`grinderscript-dotnet.scriptEngineType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Core.ScriptEngineThatCreateWorkerByCtor, GrinderScript.Net.Verifier`
+
+Extending the *DefaultScriptEngine* or the *AstractScriptEngine* is much a matter of taste (beside what makes you the least code to get your work done).
+
+What\'s next
+----------------------
+By now you should understand how to write your load tests with GrinderScript.Net. The natural next step now is to learn how to [use data pools to varying test data](./datapools.html "Using data pools in GriderScript.Net page") or how to [compose workers into load test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page"). You can also check out the [complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net.

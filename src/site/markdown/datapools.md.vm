@@ -1,0 +1,235 @@
+Using data pools in GriderScript.Net
+=============
+
+It is important that you vary the test data in your load tests, to make sure you put a realistic load on all the components in your system. GrinderScript.Net contains a lightweight data pool framework that makes it easy to supply different values to the tests during load testing.
+
+It\'s a good idea to write and run your first load test before you start digging into using data pools, so you have your foundation ready. Our NuGet samples package contains a few ready to use data pool examples. You should install the package into your load test project before you proceed, so you have some living code to play with while you read this. You install the sample package the normal NuGet way, from the *Visual Studio NuGet Package Manager*:
+
+`install-package GrinderScript.Net.Samples`
+
+The four steps to create and use a data pool
+-------------
+
+You follow these four steps when using a data pool with GrinderScript.Net:
+
+1. Create the class/type representing the data pool values
+2. Create the list of data pool values
+3. Load the data pool values into the load run process
+4. Fetch the data pool values and use them to vary test data in your load test worker
+
+We\'ll use an imaginary load test of a log on service as an example wen we go through these four steps. 
+
+Creating the data pool value type
+------------
+
+At the core a data pool is just a list of values. With GrinderScript.Net you can use any .Net type as the value in the list. We start by modeling the user name and password we\'ll provide to the tests in a *Credentials* class.
+
+    public class Credentials
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+
+Creating the list of data pool values
+-----------
+
+GrinderScript.Net has integrated support for reading data pool values from csv (comma separated values) files. Csv is a simple, yet quite powerful format for capturing lists of data. You can easily create the content with a SQL query, as a spreadsheet or in a plain text editor. 
+
+If you want to use other data formats like Json og Xml, or read the values from other sources than the file system, e.g. from a SQL database or from some kind of web service, you\'ll need to implement the `GrinderScript.Net.Core.IDatapoolValuesFactory<T>` interface. How to implement your own *IDatapoolValuesFactory* is described further down, but let\'s look at using csv files first.
+
+Using cvs files
+-----------
+
+You need the GrinderScript.Net.Cvs NuGet package installed to load data pool values from csv files. You install this package into your project from the *Visual Studio NuGet Package Manager* with the command
+
+`install-package GrinderScript.Net.Csv`
+
+Internally we use the excellent open source framework [CsvHelper](https://github.com/JoshClose/CsvHelper "CsvHelper GitHub repository") to do the actual loading of the data pool values from the csv files, with the following configuration.
+
+	new CsvConfiguration { AllowComments = true, Delimiter = ";", IsCaseSensitive = false, HasHeaderRecord = true};
+
+The exact meaning of the *CsvConfiguration* class and it\'s properties is described in the CsvHelper documentation. Here is an example of a *Credentials.cvs* file for our *Credentials* data pool. You should check the CsvHelper documentation if the structure and content in the example don\'t make sense.
+
+	#Used by the imaginary log on load test Credentials data pool example
+	Username;Password
+	scott;tiger
+	someuser;somesecretpwd
+	someotheruser;someothersecretpwd
+
+Implementing a custom *IDatapoolValuesFactory*
+-----------
+You must implement a custom *IDatapoolValuesFactory* if csv files don\'t suite your data pool format and/or storage needs. It\'s a very simple interface, with only one method.
+
+    public interface IDatapoolValuesFactory<T> where T : class
+    {
+        IList<T> CreateValues(IGrinderContext grinderContext, string name);
+    }
+
+GrinderScript.Net will call the *IDatapoolValuesFactory.CreateValues()* method once when initializing the data pool. You return the values in an *IList\<T>* and can use the passed in *grinderContext* and *name* to read additional configuration from the `grinder.properties` as needed. 
+
+The next section gives more information about how and when GrinderScript.Net will call your *IDatapoolValuesFactory*, but first, here is the implementation of the *CreateValues()* method in *CsvDatapoolValuesFactory\<T\>*, as an example. 
+
+    public IList<T> CreateValues(IGrinderContext grinderContext, string name)
+    {
+        string fileName = grinderContext.GetProperty(DatapoolFactory.GetPropertyKey(name, "csvFile"), string.Format("{0}.csv", name));
+        var configuration = new CsvConfiguration { AllowComments = true, Delimiter = ";", IsCaseSensitive = false, HasHeaderRecord = true};
+        using (var csv = new CsvReader(new StreamReader(fileName), configuration))
+        {
+            return csv.GetRecords<T>().ToList();
+        }
+    }
+
+Loading the data pool values into the load run process
+-----------
+
+When you have your data pool values ready, either as a cvs file or in a format and storage readable by your home grown *IDatapoolValuesFactory*, you\'re one step away from start using it in your load test. You just need to load the values into the load run process first. You can choose from tree strategies for loading data pool values
+
+1. You can use the `grinder.properties` to configure your data pools and let GrinderScript.Net load them automatically after the script engine is initialized.
+2. You can create your own script engine and initialize the data pools in code. 
+3. You can mix 1) and 2), where you first create some of your data pools from code in your own script engine and then let GrinderScript.Net load the rest from configuration in `grinder.properties`.
+
+Loading data pool values from configuration in *grinder.properties*
+--------
+
+The [data pool configuration section](./properties.html#DataPoolConfiguration "Properties related to data pool configuration section in the GrinderScript.Net properties page") at the GrinderScript.Net properties page describes the properties you use when you configure your data pools in the `grinder.properties`. Here is an example of how our *Credentials* data pool could be configured:
+
+	grinderscript-dotnet.datapoolFactory.1=Credentials
+	grinderscript-dotnet.datapool.Credentials.valueType=GrinderScript.Net.Verifier.Datapool.Credentials, GrinderScript.Net.Verifier
+	grinderscript-dotnet.datapool.Credentials.factoryType=GrinderScript.Net.Core.CsvDatapoolValuesFactory`1, GrinderScript.Net.Core
+	grinderscript-dotnet.datapool.Credentials.random=true
+	grinderscript-dotnet.datapool.Credentials.seed=428653
+	grinderscript-dotnet.datapool.Credentials.distributionMode=ThreadShared
+	grinderscript-dotnet.datapool.Credentials.circular=true
+	grinderscript-dotnet.datapool.Credentials.csvFile=Samples\\GrinderScript.Net\\Datapool\\Credentials.csv
+
+You probably need to adjust the `valueType` and `csvFile` with your actual namespace and file location before you can run the example with your own code.
+
+Loading data pool values from code in your own script engine
+--------
+
+GrinderScript.Net uses the `GrinderScript.Net.Core.IDatapoolValuesFactory<T>`abstraction to load data pool values. Below are some examples of how the *Credentials* data pool values can be loaded from code. All these examples extends GrinderScript.Net\'s *DefaultScriptEngine*. You can check out [how to write your own script engine](./loadtests.html#ScriptEngine "Writing your own script engine with GrinderScript.Net page") first, if needed.
+	
+In the first example we just initializes our *Credentials* data pool from configuration in the `grinder.properties`. You should do this with all mandatory data pools, to make sure they always are loaded, even if nothing is configured in `grinder.properties`.
+
+	protected override void OnInitialize()
+	{
+	    DatapoolFactory.CreateDatapool<Credentials>();
+	}
+
+
+In the next example we hard code the *IDatapoolValuesFactory* to use when initializing our *Credentials* data pool.
+
+    protected override void OnInitialize()
+    {
+        DatapoolFactory.CreateDatapool(new CsvDatapoolValuesFactory<Credentials>());
+    }
+
+In the last example we initialize our *Credentials* data pool by hard coding all the meta data. No configuration will be read from `grinder.properties` in this example.
+
+    protected override void OnInitialize()
+    {
+        var values = new CsvDatapoolValuesFactory<Credentials>().CreateValues(GrinderContext);
+        const bool IsRandom = true;
+        var seed = (int)DateTime.Now.Ticks;
+        const DatapoolThreadDistributionMode DistributionMode = DatapoolThreadDistributionMode.ThreadShared;
+        const bool IsCircular = true;
+        var metaData = new DefaultDatapoolMetadata<Credentials>(values, IsRandom, seed, DistributionMode, IsCircular);
+        DatapoolFactory.CreateDatapool(metaData);
+    }
+
+Mixing configuration driven and code driven loading of data pool values is as simple as following the description of both above. GrinderScript.Net will load all data pools configured in `grinder.properties` after your script engine is initialized. If your script engine already has configured a data pool in code it will be skipped by GrinderScript.Net\'s loading from `grinder.properties`. In this way you can freeze some data pools and let the others be configurable.
+
+Fetching data pool values in your load test worker
+-----------
+
+Having the data pool loaded into the load test process by a data pool factory, we can now use the values in our load tests. We\'ll use the `GrinderScript.Net.Core.IDatapool<T\>` interface for fetching values. 
+
+    public interface IDatapool<T> where T : class
+    {
+        T NextValue();
+    }
+
+GrinderScript.Net provides an `GrinderScript.Net.Core.IDatapoolManager` interface that you use to gain access to the *IDatapool* instances you\'ve created. 
+
+    public interface IDatapoolManager
+    {
+        IDatapool<T> GetDatapool<T>() where T : class;
+        IDatapool<T> GetDatapool<T>(string name) where T : class;
+    }
+
+If you are extending the *DefaultWorker*, you have a *DatapoolManager* member variable ready for your use. Otherwise you need to tell GrinderScript.Net that you need access to the *IDatapoolManager*, by implementing the `GrinderScript.Net.Core.IDatapoolManagerAware` interface in your worker. As you can see from the two *GetDatapool()* signatures, you can either pass in the type of the data pool values, or pass in both a type and a logical data pool name when you retrieve the *IDatapool*. The last one is useful if you have several data pools of the same type, and need to pick another than the default (the one with the same name as the data pool type).
+
+You have tree options when it comes to where and how often you fetch values from the data pool
+
+1. You can fetch the value once and reuse it for the whole load test.
+2. You can fetch a new value for each call to *Run()*, and reuse it in all the tests call inside *Run()*.
+3. You can fetch a new value for each test call, without any reuse of the value.
+
+Your use case will dictate witch of the options you\'ll use. Below are tree code examples, one for each strategy.
+
+Example of a worker that fetches the data pool value once during initialize, and reuse that value for the whole load test:
+
+    public class WorkerThatFetchDatapoolValueOnce : DefaultWorker
+    {
+        private Credentials credentials;
+
+        protected override void DefaultInitialize()
+        {
+            credentials = DatapoolManager.GetDatapool<Credentials>().NextValue();
+            AddTest(1001, "LogOn", TestLogOn);
+        }
+
+        private void TestLogOn()
+        {
+            Logger.Info(m => m("TestLogOn: Credentials.Username = '{1}', Credentials.Password = '{2}'", credentials.Username, credentials.Password));
+        }
+    }
+
+Example of a worker that fetches a new value for each call to *Run()*, and reuse it in all the test calls inside *Run()*.
+
+    public class WorkerThatFetchDatapoolValueBeforeEachRun : DefaultWorker
+    {
+        private IDatapool<Credentials> credentialsDatapool;
+        private Credentials credentials;
+
+        protected override void DefaultInitialize()
+        {
+            credentialsDatapool = DatapoolManager.GetDatapool<Credentials>();
+            AddTest(1001, "LogOn", TestLogOn);
+        }
+
+        protected override void DefaultBeforeRun()
+        {
+            credentials = credentialsDatapool.NextValue();
+        }
+
+        private void TestLogOn()
+        {
+            Logger.Info(m => m("TestLogOn: Credentials.Username = '{1}', Credentials.Password = '{2}'", credentials.Username, credentials.Password));
+        }
+    }
+
+Example of a worker that fetches a new value for each test call, without any reuse of the value
+
+    public class WorkerThatFetchDatapoolValueBeforeEachTest : DefaultWorker
+    {
+        private IDatapool<Credentials> credentialsDatapool;
+        private Credentials credentials;
+
+        protected override void DefaultInitialize()
+        {
+            credentialsDatapool = DatapoolManager.GetDatapool<Credentials>();
+            AddTest(1001, "LogOn", TestLogOn, () => credentials = credentialsDatapool.NextValue());
+        }
+
+        private void TestLogOn()
+        {
+            Logger.Info(m => m("TestLogOn: Credentials.Username = '{1}', Credentials.Password = '{2}'", credentials.Username, credentials.Password));
+        }
+    }
+
+What\'s next
+----------------------
+When you\'re able to vary the test data in your load tests with data pools, you might want to dig into [how to compose test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page") with GrinderScript.Net. 
+
+You can also check out the [complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net or revisit the basics about [how to write load tests](./loadtests.html "Writing load tests with GrinderScript.Net page").

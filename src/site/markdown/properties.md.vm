@@ -1,0 +1,219 @@
+Properties used by GrinderScript.Net
+=================
+
+This page contains a summary of all the properties used by GrinderScript.Net. You use these in addition to the normal Grinder properties. 
+
+Some tips & tricks before you begin
+------------------
+
+To start using GrinderScript.Net with Grinder you must specify the assembly containing your load tests in the **grinder.script** property. Please remember to include the **.dll** extension, otherwise Grinder will not bind your script to GrinderScript.Net, e.g. 
+
+`grinder.script=GrinderScript.Net.Verifier.dll`
+
+Please note that GrinderScript.Net requires that you use the DCR instrumentation engine in Grinder. Make sure the property `grinder.dcrinstrumentation=true` is present in your `grinder.properties` file, and everything will be fine.
+
+Remember to use \\\\ (two backslashes) when you specify a path separator in a property.
+
+The properties with **None** as the *Default value* in the table below are mandatory, the rest are optional. 
+
+It's recommended that you use an assembly qualified type name for type name properties, to make sure GrinderScript.Net can find and load the type from this symbolic name.
+
+These properties are plain Java properties, so you must specify them using the normal Java property format, see this [.properties file](http://en.wikipedia.org/wiki/.properties "Wikipedia: .properties") description if you\'re in doubt.
+
+Property names are case sensitive.
+
+You can use [these properties](./grinder.properties "Starting point for your grinder.properties") as a starting point for your own *grinder.properties* file.
+
+The Grinder does not require you to name your `grinder.properties` file *grinder.properties*, its just the default name used until you override it. You can select any property file in The Grinder Console, or specify a file name as an option in your Grinder Agent start up script. See [The Grinder user documentation](http://grinder.sourceforge.net/g3/manual.html "The Grinder's Complete User Guide") for further details.
+
+List of properties
+--------
+
+<a id="CoreProperties"></a>
+
+<table>
+    <tr>
+        <td colspan="3"><strong>Core properties</strong></td>
+    </tr>
+    <tr>
+        <td colspan="3">You use these properties to control the core functionality of GrinderScript.Net</td>
+    </tr>
+    <tr>
+        <td><em>Property</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+
+    <tr>
+        <td>grinderscript-dotnet.workerType</td>
+        <td>This is the type name of the actual class implementing your load test. This is mandatory if you uses GrinderScript.Net's default script engine. The property "grinder.threads" controls how many instances of this type The Grinder will spin up in each worker process. You are free to use another strategy than this property to choose the actual load test type. You do this by implementing your own script engine type and specify it's type name in the "grinderscript-dotnet.scriptEngineType" property, see below.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scriptEngineType</td>
+        <td>The Grinder uses a script engine to load the actual worker types that implements your load tests. GrinderScript.Net's default script engine uses the property "grinderscript-dotnet.workerType" to control the actual worker type to load. You can replace it if you want to use your own instantiation strategy, or if you need special initialization of the worker process before the load test starts.</td>
+        <td>GrinderScript.Net.Core.DefaultScriptEngine, GrinderScript.Net.Core</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.binFolder</td>
+        <td>By default GrinderScript.Net load assemblies from The Grinder's Worker process active folder. This utilizes The Grinder's ability to automatically distribute all the load test files from the Console machine to all the Load Agent machines. On the other hand this can cause a huge startup overhead if your setup contains a lot of content. If you specify "grinderscript-dotnet.binFolder", GrinderScript.Net will look for assemblies in that folder in addition to The Grinder's Worker process active folder. The worker process's active folder is checked first, then the folder you specify. This property is optional.</td>
+        <td>None</td>
+    </tr>
+</table>
+
+
+<a id="ScenarioComposition"></a>
+
+<table>
+    <tr>
+        <td colspan="3"><strong>Properties related to test scenario composition</strong></td>
+    </tr>
+    <tr>
+        <td colspan="3">You can write your load test as long and complex as you like, within the limitation of the .Net framework. But you, as a craftsman, are of cause reluctant to organize your code in such a <a href="http://en.wikipedia.org/wiki/Big_ball_of_mud" title="Wikipedia: Big ball of mud">big ball of mud</a>. You probably like to follow the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle" title="Wikipedia: Single responsibility principle">single responsibility principle</a> and other well established patterns and practices to write reusable and maintainable code in your load tests also. GrinderScript.Net comes with a worker that helps you split your load test into small, well focused classes that you can compose into huge and complex load test scenarios if you need to. You use this worker by setting the property "grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.ScenarioWorker, GrinderScript.Net.Core" and compose your load test scenario by using the properties described in this section. Each property prefixed with *grinderscript-dotnet.scenarioWorker.n.*, where n is a positive integer, configures on test worker in your load test scenario.</td>
+    </tr>
+    <tr>
+        <td><em>Property</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.n.typeName</td>
+        <td>This is the type name of the actual class implementing the n-th load test in the scenario.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.n.loadFactor</td>
+        <td>Positive integer indicating how heavy the n-th worker will be used in the test scenario. Default = 1, so all test workers are weighted equally.</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.random</td>
+        <td>Should the scenario run the workers in a random order, or sequential? Default = false (Run the workers sequential)</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.seed</td>
+        <td>Seed to use for random selection. If specified each run with the same workers and load factors will run in the same order. Default is [DateTime.Now.Ticks], producing a possible new run combination each time.</td>
+        <td>[DateTime.Now.Ticks]</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.firstElement</td>
+        <td>In what range should we scan for workers? First element to use. You can adjust this to just use a sub range of test workers in a huge list of possible test workers.</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.scenarioWorker.lastElement</td>
+        <td>In what range should we scan for workers? Last element to use. You can adjust this to just use a sub range of test workers in a huge list of possible test workers. You MUST adjust this if you plan to compose test scenarios with mote than 100 test workers.</td>
+        <td>100</td>
+    </tr>
+</table>
+
+<a id="DataPoolConfiguration"></a>
+
+<table>
+    <tr>
+        <td colspan="3"><strong>Properties related to data pool configuration</strong></td>
+    </tr>
+    <tr>
+        <td colspan="3">The default GrinderScript.Net script engine can load and configure data pools from properties. This section describes the properties you use to configure your data pools.</td>
+    </tr>
+    <tr>
+        <td><em>Property</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+
+    <tr>
+        <td>grinderscript-dotnet.datapoolFactory.n</td>
+        <td>GrinderScript.Net's default script engine load all data pools specified in "grinderscript-dotnet.datapoolFactory.n" properties, where n is a positive integer. Each property "grinderscript-dotnet.datapoolFactory.n" specifies the name of the data pool to configure. You use this name to reference the data pool in your code. You also substitute the [Poolname] part of each property below with this name when you configure the n-th data pool.</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].valueType</td>
+        <td>Name of the type of the datapool values returned by this data pool. The IDatapool interface is an open generic type, and you'll bind the open type to your value type to retrieve and use the values in a type safe manner with calls to NextValue().</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].factoryType</td>
+        <td>Name of the type implementing the data pool factory, that is the class providing the values for this data pool. GrinderScript.Net provides one factory implementation, "GrinderScript.Net.Core.CsvDatapoolValuesFactory`1, GrinderScript.Net.Core". This factory loads data pool values from a csv file. You specify the file name in the property "grinderscript-dotnet.datapool.[Poolname].csvFile", see below. Please note the <strong>`1</strong> in the type name. This is used to represent the fact that all data pool value factory types are open generic types, that GrinderScript.Net will close with the valueType when it's instansiated. (And, yes, it's ok if this explanation don't make sense to you, as long as you remember the <strong>`1</strong> in the type name.)</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].random</td>
+        <td>Should the data pool deliver the values in a random order, or in the original order? Default = false (Deliver the values in the original order.)</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].seed</td>
+        <td>Seed to use for a random data pool. If specified each run with the same data pool configuration will pick values from the data pool in the same order. Default is [DateTime.Now.Ticks], producing a possible new sequence each time.</td>
+        <td>[DateTime.Now.Ticks]</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].distributionMode</td>
+        <td>You can configure GrinderScript.Net to distribute the vaules in the data pool to the load test workers and processes in tree different ways.<table><tr><td>ThreadShared</td><td>In this mode each load test process sees all the values in the data pool. Inside each process all the load test workers share the values between them. Thus each worker asking for a new value will get a unique value inside this load test process, but they might share the value with other workers in other load test processes in the run.</td></tr><tr><td>ThreadUnique</td><td>In this mode each load test worker in each load test processes sees its own unique subset of the data pool values. This is usefull when your load test manipulate the state of the data the data pool values binds to, thus leaving the value "uesless" for another worker. You must also use the "grinderscript-dotnet.agentCount" property, see below, if you use this mode with several load test agents.</td></tr><tr><td>ThreadComplete</td><td>In this mode each load test worker in all processes sees all the values in the data pool.</td></tr></table></td>
+        <td>ThreadShared</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].circular</td>
+        <td>Used to control what should happen when all the values in the pool has been used in a worker process. When circular is true (the default) the data pool wraps and start with the first value again. If it's false, an exception will be thrown.</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapool.[Poolname].csvFile</td>
+        <td>The name of the csv file with the values used by this data pool. Mandatory for data pools where you use the factory type "GrinderScript.Net.Core.CsvDatapoolValuesFactory`1, GrinderScript.Net.Core"</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapoolFactory.firstElement</td>
+        <td>In what range should we scan for data pools? First element to use. You can adjust this to only configure a sub range of data pools in a huge list of possible data pools.</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.datapoolFactory.lastElement</td>
+        <td>In what range should we scan for data pools? Last element to use. You can adjust this to only configure a sub range of data pools in a huge list of possible data pools. You MUST adjust this if you plan to configure mote than 100 data pools.</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.agentCount</td>
+        <td>How many load test agents are participating in thee load test? You must specify this if you use a data pool with distributionMode=ThreadUnique in a load test run with more than one load test agent. (You should think that The Grinder could provide this value, but we have not found a way to retrieve it from The Grinder yet...)</td>
+        <td>1</td>
+    </tr>
+</table>
+
+<a id="MiscProperties"></a>
+
+<table>
+    <tr>
+        <td colspan="3"><strong>Miscellaneous properties</strong></td>
+    </tr>
+    <tr>
+        <td colspan="3">There are some features in GrinderScript.Net that you seldom need to use. These properties control those features.</td>
+    </tr>
+    <tr>
+        <td><em>Property</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+
+    <tr>
+        <td>grinderscript-dotnet.launchDebugger</td>
+        <td>It's tricky to start a load test run from within Visual Studio for debugging purposes, since The Grinder Agent spawns the worker processes with a custom built command line. Set this property to true to instruct GrinderScript.Net to call System.Diagnostics.Debugger.Launch() as soon as the bridge is launched into the CLR, so you can debug the test execution from there. The Visual Studio Just-In-Time Debugger window should appear on the agent machine(s) shortly after you start the test run.</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.bridgeVerbose</td>
+        <td>Set this to true if you are experiencing problems when running your load test, and there is no indications about the problem in The Grinder Agent logs or console window. This will cause Jni4Net to log details about the runtime environment to The Grinder Agent process console. Hopefully this information will make it easier to troubleshoot the issue.</td>
+        <td>false</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.loggerEnabledCacheTtl</td>
+        <td>GrinderScript.Net's logging is integrated into The Grinder's logs. Normally you do not change the log level configuration during a load test run. GrinderScript.Net can cache the log level information in the CLR, to avoid round trips to the JVM to read these values. This property control how long the log level configuration is cached. A value of -1 (the default) causes the values to be cached for the whole run, 0 indicates no caching at all and all positive integers indicates the cache time to live in milliseconds.</td>
+        <td>-1</td>
+    </tr>
+    <tr>
+        <td>grinderscript-dotnet.verificationWorker.testsPrRun</td>
+        <td>This property is mainly for internal use in GrinderScript.Net. We use a grinder.properties  file with the properties "grinder.script=GrinderScript.Net.Core.dll" and "grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.VerificationWorker, GrinderScript.Net.Core" to verify that GrinderScript.Net is working properly in our Grinder installation. This property controls how many separate test calls is performed pr iteration. Playing with this property will give you a feeling about the overhead of calling back and forth between Java and the CLR. When using the default value of 1, each Grinder iteration will just cause one call from the CLR back to the JVM. In this setup the overhead of the initial Grinder call from the JVM to the CLE will have a huge impact on the number of TPS. Setting this to a higher value will reduce this impact and will give you n indication about the maximum load you will be able to generate.</td>
+        <td>1</td>
+    </tr>
+</table>

@@ -1,0 +1,64 @@
+Installing GrinderScript.Net
+=================
+
+You download and install GrinderScript.Net in two parts
+
+1. The binary distribution is downloaded from [SourceForge.net](https://sourceforge.net/projects/grindersdotnet/files/?source=navbar "GrinderScript.Net download page"). This package must be installed into an existing installation of The Grinder, see instructions below.
+2. The NuGet packages are installed into your load test project in Visual Studio with the NuGet Package Manager. You can also use the NuGet command line tool to install the packages if you are restricted from, or do not want to, use the Visual Studio NuGet Package Manager. See instructions below for both options. 
+
+Installing the binary distribution into The Grinder
+------------------
+
+Installing the binaries into The Grinder consist of these four steps:
+
+1. Download GrinderScript.Net-${project.version}-binaries.zip from [SourceForge.net](https://sourceforge.net/projects/grindersdotnet/files/?source=navbar "GrinderScript.Net download page")
+2. Unzip the content of the archive with sub directories to your local hard drive.
+3. Add the GrinderScript.Net **lib** folder to the `classpath` of your Grinder **Agent** start up script. E.g. if you extracted the binaries into *C:\\tools\\GrinderScript.Net-${project.version}* then you should use 
+
+     `set CLASSPATH=C:\tools\GrinderScript.Net-${project.version}\lib\*;%CLASSPATH%`
+
+4. Verify that The Grinder can run GrinderScript.Net load tests. The binaries distribution contains some example load tests in the **verifier** folder. See **C:\\tools\\GrinderScript.Net-${project.version}\\verifier\\README.html** for further instructions.
+
+Installing the NuGet packages into your load test project
+------------------
+
+By now you should have verified that load tests written with GrinderScript.Net are working in The Grinder. It's now time to install the GrinderScript.Net NuGet packages into your load test project.
+
+Installing using the Visual Studio NuGet Package Manager
+----------------
+
+This is the preferred way to start using GrinderScript.Net in your load test projects. Just open the *Package Manager Console*, make sure you select the correct project in the *Default project* drop down list and issue the command
+
+`install-package GrinderScript.Net.Samples`
+
+Visual Studio will open the package's *readme.txt* file when the installation is complete. Just follow the instructions here to get going!
+
+Installing using the NuGet command line tool
+----------------
+
+If you have not installed the NuGet command line tool already, download it from [CodePlex](http://nuget.codeplex.com/releases/view/58939 "NuGet command line tool download page"). Install it to a local folder, e.g. *C:\\Util*. You install the GrinderScript.Net.Samples package into *C:\\MySolution\\ExternalLibs* by running NuGet.exe from the command line, e.g.:
+
+`C:\Util\NuGet.exe install GrinderScript.Net.Samples -OutputDirectory C:\MySolution\ExternalLibs`
+
+You should get output similar to this (the version numbers might differ)
+>Attempting to resolve dependency 'GrinderScript.Net.Core (= 1.0.0.0)'.
+
+>Attempting to resolve dependency 'GrinderScript.Net.Csv (= 1.0.0.0)'.
+
+>Attempting to resolve dependency 'CsvHelper (= 1.17.0)'.
+
+>Successfully installed 'GrinderScript.Net.Core 1.0.0.0'.
+
+>Successfully installed 'CsvHelper 1.17.0'.
+
+>Successfully installed 'GrinderScript.Net.Csv 1.0.0.0'.
+
+>Successfully installed 'GrinderScript.Net.Samples 1.0.0.0'.
+
+The sample code can then be found under *C:\\MySolution\\ExternalLibs\\GrinderScript.Net.Samples.1.0.0.0\\Content*. The required assemblies are also found in separate folders under *C:\\MySolution\\ExternalLibs*. Include these into your Visual Studio project and follow the instructions in *C:\\MySolution\\ExternalLibs\\GrinderScript.Net.Samples.1.0.0.0\\Content\\Samples\\GrinderScript.Net\\README.md* to run the samples.
+
+The NuGet packages are also provided on the [GrinderScript.Net download page on SourceForge.net](https://sourceforge.net/projects/grindersdotnet/files/?source=navbar "GrinderScript.Net download page"). If you are unable to access the [NuGet Gallery](https://www.nuget.org "NuGet Gallery download page"), you could still download and extract *GrinderScript.Net-${project.version}-nupck.zip* from SourceForge, and feed the local copy to NuGet.exe with the **-Source** option. See the [NuGet command line reference](http://docs.nuget.org/docs/reference/command-line-reference "NuGet command line reference documentation") for usage details.
+
+What\'s next
+----------------------
+When you have completed the installation you are ready to write your first load tests. You might want to read the [introduction to writing load test with GrinderScript.Net](./loadtests.html "Writing load tests with GrinderScript.Net page"), before you explore your newly installed samples.

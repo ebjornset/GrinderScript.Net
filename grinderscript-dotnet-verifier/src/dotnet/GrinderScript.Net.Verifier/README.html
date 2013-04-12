@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="Date-Revision-yyyymmdd" content="20130412" />
+		<meta http-equiv="Content-Language" content="en" />
+		<title>Verifying the GrinderScript.Net installation</title>
+	</head>
+	<body>
+
+<h1>Verifying the GrinderScript.Net installation</h1>
+
+This folder contains some example load tests that you can use to verify that <i>The Grinder</i> can run <i>GrinderScript.Net</i> load tests.
+<br/><br/>
+
+You verify the installation by following these five steps.
+<ol>
+<li>Start the <b>Grinder Console</b></li>
+<li>Start one or more <b>Grinder Agents</b></li>
+<li>Set the Grinder Console <b>root directory</b> to this <b>verifier</b> folder. (From the <i>Distribute -> "Set directory.."</i> menu)</li>
+<li>Select the <b>Verification.grinder.properties</b> file as the <b>active properties</b>. (From the <i>Script</i> tab, mark the file, right click and <i>Select properties</i>)</li>
+<li>Start a new run, either from the <i>Action -> "Start process"</i> menu or from the upper leftmost button.</li>
+</ol>
+
+Hopefully the run will start as expected, and you'll see the <b>TPS</b> ticking of and the <i>Graph</i> and <i>Results</i> tabs will contain information about the run. 
+<br/><br/>
+If the run doesn't start, or if it shutsdown without any data beeing collected by the Grinder Console, you'll have to troubleshoot the problem by looking in the agent console window and/or the agent logs.
+<br/><br/>
+The property <b>grinder.duration=30000</b>, so the verification will run for 30 seconds before it shuts down again.
+<br/><br/>
+Have fun!
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<assembly> 
+	<id>lib</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<fileSets> 
+		<fileSet> 
+			<directory>${project.basedir}/src/dotnet/GrinderScript.Net.Core/bin/Debug</directory> 
+			<outputDirectory>lib</outputDirectory> 
+			<includes> 
+				<include>GrinderScript.Net.Core.dll</include> 
+				<include>GrinderScript.Net.Core.pdb</include> 
+			</includes> 
+		</fileSet> 
+	</fileSets> 
+</assembly> 

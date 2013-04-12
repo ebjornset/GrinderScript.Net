@@ -1,1 +1,7 @@
-target/
+.settings
+.project
+.classpath
+.sonar
+target
+org.eclipse.m2e.core.prefs
+*.DotSettings

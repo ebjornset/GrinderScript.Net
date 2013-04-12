@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<jni4net-proxygen 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns="http://jni4net.sf.net/0.8.6.0/toolConfig.xsd">
+	<TargetDirJvm>${project.build.directory}/generated-sources/proxygen/jvm</TargetDirJvm>
+	<TargetDirClr>${project.build.directory}/generated-sources/proxygen/clr</TargetDirClr>
+	<ClrType TypeName="GrinderScript.Net.Core.IGrinderContext" Generate="true" />
+	<ClrType TypeName="GrinderScript.Net.Core.IGrinderLogger" Generate="true" />
+	<ClrType TypeName="GrinderScript.Net.Core.IGrinderScriptEngine" Generate="true" />
+	<ClrType TypeName="GrinderScript.Net.Core.IGrinderTest" Generate="true" />
+	<ClrType TypeName="GrinderScript.Net.Core.IGrinderWorker" Generate="true" />
+	<ClrType TypeName="GrinderScript.Net.Core.Framework.ScriptEngineBridgeFactory" Generate="true" />
+	<AssemblyReference Assembly="${project.build.directory}/lib/GrinderScript.Net.Core.dll" Generate="false" />
+	<Verbose>false</Verbose>
+</jni4net-proxygen>

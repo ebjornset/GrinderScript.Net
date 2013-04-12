@@ -1,0 +1,27 @@
+Composing test scenarios with  GrinderScript.Net
+====================
+
+When you arrive at this page you hopefully know a bit about how you write a load test with GrinderScript.Net, and also have an idea of how you\'ll vary the test data you use to make your test realistic. If you\'re still note comfortable with these elements of load testing we recommend that you (re)visit the  description of [how to write load test](./loadtests.html "Writing load tests with GrinderScript.Net page"), or [how to vary test data using data pools](./datapools.html "Using data pools in GriderScript.Net page") with GrinderScript.Net before you continue.
+
+Composing test scenarios in GrinderScript.Net is merely a configuration exercise. The first step is to use the ready made *ScenarioWorker*, by specifiying the property `grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.ScenarioWorker, GrinderScript.Net.Core`. After that you must configure the worker types in the scenario, with their respective load factors. You wrap up your scenario by configuring your global scenario properties, like the need for randomizing the sequence of workers. You find the description of how to do this in the [section about properties related to test scenario composition](./properties.html#ScenarioComposition "Properties related to test scenario composition section in the GrinderScript.Net properties page") in the description of the GrinderScript.Net properties.
+
+Here is an example of how you can configure a load test scenario in `grinder.properties`
+
+	grinderscript-dotnet.scenarioWorker.1.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueOnce, GrinderScript.Net.Verifier
+	grinderscript-dotnet.scenarioWorker.1.loadFactor=5
+	
+	grinderscript-dotnet.scenarioWorker.2.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueBeforeEachRun, GrinderScript.Net.Verifier
+	grinderscript-dotnet.scenarioWorker.2.loadFactor=3
+
+	grinderscript-dotnet.scenarioWorker.3.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueBeforeEachTest,GrinderScript.Net.Verifier
+	
+	grinderscript-dotnet.scenarioWorker.random=true
+	grinderscript-dotnet.scenarioWorker.seed=123456
+
+In this example the scenario will load and run 9 worker instances, 5 *WorkerThatFetchDatapoolValueOnce* instances, 3 *WorkerThatFetchDatapoolValueBeforeEachRun* instances and 1 *WorkerThatFetchDatapoolValueBeforeEachTest* instance. 
+
+They will run in a random order, but the same random sequence will be used each time, since a seed is specified.
+
+What\'s next
+----------------------
+If you've followed the user documentation for GrinderScript.Net sequentially, your last piece of information is [the complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net. Otherwise you should check out [how to write load tests](./loadtests.html "Writing load tests with GrinderScript.Net page") with GrinderScript.Net.

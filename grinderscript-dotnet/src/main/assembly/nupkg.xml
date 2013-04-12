@@ -1,0 +1,15 @@
+<assembly> 
+	<id>nupkg</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<dependencySets>
+		<dependencySet>
+			<includes>
+				<include>${project.groupId}:*:zip:nupkg</include>
+			</includes>
+			<unpack>true</unpack>
+		</dependencySet>
+	</dependencySets>
+</assembly> 
