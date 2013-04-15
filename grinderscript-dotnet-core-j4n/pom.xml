@@ -67,7 +67,7 @@
 				<executions>
 					<execution>
 						<id>unpack-grinderscript-dotnet-core</id>
-						<phase>generate-sources</phase>
+						<phase>initialize</phase>
 						<goals>
 							<goal>unpack</goal>
 						</goals>
@@ -92,7 +92,7 @@
 				<executions> 
 					<execution> 
 						<id>filter-proxygen-input</id> 
-						<phase>generate-sources</phase> 
+						<phase>initialize</phase> 
 						<goals> 
 							<goal>copy-resources</goal> 
 						</goals> 
