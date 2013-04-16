@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.grinderscript.dotnet</groupId>
 	<artifactId>grinderscript-dotnet-parent</artifactId>
-	<version>1.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net</name>
 	<description>Parent Maven project for GrinderScript.Net</description>
@@ -457,7 +457,7 @@
         <url>https://${repository.domain}/${repository.user}/${repository.name}</url>
         <connection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</connection>
         <developerConnection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</developerConnection>
-	  <tag>v1.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<licenses>
 		<license>
