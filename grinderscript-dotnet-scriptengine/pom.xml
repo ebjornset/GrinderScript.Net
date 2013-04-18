@@ -9,7 +9,7 @@
 	<artifactId>grinderscript-dotnet-scriptengine</artifactId>
 	<packaging>jar</packaging>
 	<name>GrinderScript.Net :: Grinder Script Engine</name>
-	<description>GrinderScript.Net Grinder Script Engine</description>
+	<description>This module contains the thin java layer that implements the Grinder Script Engine. Its purpose is to load the .Net side of GrinderScript.Net so The Grinder can call your load tests.</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 	</properties>

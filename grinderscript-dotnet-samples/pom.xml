@@ -9,7 +9,7 @@
 	<artifactId>grinderscript-dotnet-samples</artifactId>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net :: Samples</name>
-	<description>GrinderScript.Net Samples</description>
+	<description>This is the source for the NuGet samples package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 	</properties>

@@ -9,7 +9,7 @@
 	<artifactId>grinderscript-dotnet-core-j4n</artifactId>
 	<packaging>jar</packaging>
 	<name>GrinderScript.Net :: Java To .Net Bridge</name>
-	<description>GrinderScript.Net Java To .Net Bridge</description>
+	<description>This module is used to generate the Jni4Net artifacts needed for marshalling calls between the JVM and the CLR</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 		<core.assembly.name>GrinderScript.Net.Core</core.assembly.name>

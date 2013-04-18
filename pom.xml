@@ -6,7 +6,7 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net</name>
-	<description>Parent Maven project for GrinderScript.Net</description>
+	<description>Parent Maven project for GrinderScript.Net, managing the dependencies and other build related stuff. It also contains the documentation, as a plain Maven site.</description>
 	<inceptionYear>2013</inceptionYear>
 	<url>http://GrinderScript.Net/</url>
 	<properties>

@@ -9,7 +9,7 @@
 	<artifactId>grinderscript-dotnet</artifactId>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net</name>
-	<description>GrinderScript.Net</description>
+	<description>This module is used to package the various parts of GrinderScript.Net into one distributable package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 	</properties>
