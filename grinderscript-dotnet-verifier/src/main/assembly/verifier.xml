@@ -10,9 +10,11 @@
 			<outputDirectory>verifier</outputDirectory> 
 			<includes> 
 				<include>Samples/**</include> 
-				<include>README.md</include> 
+				<include>README.html</include> 
 				<include>CsvHelper.*</include> 
 				<include>GrinderScript.Net.Verifier.*</include> 
+				<include>GrinderScript.Net.Csv.*</include> 
+				<include>*.grinder.properites</include> 
 			</includes> 
 		</fileSet> 
 	</fileSets> 
