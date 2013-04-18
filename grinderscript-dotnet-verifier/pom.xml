@@ -187,46 +187,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-                <groupId>com.fides</groupId>
-                <artifactId>grinderplugin</artifactId>
-				<configuration>
-					<path>${project.basedir}/src/test/config/grinder.properties</path>
-					<pathTest>${project.build.directory}/bin/Debug</pathTest>
-					<!--daemon_option>false</daemon_option>
-					<daemon_period>30000</daemon_period-->
-					<disable_script_config>true</disable_script_config>
-					<properties>
-						<grinder.useConsole>false</grinder.useConsole>
-						<grinder.script>${project.build.directory}/bin/Debug/GrinderScript.Net.Verifier.dll</grinder.script>
-						<!-- TODO Report the need for this as an issue to the grinderplugin team and remove it when the issue is fixed -->
-						<grinder.jvm.arguments>-javaagent:${settings.localRepository}/net/sf/grinder/grinder-dcr-agent/3.7.1/grinder-dcr-agent-3.7.1.jar</grinder.jvm.arguments>
-					</properties>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.jni4net</groupId>
-						<artifactId>jni4net.j</artifactId>
-						<version>${jni4net.version}</version>
-						<scope>system</scope>
-						<systemPath>${project.build.directory}/lib/jni4net.j-${jni4net.version}.jar</systemPath>
-					</dependency>
-					<dependency>
-						<groupId>${project.groupId}</groupId>
-						<artifactId>grinderscript-dotnet-core-j4n</artifactId>
-						<version>${project.version}</version>
-						<scope>system</scope>
-						<systemPath>${project.build.directory}/lib/grinderscript-dotnet-core-j4n-${project.version}.jar</systemPath>
-					</dependency>
-					<dependency>
-						<groupId>${project.groupId}</groupId>
-						<artifactId>grinderscript-dotnet-scriptengine</artifactId>
-						<version>${project.version}</version>
-						<scope>system</scope>
-						<systemPath>${project.build.directory}/lib/grinderscript-dotnet-scriptengine-${project.version}.jar</systemPath>
-					</dependency>
-				</dependencies>
-			</plugin>
 		</plugins>
 	</build>
 </project>
