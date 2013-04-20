@@ -6,7 +6,7 @@
 	<includeBaseDirectory>false</includeBaseDirectory> 
 	<fileSets> 
 		<fileSet> 
-			<directory>${project.basedir}/external/jni4net/lib</directory> 
+			<directory>${project.build.directory}/external/jni4net/lib</directory> 
 			<outputDirectory>lib</outputDirectory> 
 			<includes> 
 				<include>*</include> 

@@ -1,0 +1,23 @@
+<assembly> 
+	<id>jni4net</id> 
+	<formats> 
+		<format>zip</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<fileSets> 
+		<fileSet> 
+			<directory>${jni4net.bindir}</directory> 
+			<outputDirectory>jni4net/bin</outputDirectory> 
+			<includes> 
+				<include>*</include> 
+			</includes> 
+		</fileSet> 
+		<fileSet> 
+			<directory>${jni4net.libdir}</directory> 
+			<outputDirectory>jni4net/lib</outputDirectory> 
+			<includes> 
+				<include>*</include> 
+			</includes> 
+		</fileSet> 
+	</fileSets> 
+</assembly> 

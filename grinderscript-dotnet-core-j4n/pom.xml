@@ -20,6 +20,7 @@
 			<groupId>net.sf.jni4net</groupId>
 			<artifactId>jni4net.j</artifactId>
 		</dependency>
+		<!-- Define all jni4net dll dependencies here, so all dependent packages get them automatically -->
 		<dependency>
 			<groupId>net.sf.jni4net</groupId>
 			<artifactId>jni4net.n</artifactId>
@@ -45,12 +46,20 @@
 			<artifactId>jni4net.n.w64.v40</artifactId>
 			<type>dll</type>
 		</dependency>
+		<!-- We will unzip these into our build directory, for proxy generation-->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>grinderscript-dotnet-framework</artifactId>
 			<version>${project.version}</version>
 			<type>zip</type>
 			<classifier>lib</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-external</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>jni4net</classifier>
 		</dependency>
 	</dependencies>
 	<build>
@@ -84,6 +93,26 @@
 							</artifactItems>
 						</configuration>
 					</execution>
+					<execution>
+						<id>unpack-jni4net</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>grinderscript-dotnet-external</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<classifier>jni4net</classifier>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/external</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin> 
@@ -99,7 +128,7 @@
 							<resources> 
 								<resource> 
 									<filtering>true</filtering> 
-									<directory>${project.basedir}/build</directory> 
+									<directory>${project.basedir}/src/build</directory> 
 									<includes> 
 										<include>proxygen.xml</include> 
 									</includes> 
@@ -121,7 +150,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${project.basedir}/external/jni4net/bin/proxygen.exe</executable>
+							<executable>${project.build.directory}/external/jni4net/bin/proxygen.exe</executable>
 							<arguments>
 								<argument>${project.build.directory}/proxygen/proxygen.xml</argument>
 							</arguments>
@@ -146,7 +175,7 @@
 								<argument>/recurse:"${project.basedir}\src\dotnet\*.cs"</argument>
 								<argument>/warn:0</argument>
 								<argument>/reference:"${project.build.directory}\lib\${core.assembly.name}.dll"</argument>
-								<argument>/reference:"${project.basedir}\external\jni4net\lib\jni4net.n-${jni4net.version}.dll"</argument>
+								<argument>/reference:"${project.build.directory}\external\jni4net\lib\jni4net.n-${jni4net.version}.dll"</argument>
 							</arguments>
 						</configuration>
 					</execution>
