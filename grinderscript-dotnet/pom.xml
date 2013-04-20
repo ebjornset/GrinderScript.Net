@@ -12,6 +12,7 @@
 	<description>This module is used to package the various parts of GrinderScript.Net into one distributable package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
+		<site.documentation.baseurl>..</site.documentation.baseurl>
 	</properties>
 	<dependencies>
 		<dependency>

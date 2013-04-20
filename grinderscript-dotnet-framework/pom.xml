@@ -12,6 +12,7 @@
 	<description>This module contains the .Net implementation of GrinderScript.Net. This is the core of GrinderScript.Net, which contains all the interfaces and framework classes you interact with when writing your load tests</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
+		<site.documentation.baseurl>..</site.documentation.baseurl>
 		<!-- Name of the solution file, located in the same directory as the pom.xml -->
 		<visual.studio.solution>GrinderScript.Net.Framework.2010.sln</visual.studio.solution>
 		<sonar.language>cs</sonar.language>

@@ -12,6 +12,7 @@
 	<description>This is the source for the NuGet samples package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
+		<site.documentation.baseurl>..</site.documentation.baseurl>
 	</properties>
 	<build>
 		<plugins>

@@ -12,6 +12,7 @@
 	<description>This module is used to install and/or deploy the external artifacts they are not available in any public repositories from a local copy</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
+		<site.documentation.baseurl>..</site.documentation.baseurl>
 		<jni4net.bindir>${project.basedir}/external/jni4net/bin</jni4net.bindir>
 		<jni4net.libdir>${project.basedir}/external/jni4net/lib</jni4net.libdir>
 	</properties>

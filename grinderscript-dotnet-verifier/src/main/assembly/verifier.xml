@@ -14,7 +14,7 @@
 				<include>CsvHelper.*</include> 
 				<include>GrinderScript.Net.Verifier.*</include> 
 				<include>GrinderScript.Net.Csv.*</include> 
-				<include>*.grinder.properites</include> 
+				<include>*.grinder.properties</include> 
 			</includes> 
 		</fileSet> 
 	</fileSets> 

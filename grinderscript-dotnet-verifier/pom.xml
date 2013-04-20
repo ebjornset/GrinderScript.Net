@@ -12,6 +12,7 @@
 	<description>This module is used to verify that the Java and .Net sides of GrinderScript.Net works together as expected when called from The Grinder. Most of the code in this module is just a raw installation of our NuGet samples package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
+		<site.documentation.baseurl>..</site.documentation.baseurl>
 		<!-- Name of the solution file, located in the same directory as the pom.xml -->
 		<visual.studio.solution>GrinderScript.Net.Verifier.2010.sln</visual.studio.solution>
 	</properties>

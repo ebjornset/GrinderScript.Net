@@ -70,12 +70,12 @@
         </links-->
 
         <menu name="Documentation">
-            <item name="Introduction" href="index.html"/>
-            <item name="Installation" href="installation.html"/>
-            <item name="Writing load tests" href="loadtests.html"/>
-            <item name="Using data pools" href="datapools.html"/>
-            <item name="Composing test scenarios" href="scenarios.html"/>
-            <item name="grinder.properties" href="properties.html"/>
+            <item name="Introduction" href="${site.documentation.baseurl}/index.html"/>
+            <item name="Installation" href="${site.documentation.baseurl}/installation.html"/>
+            <item name="Writing load tests" href="${site.documentation.baseurl}/loadtests.html"/>
+            <item name="Using data pools" href="${site.documentation.baseurl}/datapools.html"/>
+            <item name="Composing test scenarios" href="${site.documentation.baseurl}/scenarios.html"/>
+            <item name="grinder.properties" href="${site.documentation.baseurl}/properties.html"/>
         </menu>
 
         <menu ref="reports"/>

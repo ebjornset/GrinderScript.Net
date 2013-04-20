@@ -31,7 +31,7 @@
         <repository.name>GrinderScript.Net</repository.name>	
 		<site.basedir>${project.basedir}</site.basedir>
 		<!--scmpublish.pubScmUrl>scm:git:git@bitbucket.org:ebjornset/ebjornset.bitbucket.org.git</scmpublish.pubScmUrl--> 	
-		
+		<site.documentation.baseurl>.</site.documentation.baseurl>
 		<!-- repositories begin -->
 		<repository.ext-release.id>ext-release-local</repository.ext-release.id>
 		<repository.ext-release.url>http://localhost:8081/artifactory/ext-release-local</repository.ext-release.url>
@@ -440,7 +440,7 @@
 		<site>
 			<id>github-pages-site</id>
 			<name>Deployment through GitHub's site deployment plugin</name>
-			<url>site</url>
+			<url>c:\site</url>
 		</site>
 		<repository>
 			<id>libs-release-local</id>
