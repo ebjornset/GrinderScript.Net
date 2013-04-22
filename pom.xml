@@ -411,6 +411,7 @@
 							<report>project-team</report>
 							<report>license</report>
 							<report>scm</report>
+							<report>issue-tracking</report>
 							<report>dependency-info</report>
 							<report>dependency-management</report>
 							<report>dependency-convergence</report>
@@ -418,7 +419,6 @@
 							<report>plugin-management</report>
 							<!--
 							<report>cim</report>
-							<report>issue-tracking</report>
 							<report>distribution-management</report>
 							<report>dependencies</report>
 							<report>summary</report>
@@ -470,10 +470,8 @@
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
-	<!-- 
 	<issueManagement>
-		<system>SourceForge Tracker</system>
-		<url>http://sourceforge.net/tracker/?group_id=18598</url>
+		<system>JIRA</system>
+		<url>https://grinderscriptdotnet.atlassian.net/browse/GSDN</url>
 	</issueManagement>
-	-->
 </project>
