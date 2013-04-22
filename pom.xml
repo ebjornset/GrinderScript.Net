@@ -64,6 +64,7 @@
 		<maven-pmd-plugin.version>3.0.1</maven-pmd-plugin.version>
 		<maven-project-info-reports-plugin.version>2.6</maven-project-info-reports-plugin.version>
 		<maven-pdf-plugin.version>1.2</maven-pdf-plugin.version>
+		<maven-changes-plugin.version>2.9</maven-changes-plugin.version>
 		<org-codehaus-mojo_build-helper-maven-plugin.version>1.7</org-codehaus-mojo_build-helper-maven-plugin.version>
 		<org-codehaus-mojo_cobertura-maven-plugin.version>2.5.2</org-codehaus-mojo_cobertura-maven-plugin.version>
 		<org-codehaus-mojo_taglist-maven-plugin.version>2.4</org-codehaus-mojo_taglist-maven-plugin.version>
@@ -252,6 +253,10 @@
 					<version>${maven-pdf-plugin.version}</version>
 				</plugin>
 				<plugin>
+				  <artifactId>maven-changes-plugin</artifactId>
+				  <version>${maven-changes-plugin.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>${org-codehaus-mojo_build-helper-maven-plugin.version}</version>
@@ -395,6 +400,9 @@
 					<includeReports>false</includeReports>
 				</configuration>
 			</plugin>
+			<plugin>
+			  <artifactId>maven-changes-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>
@@ -427,6 +435,22 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
+			<!--
+			WIP GSDN-11: 
+			Hmm. Getting [WARNING] org.apache.maven.plugin.MojoFailureException: Could not find status Closed.
+			Only an empty report is generated. Needs further investigation...
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>jira-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			-->
 		</plugins>
 	</reporting>
 	<developers>
