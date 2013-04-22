@@ -24,13 +24,10 @@
 
 using System.Reflection;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyCompany("http://GrinderScript.net")]
 [assembly: AssemblyProduct("GrinderScript.Net")]
 [assembly: AssemblyCopyright("Copyright © 2013 Eirik Bjornset")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
-[assembly: AssemblyCulture("")]
 
+[assembly: AssemblyCulture("")]
 [assembly: AssemblyConfiguration("")]

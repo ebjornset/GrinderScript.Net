@@ -8,18 +8,7 @@
     <owners>Eirik Bjornset</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
     <projectUrl>http://GrinderScript.Net</projectUrl>
-    <!--iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <!--releaseNotes>Summary of changes made in this release of the package.</releaseNotes-->
-    <!--copyright>Copyright 2013</copyright-->
-    <!--tags>Tag1 Tag2</tags-->
-    <!--dependencies>
-      <dependency id="CsvHelper" version="1.17.0" />
-    </dependencies-->
   </metadata>
-  <!--files>
-    <file src="..\..\..\target\bin\Debug\GrinderScript.Net.Core.dll" target="lib\net40" />
-    <file src="..\..\..\target\bin\Debug\GrinderScript.Net.Core.pdb" target="lib\net40" />
-  </files-->
 </package>

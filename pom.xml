@@ -464,7 +464,7 @@
 		<site>
 			<id>github-pages-site</id>
 			<name>Deployment through GitHub's site deployment plugin</name>
-			<url>c:\site</url>
+			<url>site</url>
 		</site>
 		<repository>
 			<id>libs-release-local</id>
