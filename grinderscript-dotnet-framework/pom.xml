@@ -23,6 +23,13 @@
 		<url>http://localhost:8080/job/GrinderScript.Net-framework_master_clean-install/</url>
 	</ciManagement>
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>${project.build.directory}/resources</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.sonar-plugins.dotnet</groupId>
@@ -33,7 +40,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>nupack-core</id>
+						<id>nupkg-core</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>exec</goal>
@@ -53,7 +60,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>nupack-csv</id>
+						<id>nupkg-csv</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>exec</goal>
@@ -74,12 +81,25 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin> 
+				<artifactId>maven-resources-plugin</artifactId> 
+				<executions> 
+					<execution> 
+						<id>filter-assemblyinfo</id> 
+						<phase>process-resources</phase> 
+						<goals> 
+							<goal>resources</goal> 
+						</goals> 
+					</execution> 
+				</executions> 
+			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors> 
 						<descriptor>${project.basedir}/src/main/assembly/lib.xml</descriptor> 
 						<descriptor>${project.basedir}/src/main/assembly/nupkg.xml</descriptor> 
+						<descriptor>${project.basedir}/src/main/assembly/resources.xml</descriptor> 
 					</descriptors> 
 				</configuration>
 				<executions>

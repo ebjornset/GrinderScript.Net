@@ -36,6 +36,13 @@
 			<artifactId>grinderscript-dotnet-framework</artifactId>
 			<version>${project.version}</version>
 			<type>zip</type>
+			<classifier>resources</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-framework</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
 			<classifier>nupkg</classifier>
 		</dependency>
 		<dependency>
@@ -79,6 +86,15 @@
 							<version>${project.version}</version>
 							<type>zip</type>
 							<classifier>lib</classifier>
+							<overWrite>true</overWrite>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+						</artifactItem>
+						<artifactItem>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>grinderscript-dotnet-framework</artifactId>
+							<version>${project.version}</version>
+							<type>zip</type>
+							<classifier>resources</classifier>
 							<overWrite>true</overWrite>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 						</artifactItem>

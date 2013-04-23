@@ -1,8 +1,8 @@
-﻿#region Copyright, license and author information
+#region Copyright, license and author information
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CommonAssemblyInfo.cs" company="http://GrinderScript.net">
+// <copyright file="CommonVersionInfo.cs" company="http://GrinderScript.net">
 //
-//   Copyright © 2012 Eirik Bjornset.
+//   Copyright � 2012 Eirik Bjornset.
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -24,10 +24,6 @@
 
 using System.Reflection;
 
-[assembly: AssemblyCompany("http://GrinderScript.net")]
-[assembly: AssemblyProduct("GrinderScript.Net")]
-[assembly: AssemblyCopyright("Copyright © 2013 Eirik Bjornset")]
-[assembly: AssemblyTrademark("Apache License, Version 2.0")]
-
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyVersion("${dotnet.assembly.version}")]
+[assembly: AssemblyFileVersion("${dotnet.assembly.version}")]
+[assembly: AssemblyInformationalVersion("${dotnet.assembly.version}")]

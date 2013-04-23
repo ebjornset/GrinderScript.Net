@@ -23,20 +23,6 @@
 #endregion
 
 using System.Reflection;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("GrinderScript.Net.Verifier")]
 [assembly: AssemblyDescription("Used to verify that GrinderScript.Net will run properely in Grinder")]
-
-[assembly: ComVisible(false)]
-
-[assembly: AssemblyCompany("http://GrinderScript.net")]
-[assembly: AssemblyProduct("GrinderScript.Net")]
-[assembly: AssemblyCopyright("Copyright © 2013 Eirik Bjornset")]
-[assembly: AssemblyTrademark("Apache License, Version 2.0")]
-
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyConfiguration("")]
-
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]

@@ -15,28 +15,32 @@
 		<site.documentation.baseurl>..</site.documentation.baseurl>
 	</properties>
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>${project.build.directory}/resources</targetPath>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin> 
+				<artifactId>maven-resources-plugin</artifactId> 
+				<executions> 
+					<execution> 
+						<id>filter-assemblyinfo</id> 
+						<phase>process-resources</phase> 
+						<goals> 
+							<goal>resources</goal> 
+						</goals> 
+					</execution> 
+				</executions> 
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>mkdir-target</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>mkdir</executable>
-							<arguments>
-								<argument>${project.build.directory}</argument>
-							</arguments>
-							<!-- Set 1 as success code as well, so we don't fail when the directory exists -->
-							<successCodes><successCode>0</successCode><successCode>1</successCode></successCodes>
-						</configuration>
-					</execution>
-					<execution>
-						<id>nupack-samples</id>
+						<id>nupkg-samples</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>exec</goal>
@@ -45,8 +49,10 @@
 							<executable>${nuget.directory}/NuGet.exe</executable>
 							<arguments>
 								<argument>pack</argument>
-								<argument>${project.basedir}/src/dotnet/GrinderScript.Net.Samples.nuspec</argument>
+								<argument>${project.build.directory}/resources/GrinderScript.Net.Samples.nuspec</argument>
 								<argument>-NonInteractive</argument>
+								<argument>-BasePath</argument>
+								<argument>${project.basedir}/src/nupkg</argument>
 								<argument>-OutputDirectory</argument>
 								<argument>${project.build.directory}</argument>
 								<argument>-Verbosity</argument>

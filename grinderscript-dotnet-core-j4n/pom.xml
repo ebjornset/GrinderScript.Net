@@ -57,6 +57,13 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-framework</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>resources</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>grinderscript-dotnet-external</artifactId>
 			<version>${project.version}</version>
 			<type>zip</type>
@@ -66,7 +73,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>${project.basedir}/src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
@@ -88,6 +95,15 @@
 									<version>${project.version}</version>
 									<type>zip</type>
 									<classifier>lib</classifier>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>grinderscript-dotnet-framework</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<classifier>resources</classifier>
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}</outputDirectory>
 								</artifactItem>
@@ -174,6 +190,7 @@
 								<argument>/out:"${project.build.directory}\${core.j4n.assembly.name}.dll"</argument>
 								<argument>/recurse:"${project.build.directory}\generated-sources\proxygen\clr\*.cs"</argument>
 								<argument>/recurse:"${project.basedir}\src\dotnet\*.cs"</argument>
+								<argument>/recurse:"${project.build.directory}\resources\*.cs"</argument>
 								<argument>/warn:0</argument>
 								<argument>/reference:"${project.build.directory}\lib\${core.assembly.name}.dll"</argument>
 								<argument>/reference:"${project.build.directory}\external\jni4net\lib\jni4net.n-${jni4net.version}.dll"</argument>
