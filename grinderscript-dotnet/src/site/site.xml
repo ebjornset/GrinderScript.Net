@@ -45,13 +45,15 @@
 			<googleSearch>
 				<sitesearch/>
 			</googleSearch>
+			-->
+			<googlePlusOne />
+			<facebookLike />
 			<twitter>
-				<user>ebjornset</user>
-				<showUser>true</showUser>
+				<user>GrinderScriptDN</user>
+				<showUser>false</showUser>
 				<showFollowers>true</showFollowers>
 			</twitter>
-			<facebookLike />
-			<googlePlusOne />
+			<!--
 			<ohloh>
 				<projectId>xyz</projectId>
 				<widget>thin-badge</widget>
