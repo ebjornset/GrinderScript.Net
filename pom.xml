@@ -415,10 +415,7 @@
 					<includeReports>false</includeReports>
 				</configuration>
 			</plugin>
-			<plugin>
-			  <artifactId>maven-changes-plugin</artifactId>
-			</plugin>
-		</plugins>
+        </plugins>
 	</build>
 	<reporting>
 		<plugins>
@@ -450,13 +447,9 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<!--
-			WIP GSDN-11: 
-			Hmm. Getting [WARNING] org.apache.maven.plugin.MojoFailureException: Could not find status Closed.
-			Only an empty report is generated. Needs further investigation...
 			<plugin>
 				<artifactId>maven-changes-plugin</artifactId>
-				<version>${maven-project-info-reports-plugin.version}</version>
+				<version>${maven-changes-plugin.version}</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -464,8 +457,15 @@
 						</reports>
 					</reportSet>
 				</reportSets>
+				<configuration>
+					<useJql>true</useJql>
+					<onlyCurrentVersion>false</onlyCurrentVersion>
+					<webUser>${changes.webUser}</webUser>
+					<webPassword>${changes.webPassword}</webPassword>
+					<columnNames>Fix Version, Priority, Key, Summary, Status, Resolution</columnNames>
+					<sortColumnNames>Fix Version DESC, Priority DESC</sortColumnNames>
+				</configuration>
 			</plugin>
-			-->
 		</plugins>
 	</reporting>
 	<developers>
@@ -497,11 +497,10 @@
 		<url>http://localhost:8080/job/GrinderScript.Net_master_clean-install/</url>
 	</ciManagement>
 	<scm>
-        <url>https://${repository.domain}/${repository.user}/${repository.name}</url>
+        <url>https://${repository.domain}/${repository.user}/${repository.name}.git</url>
         <connection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</connection>
         <developerConnection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+    </scm>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
