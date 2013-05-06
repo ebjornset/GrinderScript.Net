@@ -1,0 +1,92 @@
+Development environment for GrinderScript.Net
+=============
+
+GrinderScript.Net consists of parts written in .Net and in Java. Currently it only runs on Windows and you\'ll need a Windows machine for your development environment as well. 
+
+You download the source code as described in the [source repository page](./source-repository.html) 
+
+[Maven](http://maven.apache.org/) is used to build and package the distribution. You'll need Maven, JDK (Java Development Kit), .Net framework, Gallio and NuGet command line tools (NuGet.exe) installed on your development machine. The table below provide you the download links and minimum version to install. Follow the instructions on each download page to download and install the tools.
+
+<table>
+    <tr>
+        <td><strong>Tool</strong></td>
+        <td><strong>Download site</strong></td>
+        <td><strong>Minimum version</strong></td>
+    </tr>
+	<tr>
+		<td>Maven</td>
+		<td><a href="http://maven.apache.org/download.cgi" title="Maven download site">http://maven.apache.org/download.cgi</a></td>
+		<td>3.0.5</td>
+	</tr>
+	<tr>
+		<td>JDK</td>
+		<td><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" title="Java Development Kit download site">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></td>
+		<td>7 u 21</td>
+	</tr>
+	<tr>
+		<td>.Net framework</td>
+		<td><a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851" title=".Net framework download site">http://www.microsoft.com/en-us/download/details.aspx?id=17851</a></td>
+		<td>4.0</td>
+	</tr>
+	<tr>
+		<td>Gallio</td>
+		<td><a href="http://www.gallio.org/Downloads.aspx" title="Gallio download site">http://www.gallio.org/Downloads.aspx</a></td>
+		<td>3.4 build 11</td>
+	</tr>
+	<tr>
+		<td>NuGet.exe</td>
+		<td><a href="http://nuget.codeplex.com/releases" title="NuGet download site">http://nuget.codeplex.com/releases</a></td>
+		<td>2.5</td>
+	</tr>
+</table>
+
+When you\'ve installed the tools, you need to make sure they're accessible from the command line. Maven should be in the path, and your JAVA_HOME environment variable should point to your JDK installation, so Maven can access it. Gallio should be installed in it's default directory, otherwise you'll need to specify the gallio.directory property. The .Net framework, with csc.exe and msbuild.exe, should be on the path or specified by the dotnet.directory property. The NuGet command line tool, NuGet.exe, should be on the path, or specified by the nuget.directory property. 
+
+Below is an example profile-element element with the three properties gallio.directory, dotnet.directory and nuget.directory specified. You can paste this into the profiles element in your Maven settings.xml and adjust the locations according to your installation.
+
+	<profile>
+		<id>dotnet</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+			<!--
+			gallio.directory: Should point to your Gallio installation. 
+			You must specify this if you don't install Gallio in it's default location,
+			-->
+			<gallio.directory>C:/Program Files (x86)/Gallio/</gallio.directory>
+			<!-- 
+			dotnet.directory: Is used to pick up the .Net compiler (csc.exe). Can either be specified here, or available on the path.
+			Please remember to provide the trailing path separator (\ or /) if you specify the location, otherwise the build of the core-j4n module will fail.
+			-->
+			<dotnet.directory>C:/Windows/Microsoft.NET/Framework/v4.0.30319/</dotnet.directory>
+			<!-- 
+			nuget.directory: Is used to pick up the NuGet command line tool (NuGet.exe). Can either be specified here, or available on the path.
+			Please remember to provide the trailing path separator (\ or /) if you specify the location, otherwise the build of the framework, samples and verifier modules will fail.
+			-->
+			<nuget.directory>C:/Util/</nuget.directory>
+	</profile>  
+
+When you have set up your development environment you build GrinderScript.Net the normal Maven way, by open a command window in the GrinderScript.Net directory and issue the command:
+
+ `mvn clean install`
+
+If your environment is set up correctly you should see the normal Maven output during the build and at the end it should look something like the listing below.
+
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Reactor Summary:
+	[INFO]
+	[INFO] GrinderScript.Net ................................. SUCCESS [0.249s]
+	[INFO] GrinderScript.Net :: Framework .................... SUCCESS [18.376s]
+	[INFO] GrinderScript.Net :: External packages ............ SUCCESS [0.672s]
+	[INFO] GrinderScript.Net :: Java To .Net Bridge .......... SUCCESS [4.882s]
+	[INFO] GrinderScript.Net :: Grinder Script Engine ........ SUCCESS [9.562s]
+	[INFO] GrinderScript.Net :: Samples ...................... SUCCESS [0.508s]
+	[INFO] GrinderScript.Net :: Verifier ..................... SUCCESS [2.765s]
+	[INFO] GrinderScript.Net ................................. SUCCESS [1.082s]
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 40.179s
+	[INFO] Finished at: Mon May 06 22:09:34 CEST 2013
+	[INFO] Final Memory: 22M/305M
+	[INFO] ------------------------------------------------------------------------

@@ -10,7 +10,7 @@
 	the maven-resources-plugin bound to the pre-site phase.
 	
 	You MUST generate the site with the command
-	mvn pre-site site:site site:stage
+	mvn pre-site site:site
 	each time you edit the site.xml
 	
 	See 
@@ -18,12 +18,6 @@
 	for details about why and how
 	-->
 	
-    <!--bannerLeft>
-        <name>A Regular Maven Site</name>
-        <src>http://html5-slides-template.googlecode.com/git/images/akquinet-logo-small.png</src>
-        <href>http://www.akquinet.de/en</href>
-    </bannerLeft-->
-
 	<skin>
 		<groupId>org.apache.maven.skins</groupId>
 		<artifactId>maven-fluido-skin</artifactId>
@@ -35,51 +29,36 @@
 			<topBarEnabled>false</topBarEnabled>
 			<sideBarEnabled>true</sideBarEnabled>
 			<sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>
-			<!--
-			<topBarIcon>
-				<name>GrinderScript.Net</name>
-				<alt>GrinderScript.Net</alt>
-				<src>/images/topbar-logo.png</src>
-				<href>./index.html</href>
-			</topBarIcon>
-			<googleSearch>
-				<sitesearch/>
-			</googleSearch>
-			-->
 			<googlePlusOne />
 			<facebookLike />
 			<twitter>
 				<user>GrinderScriptDN</user>
 				<showUser>false</showUser>
-				<showFollowers>true</showFollowers>
+				<showFollowers>false</showFollowers>
 			</twitter>
-			<!--
-			<ohloh>
-				<projectId>xyz</projectId>
-				<widget>thin-badge</widget>
-			</ohloh>
-			-->
+			<gitHub>
+				<projectId>ebjornset/GrinderScript.Net.git</projectId>
+				<ribbonOrientation>right</ribbonOrientation>
+				<ribbonColor>gray</ribbonColor>
+			</gitHub>
 	  </fluidoSkin>
 	</custom>
 
-	<publishDate format="dd MMM yyyy"/>
+	<publishDate format="yyyy-MM-dd"/>
     <version position="right"/>
 	
     <body>
-	
-        <!--links>
-            <item name="GrinderScript.Net" href="http://GrinderScript.Net/"/>
-        </links-->
-
-        <menu name="Documentation">
-            <item name="Introduction" href="${site.documentation.baseurl}/index.html"/>
-            <item name="Installation" href="${site.documentation.baseurl}/installation.html"/>
-            <item name="Writing load tests" href="${site.documentation.baseurl}/loadtests.html"/>
-            <item name="Using data pools" href="${site.documentation.baseurl}/datapools.html"/>
-            <item name="Composing test scenarios" href="${site.documentation.baseurl}/scenarios.html"/>
-            <item name="grinder.properties" href="${site.documentation.baseurl}/properties.html"/>
+        <menu name="User documentation" >
+            <item name="Introduction" href="${site.documentation.baseurl}/index.html" />
+            <item name="Installation" href="${site.documentation.baseurl}/installation.html" />
+            <item name="Writing load tests" href="${site.documentation.baseurl}/loadtests.html" />
+            <item name="Using data pools" href="${site.documentation.baseurl}/datapools.html" />
+            <item name="Composing test scenarios" href="${site.documentation.baseurl}/scenarios.html" />
+            <item name="grinder.properties" href="${site.documentation.baseurl}/properties.html" />
         </menu>
-
-        <menu ref="reports"/>
-    </body>
+        <menu name="Development" >
+				<item name="Environment" href="${site.documentation.baseurl}/development-environment.html" />
+        </menu>
+        <menu ref="reports" />
+	</body>
 </project>

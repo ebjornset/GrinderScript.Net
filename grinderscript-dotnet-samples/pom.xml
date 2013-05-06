@@ -46,7 +46,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${nuget.directory}/NuGet.exe</executable>
+							<executable>${nuget.directory}NuGet.exe</executable>
 							<arguments>
 								<argument>pack</argument>
 								<argument>${project.build.directory}/resources/GrinderScript.Net.Samples.nuspec</argument>
@@ -97,7 +97,7 @@
 									<goal>exec</goal>
 								</goals>
 								<configuration>
-									<executable>${nuget.directory}/NuGet.exe</executable>
+									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
 										<argument>${project.build.directory}\GrinderScript.Net.Samples.${dotnet.assembly.version}.nupkg</argument>

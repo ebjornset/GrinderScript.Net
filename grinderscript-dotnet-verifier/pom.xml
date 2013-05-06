@@ -148,7 +148,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${nuget.directory}/NuGet.exe</executable>
+							<executable>${nuget.directory}NuGet.exe</executable>
 							<arguments>
 								<argument>install</argument>
 								<argument>${project.basedir}/src/dotnet/GrinderScript.Net.Verifier/packages.config</argument>
@@ -171,7 +171,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${nuget.directory}/NuGet.exe</executable>
+							<executable>${nuget.directory}NuGet.exe</executable>
 							<arguments>
 								<argument>update</argument>
 								<argument>${project.basedir}/${visual.studio.solution}</argument>

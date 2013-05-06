@@ -180,7 +180,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${dotnet.directory}/csc.exe</executable>
+							<executable>${dotnet.directory}csc.exe</executable>
 							<arguments>
 								<argument>/nologo</argument>
 								<argument>/warn:0</argument>

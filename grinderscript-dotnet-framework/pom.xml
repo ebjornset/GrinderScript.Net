@@ -46,7 +46,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${nuget.directory}/NuGet.exe</executable>
+							<executable>${nuget.directory}NuGet.exe</executable>
 							<arguments>
 								<argument>pack</argument>
 								<argument>${project.basedir}/src/dotnet/GrinderScript.Net.Core/GrinderScript.Net.Core.csproj</argument>
@@ -66,7 +66,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>${nuget.directory}/NuGet.exe</executable>
+							<executable>${nuget.directory}NuGet.exe</executable>
 							<arguments>
 								<argument>pack</argument>
 								<argument>${project.basedir}/src/dotnet/GrinderScript.Net.Csv/GrinderScript.Net.Csv.csproj</argument>
@@ -130,7 +130,7 @@
 									<goal>exec</goal>
 								</goals>
 								<configuration>
-									<executable>${nuget.directory}/NuGet.exe</executable>
+									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
 										<argument>${project.build.directory}\GrinderScript.Net.Core.${dotnet.assembly.version}.nupkg</argument>
@@ -145,7 +145,7 @@
 									<goal>exec</goal>
 								</goals>
 								<configuration>
-									<executable>${nuget.directory}/NuGet.exe</executable>
+									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
 										<argument>${project.build.directory}\GrinderScript.Net.Csv.${dotnet.assembly.version}.nupkg</argument>

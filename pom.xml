@@ -18,6 +18,11 @@
 		<!-- Version of the .Net tools, which may be 2.0, 3.5 or 4.0 only Default value is 3.5 -->
 		<dotnet.tool.version>4.0</dotnet.tool.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- dotnet.directory is empty by default, so csc.exe is picked up from the path. Specify it in your settings.xml or on the command line if it's not on your path. Remember a trailing \ or / -->
+		<dotnet.directory></dotnet.directory>
+		<!-- nuget.directory is empty by default, so nuget.exe is picked up from the path. Specify it in your settings.xml or on the command line if it's not on your path. Remember a trailing \ or / -->
+		<nuget.directory></nuget.directory>
 		<!-- Sonar integration stuff -->
 		<!--sonar.skippedModules>clr,core-j4n,examples</sonar.skippedModules>
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
