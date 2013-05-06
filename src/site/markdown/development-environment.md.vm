@@ -40,9 +40,9 @@ You download the source code as described in the [source repository page](./sour
 	</tr>
 </table>
 
-When you\'ve installed the tools, you need to make sure they're accessible from the command line. Maven should be in the path, and your JAVA_HOME environment variable should point to your JDK installation, so Maven can access it. Gallio should be installed in it's default directory, otherwise you'll need to specify the gallio.directory property. The .Net framework, with csc.exe and msbuild.exe, should be on the path or specified by the dotnet.directory property. The NuGet command line tool, NuGet.exe, should be on the path, or specified by the nuget.directory property. 
+When you\'ve installed the tools, you need to make sure they're accessible from the command line. Maven should be in the path, and your JAVA_HOME environment variable should point to your JDK installation, so Maven can access it. Gallio should be installed in it\'s default directory, otherwise you'll need to specify the gallio.directory property. The .Net framework, with csc.exe and msbuild.exe, should be on the path or specified by the dotnet.directory property. The NuGet command line tool, NuGet.exe, should be on the path, or specified by the nuget.directory property. 
 
-Below is an example profile-element element with the three properties gallio.directory, dotnet.directory and nuget.directory specified. You can paste this into the profiles element in your Maven settings.xml and adjust the locations according to your installation.
+Below is an example profile element with the three properties gallio.directory, dotnet.directory and nuget.directory specified. You can paste this into the profiles element in your Maven settings.xml and adjust the locations according to your installation.
 
 	<profile>
 		<id>dotnet</id>
@@ -66,7 +66,7 @@ Below is an example profile-element element with the three properties gallio.dir
 			<nuget.directory>C:/Util/</nuget.directory>
 	</profile>  
 
-When you have set up your development environment you build GrinderScript.Net the normal Maven way, by open a command window in the GrinderScript.Net directory and issue the command:
+When you have set up your development environment you build GrinderScript.Net the normal Maven way, by opening a command window in the GrinderScript.Net directory and issue the command:
 
  `mvn clean install`
 
