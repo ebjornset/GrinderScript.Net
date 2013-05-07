@@ -71,7 +71,7 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+    	</plugins>
 	</build>
 	<profiles>
 		<profile>
@@ -94,6 +94,80 @@
 									<url>sftp://frs.sourceforge.net</url>
 									<toDir>home/pfs/project/grindersdotnet/${project.version}</toDir>
 									<serverId>sourceforge</serverId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.gmaven</groupId>
+						<artifactId>gmaven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>release_tweet</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<source>
+import groovyx.net.http.HTTPBuilder
+import static groovyx.net.http.Method.*
+import static groovyx.net.http.ContentType.*
+
+def http = new HTTPBuilder('https://api.twitter.com')
+
+http.auth.oauth pom.properties.'twitter.oauth.consumerKey', pom.properties.'twitter.oauth.consumerSecret', pom.properties.'twitter.oauth.accessToken', pom.properties.'twitter.oauth.secretToken'
+
+def msg = "GrinderScript.Net v ${project.version} is released. Download it from download.grinderscript.net. Have fun!"
+
+println "Tweeting the release of v ${project.version}..."
+
+http.request( POST, JSON ) { req ->
+	uri.path = '/1.1/statuses/update.json'
+	send URLENC, [status:msg, source:'GriderScript.Net release']
+
+	response.success = { resp, json ->
+		println "Tweet response status: ${resp.statusLine}"
+		assert resp.statusLine.statusCode == 200
+	}
+}
+									</source>
+									<providerSelection>1.8</providerSelection>
+									<classpath>
+										<element>
+											<groupId>org.codehaus.groovy.modules.http-builder</groupId>
+											<artifactId>http-builder</artifactId>
+										</element>
+										<element>
+											<groupId>org.apache.httpcomponents</groupId>
+											<artifactId>httpclient</artifactId>
+										</element>
+										<element>
+											<groupId>org.apache.httpcomponents</groupId>
+											<artifactId>httpcore</artifactId>
+										</element>
+										<element>
+											<groupId>net.sf.json-lib</groupId>
+											<artifactId>json-lib</artifactId>
+											<classifier>jdk15</classifier>
+										</element>
+										<element>
+											<groupId>xml-resolver</groupId>
+											<artifactId>xml-resolver</artifactId>
+										</element>
+										<element>
+											<groupId>oauth.signpost</groupId>
+											<artifactId>signpost-commonshttp4</artifactId>
+										</element>
+										<element>
+											<groupId>oauth.signpost</groupId>
+											<artifactId>signpost-core</artifactId>
+										</element>
+										<element>
+											<groupId>commons-codec</groupId>
+											<artifactId>commons-codec</artifactId>
+										</element>
+									</classpath>
 								</configuration>
 							</execution>
 						</executions>
