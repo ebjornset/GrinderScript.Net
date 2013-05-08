@@ -79,6 +79,41 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack-grinderscript-dotnet</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>grinderscript-dotnet-framework</artifactId>
+											<version>${project.version}</version>
+											<type>zip</type>
+											<classifier>nupkg</classifier>
+											<overWrite>true</overWrite>
+											<outputDirectory>${project.build.directory}</outputDirectory>
+										</artifactItem>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>grinderscript-dotnet-samples</artifactId>
+											<version>${project.version}</version>
+											<type>zip</type>
+											<classifier>nupkg</classifier>
+											<overWrite>true</overWrite>
+											<outputDirectory>${project.build.directory}</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>wagon-maven-plugin</artifactId>
 						<executions>
@@ -94,6 +129,57 @@
 									<url>sftp://frs.sourceforge.net</url>
 									<toDir>home/pfs/project/grindersdotnet/${project.version}</toDir>
 									<serverId>sourceforge</serverId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>nuget-push-core</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${nuget.directory}NuGet.exe</executable>
+									<arguments>
+										<argument>push</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version}.nupkg</argument>
+										<argument>-NonInteractive</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>nuget-push-csv</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${nuget.directory}NuGet.exe</executable>
+									<arguments>
+										<argument>push</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version}.nupkg</argument>
+										<argument>-NonInteractive</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>nuget-push-samples</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${nuget.directory}NuGet.exe</executable>
+									<arguments>
+										<argument>push</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version}.nupkg</argument>
+										<argument>-NonInteractive</argument>
+									</arguments>
 								</configuration>
 							</execution>
 						</executions>

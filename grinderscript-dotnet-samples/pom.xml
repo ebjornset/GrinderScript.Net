@@ -81,34 +81,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>release-profile</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>nuget-push-samples</id>
-								<phase>deploy</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<configuration>
-									<executable>${nuget.directory}NuGet.exe</executable>
-									<arguments>
-										<argument>push</argument>
-										<argument>${project.build.directory}\GrinderScript.Net.Samples.${dotnet.assembly.version}.nupkg</argument>
-										<argument>-NonInteractive</argument>
-									</arguments>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
