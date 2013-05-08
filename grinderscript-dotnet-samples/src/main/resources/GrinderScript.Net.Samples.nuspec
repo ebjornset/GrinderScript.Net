@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GrinderScript.Net.Samples</id>
-    <version>${dotnet.assembly.version}</version>
+    <version>${dotnet.assembly.version}.${git.commitsCount}</version>
     <title>GrinderScript.Net.Samples</title>
     <authors>Eirik Bjornset</authors>
     <owners>Eirik Bjornset</owners>
@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package contains samples that demonstrate the use of GrinderScript.Net</description>
     <dependencies>
-      <dependency id="GrinderScript.Net.Core" version="${dotnet.assembly.version}" />
-      <dependency id="GrinderScript.Net.Csv" version="${dotnet.assembly.version}" />
+      <dependency id="GrinderScript.Net.Core" version="${dotnet.assembly.version}.${git.commitsCount}" />
+      <dependency id="GrinderScript.Net.Csv" version="${dotnet.assembly.version}.${git.commitsCount}" />
     </dependencies>
   </metadata>
 </package>

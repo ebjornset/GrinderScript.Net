@@ -10,7 +10,7 @@
 	<inceptionYear>2013</inceptionYear>
 	<url>http://GrinderScript.Net/</url>
 	<properties>
-		<dotnet.assembly.version>1.0.2.0</dotnet.assembly.version>
+		<dotnet.assembly.version>1.0.2</dotnet.assembly.version>
 		<!-- Name pattern to recognize the test assemblies, so that unit tests 
 			are only launched on those, and so that those are excluded from code coverage. 
 			Several patterns may be specified using a ";" as delimiter -->
@@ -79,6 +79,7 @@
 		<org-eclipse-m2e_lifecycle-mapping.version>1.0.0</org-eclipse-m2e_lifecycle-mapping.version>
 		<com-github-github_site-maven-plugin.version>0.7</com-github-github_site-maven-plugin.version>
 		<org-apache-maven-doxia_doxia-module-markdown.version>1.3</org-apache-maven-doxia_doxia-module-markdown.version>
+		<ru-concerteza-buildnumber_maven-jgit-buildnumber-plugin.version>1.2.6</ru-concerteza-buildnumber_maven-jgit-buildnumber-plugin.version>
 		<!-- Version info for plugins end -->
 
 		<!-- Version info for release tweet begin -->
@@ -389,9 +390,27 @@
 					<artifactId>site-maven-plugin</artifactId>
 					<version>${com-github-github_site-maven-plugin.version}</version>
 				</plugin>
+				<plugin>
+					<groupId>ru.concerteza.buildnumber</groupId>
+					<artifactId>maven-jgit-buildnumber-plugin</artifactId>
+					<version>${ru-concerteza-buildnumber_maven-jgit-buildnumber-plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>ru.concerteza.buildnumber</groupId>
+				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>git-buildnumber</id>
+						<goals>
+							<goal>extract-buildnumber</goal>
+						</goals>
+						<phase>initialize</phase>
+					</execution>
+				</executions>
+			</plugin> 
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>

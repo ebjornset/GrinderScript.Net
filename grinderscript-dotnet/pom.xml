@@ -147,7 +147,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 								</configuration>
@@ -162,7 +162,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 								</configuration>
@@ -177,7 +177,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 								</configuration>
