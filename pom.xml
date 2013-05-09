@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.grinderscript.dotnet</groupId>
 	<artifactId>grinderscript-dotnet-parent</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net</name>
 	<description>Parent Maven project for GrinderScript.Net, managing the dependencies and other build related stuff. It also contains the documentation, as a plain Maven site.</description>
@@ -21,9 +21,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- dotnet.directory is empty by default, so csc.exe is picked up from the path. Specify it in your settings.xml or on the command line if it's not on your path. Remember a trailing \ or / -->
-		<dotnet.directory></dotnet.directory>
+		<dotnet.directory />
 		<!-- nuget.directory is empty by default, so nuget.exe is picked up from the path. Specify it in your settings.xml or on the command line if it's not on your path. Remember a trailing \ or / -->
-		<nuget.directory></nuget.directory>
+		<nuget.directory />
 		<!-- Sonar integration stuff -->
 		<!--sonar.skippedModules>clr,core-j4n,examples</sonar.skippedModules>
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
@@ -580,7 +580,8 @@
         <url>https://${repository.domain}/${repository.user}/${repository.name}.git</url>
         <connection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</connection>
         <developerConnection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</developerConnection>
-    </scm>
+      <tag>v1.0.2</tag>
+  </scm>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
