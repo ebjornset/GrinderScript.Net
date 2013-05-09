@@ -458,8 +458,8 @@
 				<configuration>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
-                    <pushChanges>false</pushChanges>
-                    <localCheckout>true</localCheckout>
+                    <pushChanges>true</pushChanges>
+                    <localCheckout>false</localCheckout>
 				</configuration>
 			</plugin>
 			<plugin>
