@@ -467,6 +467,8 @@
 					<!-- this does the trick to place every module in the correct subfolder -->
 					<path>${project.distributionManagement.site.url}</path>
 					<merge>true</merge>
+					<repositoryOwner>ebjornset</repositoryOwner>
+					<repositoryName>GrinderScript.Net</repositoryName>
 				</configuration>
 				<executions>
 					<execution>
