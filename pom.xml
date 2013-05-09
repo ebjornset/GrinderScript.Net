@@ -30,9 +30,6 @@
 		<sonar.gallio.coverage.tool>OpenCover</sonar.gallio.coverage.tool-->
 		<target-jdk.version>1.6</target-jdk.version>
 		<github.global.server>github</github.global.server>
-        <repository.domain>github.com</repository.domain>
-        <repository.user>ebjornset</repository.user>
-        <repository.name>GrinderScript.Net</repository.name>	
 		<site.basedir>${project.basedir}</site.basedir>
 		<site.documentation.baseurl>.</site.documentation.baseurl>
 		<!-- repositories begin -->
@@ -577,9 +574,9 @@
 		<url>http://localhost:8080/job/GrinderScript.Net_master_clean-install/</url>
 	</ciManagement>
 	<scm>
-        <url>https://${repository.domain}/${repository.user}/${repository.name}.git</url>
-        <connection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</connection>
-        <developerConnection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</developerConnection>
+        <url>https://github.com/ebjornset/GrinderScript.Net.git</url>
+        <connection>scm:git:git://github.com/ebjornset/GrinderScript.Net.git</connection>
+        <developerConnection>scm:git:git@github.com:ebjornset/GrinderScript.Net.git</developerConnection>
     </scm>
 	<licenses>
 		<license>
