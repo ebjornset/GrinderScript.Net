@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper">
-      <HintPath>..\..\..\packages\CsvHelper.1.17.0\lib\net40-client\CsvHelper.dll</HintPath>
+      <HintPath>..\..\..\target\packages\CsvHelper.1.17.0\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="GrinderScript.Net.Core">
-      <HintPath>..\..\..\packages\GrinderScript.Net.Core.1.0.2.27\lib\net40-Client\GrinderScript.Net.Core.dll</HintPath>
+      <HintPath>..\..\..\target\packages\GrinderScript.Net.Core.1.0.2.28\lib\net40-Client\GrinderScript.Net.Core.dll</HintPath>
     </Reference>
     <Reference Include="GrinderScript.Net.Csv">
-      <HintPath>..\..\..\packages\GrinderScript.Net.Csv.1.0.2.27\lib\net40-Client\GrinderScript.Net.Csv.dll</HintPath>
+      <HintPath>..\..\..\target\packages\GrinderScript.Net.Csv.1.0.2.28\lib\net40-Client\GrinderScript.Net.Csv.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

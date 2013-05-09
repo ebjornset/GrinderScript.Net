@@ -156,7 +156,7 @@
 								<argument>-SolutionDirectory</argument>
 								<argument>${project.basedir}</argument>
 								<argument>-OutputDirectory</argument>
-								<argument>${project.basedir}/packages</argument>
+								<argument>${project.basedir}/target/packages</argument>
 								<argument>-Source</argument>
 								<argument>${project.build.directory}/nupkg</argument>
 								<argument>-Verbosity</argument>
@@ -177,7 +177,7 @@
 								<argument>${project.basedir}/${visual.studio.solution}</argument>
 								<argument>-NonInteractive</argument>
 								<argument>-RepositoryPath</argument>
-								<argument>${project.basedir}/packages</argument>
+								<argument>${project.basedir}/target/packages</argument>
 								<argument>-Source</argument>
 								<argument>${project.build.directory}/nupkg</argument>
 								<argument>-Verbosity</argument>
