@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\target\resources\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\..\target\resources\CommonVersionInfo.cs">
-      <Link>CommonVersionInfo.cs</Link>
+      <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\GrinderScript.Net\Core\ScriptEngineThatCreateWorkerByCtor.cs" />

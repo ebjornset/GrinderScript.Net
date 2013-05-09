@@ -11,6 +11,7 @@
 	<url>http://GrinderScript.Net/</url>
 	<properties>
 		<dotnet.assembly.version>1.0.2</dotnet.assembly.version>
+		<git.commitsCount>28</git.commitsCount>
 		<!-- Name pattern to recognize the test assemblies, so that unit tests 
 			are only launched on those, and so that those are excluded from code coverage. 
 			Several patterns may be specified using a ";" as delimiter -->
@@ -398,6 +399,9 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<!--
+			Uses a fixed git.commitsCount property (requires manual update) for git commit count, due to NuGet.exe limitations.
+			See comment in https://grinderscriptdotnet.atlassian.net/browse/GSDN-21 for details
 			<plugin>
 				<groupId>ru.concerteza.buildnumber</groupId>
 				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
@@ -410,7 +414,8 @@
 						<phase>initialize</phase>
 					</execution>
 				</executions>
-			</plugin> 
+			</plugin>
+			--> 
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
