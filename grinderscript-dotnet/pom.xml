@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>net.grinderscript.dotnet</groupId>
 		<artifactId>grinderscript-dotnet-parent</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>grinderscript-dotnet</artifactId>
 	<packaging>pom</packaging>
@@ -225,11 +225,11 @@ if ( pom.properties.'release_tweet.skip' != "true" ) {
 
 	println "Tweeting the release of v ${project.version}..."
 
-	http.request( POST, JSON ) { req -&gt;
+	http.request( POST, JSON ) { req ->
 		uri.path = '/1.1/statuses/update.json'
 		send URLENC, [status:msg, source:'GriderScript.Net release']
 
-		response.success = { resp, json -&gt;
+		response.success = { resp, json ->
 			println "Tweet response status: ${resp.statusLine}"
 			assert resp.statusLine.statusCode == 200
 		}
