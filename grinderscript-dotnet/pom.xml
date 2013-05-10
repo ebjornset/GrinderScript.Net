@@ -13,6 +13,12 @@
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 		<site.documentation.baseurl>..</site.documentation.baseurl>
+		<deploy-to-sourceforge.skip>false</deploy-to-sourceforge.skip>
+		<nuget-push.skip>false</nuget-push.skip>
+		<nuget-push-core.skip>${nuget-push.skip}</nuget-push-core.skip>
+		<nuget-push-csv.skip>${nuget-push.skip}</nuget-push-csv.skip>
+		<nuget-push-samples.skip>${nuget-push.skip}</nuget-push-samples.skip>
+		<release_tweet.skip>false</release_tweet.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -135,6 +141,7 @@
 									<url>sftp://frs.sourceforge.net</url>
 									<toDir>home/pfs/project/grindersdotnet/${project.version}</toDir>
 									<serverId>sourceforge</serverId>
+									<skip>${deploy-to-sourceforge.skip}</skip>
 								</configuration>
 							</execution>
 						</executions>
@@ -156,6 +163,7 @@
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
+									<skip>${nuget-push-core.skip}</skip>
 								</configuration>
 							</execution>
 							<execution>
@@ -171,6 +179,7 @@
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
+									<skip>${nuget-push-csv.skip}</skip>
 								</configuration>
 							</execution>
 							<execution>
@@ -186,6 +195,7 @@
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
+									<skip>${nuget-push-samples.skip}</skip>
 								</configuration>
 							</execution>
 						</executions>
@@ -206,22 +216,26 @@ import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.Method.*
 import static groovyx.net.http.ContentType.*
 
-def http = new HTTPBuilder('https://api.twitter.com')
+if ( pom.properties.'release_tweet.skip' != "true" ) {
+	def http = new HTTPBuilder('https://api.twitter.com')
 
-http.auth.oauth pom.properties.'twitter.oauth.consumerKey', pom.properties.'twitter.oauth.consumerSecret', pom.properties.'twitter.oauth.accessToken', pom.properties.'twitter.oauth.secretToken'
+	http.auth.oauth pom.properties.'twitter.oauth.consumerKey', pom.properties.'twitter.oauth.consumerSecret', pom.properties.'twitter.oauth.accessToken', pom.properties.'twitter.oauth.secretToken'
 
-def msg = "GrinderScript.Net v ${project.version} is released. Download it from download.grinderscript.net. Have fun!"
+	def msg = "GrinderScript.Net v ${project.version} is released. Download it from download.grinderscript.net. Have fun!"
 
-println "Tweeting the release of v ${project.version}..."
+	println "Tweeting the release of v ${project.version}..."
 
-http.request( POST, JSON ) { req ->
-	uri.path = '/1.1/statuses/update.json'
-	send URLENC, [status:msg, source:'GriderScript.Net release']
+	http.request( POST, JSON ) { req ->
+		uri.path = '/1.1/statuses/update.json'
+		send URLENC, [status:msg, source:'GriderScript.Net release']
 
-	response.success = { resp, json ->
-		println "Tweet response status: ${resp.statusLine}"
-		assert resp.statusLine.statusCode == 200
+		response.success = { resp, json ->
+			println "Tweet response status: ${resp.statusLine}"
+			assert resp.statusLine.statusCode == 200
+		}
 	}
+} else {
+	println "Not tweeting the release of v ${project.version}, since 'release_tweet.skip' == ${release_tweet.skip} "
 }
 									</source>
 									<providerSelection>1.8</providerSelection>
