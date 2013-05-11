@@ -13,6 +13,7 @@
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 		<site.documentation.baseurl>..</site.documentation.baseurl>
+		<changes.jira.skip>true</changes.jira.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -144,6 +145,7 @@
 						<reports> 
 							<report>index</report> 
 						</reports> 
+						<inherited>true</inherited>
 					</reportSet> 
 				</reportSets> 
 			</plugin> 

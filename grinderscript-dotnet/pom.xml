@@ -19,6 +19,7 @@
 		<nuget-push-csv.skip>${nuget-push.skip}</nuget-push-csv.skip>
 		<nuget-push-samples.skip>${nuget-push.skip}</nuget-push-samples.skip>
 		<release_tweet.skip>false</release_tweet.skip>
+		<changes.jira.skip>true</changes.jira.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -79,6 +80,22 @@
 			</plugin>
     	</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+						</reports>
+						<inherited>true</inherited>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 	<profiles>
 		<profile>
 			<id>release-profile</id>

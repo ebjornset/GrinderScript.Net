@@ -23,7 +23,7 @@
 		<artifactId>maven-fluido-skin</artifactId>
 		<version>${maven-fluido-skin.version}</version>
 	</skin>
-	
+
 	<custom>
 		<fluidoSkin>
 			<topBarEnabled>false</topBarEnabled>
@@ -34,18 +34,22 @@
 			<twitter>
 				<user>GrinderScriptDN</user>
 				<showUser>false</showUser>
-				<showFollowers>false</showFollowers>
+				<showFollowers>true</showFollowers>
 			</twitter>
 			<gitHub>
 				<projectId>ebjornset/GrinderScript.Net.git</projectId>
 				<ribbonOrientation>right</ribbonOrientation>
 				<ribbonColor>gray</ribbonColor>
 			</gitHub>
+			<ohloh>
+				<projectId>641494</projectId>
+				<widget>users</widget>
+			</ohloh>
 	  </fluidoSkin>
 	</custom>
 
 	<publishDate format="yyyy-MM-dd"/>
-    <version position="right"/>
+    <version position="left"/>
 	
     <body>
         <menu name="User documentation" >
@@ -56,7 +60,7 @@
             <item name="Composing test scenarios" href="${site.documentation.baseurl}/scenarios.html" />
             <item name="grinder.properties" href="${site.documentation.baseurl}/properties.html" />
         </menu>
-        <menu name="Development" >
+        <menu name="Developer dokumentation" >
 				<item name="Environment" href="${site.documentation.baseurl}/development-environment.html" />
         </menu>
         <menu ref="reports" />

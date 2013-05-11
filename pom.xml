@@ -504,7 +504,7 @@
 				<reportSets>
 					<reportSet>
 						<reports>
-							<report>index</report>
+							<!--report>index</report-->
 							<report>help</report>
 							<report>modules</report>
 							<report>project-team</report>
@@ -556,9 +556,10 @@
 	</developers>
 	<distributionManagement>
 		<site>
-			<id>github-pages-site</id>
-			<name>Deployment through GitHub's site deployment plugin</name>
-			<url>site</url>
+			<!-- This site is used dirung development to test site:stage, it's replased by the GitHub page site in the 'release-profile' below during the release -->
+			<id>Homepage</id>
+			<name>Normal site deployment</name>
+			<url>http://GrinderScript.Net/</url>
 		</site>
 		<repository>
 			<id>libs-release-local</id>
@@ -592,4 +593,23 @@
 		<system>JIRA</system>
 		<url>https://grinderscriptdotnet.atlassian.net/browse/GSDN</url>
 	</issueManagement>
+	<profiles>
+		<profile>
+			<id>release-profile</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<distributionManagement>
+				<site>
+					<!-- This site is used by the GitHub site deployment during the actual release -->
+					<id>github-pages-site</id>
+					<name>Deployment through GitHub's site deployment plugin</name>
+					<url>site</url>
+				</site>
+			</distributionManagement>
+		</profile>
+	</profiles>
 </project>
