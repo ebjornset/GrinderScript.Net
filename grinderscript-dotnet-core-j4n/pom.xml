@@ -238,18 +238,30 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptors> 
-						<descriptor>${project.basedir}/src/main/assembly/lib.xml</descriptor> 
-					</descriptors> 
-				</configuration>
 				<executions>
 					<execution>
-						<id>assembly-lib</id>
+						<id>assembly-package</id>
 						<phase>package</phase>
 						<goals>
-							<goal>attached</goal>
+							<goal>single</goal>
 						</goals>
+						<configuration>
+							<descriptors> 
+								<descriptor>${project.basedir}/src/main/assembly/lib.xml</descriptor> 
+							</descriptors> 
+						</configuration>
+					</execution>
+					<execution>
+						<id>assembly-post-site</id>
+						<phase>post-site</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors> 
+								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
+							</descriptors> 
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

@@ -436,7 +436,24 @@
 						</configuration>            
 					</execution>
 				</executions>
-			</plugin>      
+			</plugin>    
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>assembly-post-site</id>
+						<phase>post-site</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors> 
+								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
+							</descriptors> 
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
 				<dependencies>
@@ -448,15 +465,6 @@
 				</dependencies>
 				<configuration>
 					<skipDeploy>true</skipDeploy>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<tagNameFormat>v@{project.version}</tagNameFormat>
-                    <pushChanges>true</pushChanges>
-                    <localCheckout>false</localCheckout>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -481,19 +489,28 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+                    <pushChanges>true</pushChanges>
+                    <localCheckout>false</localCheckout>
+				</configuration>
+			</plugin>
+			<!--plugin>
 				<artifactId>maven-scm-publish-plugin</artifactId>
-				<!--configuration>
+				<configuration>
 					<checkoutDirectory>${scmCheckout.path}</checkoutDirectory>
 					<content>${siteContent.path}</content>
-				</configuration-->
-			</plugin>
-			<plugin>
+				</configuration>
+			</plugin-->
+			<!--plugin>
 				<artifactId>maven-pdf-plugin</artifactId>
 				<configuration>
 					<outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
 					<includeReports>false</includeReports>
 				</configuration>
-			</plugin>
+			</plugin-->
         </plugins>
 	</build>
 	<reporting>

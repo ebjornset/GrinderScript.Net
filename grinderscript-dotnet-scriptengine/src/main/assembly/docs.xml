@@ -1,20 +1,9 @@
 <assembly> 
-	<id>binary</id> 
+	<id>docs</id> 
 	<formats> 
 		<format>zip</format> 
 	</formats> 
 	<includeBaseDirectory>false</includeBaseDirectory> 
-	<dependencySets>
-		<dependencySet>
-			<includes>
-				<include>${project.groupId}:*:zip:lib</include>
-				<include>${project.groupId}:*:zip:docs</include>
-				<include>${project.groupId}:*:zip:verifier</include>
-			</includes>
-			<unpack>true</unpack>
-			<useProjectArtifact>false</useProjectArtifact>
-		</dependencySet>
-	</dependencySets>
 	<fileSets> 
 		<fileSet> 
 			<directory>${project.build.directory}/site</directory> 

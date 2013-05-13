@@ -10,6 +10,7 @@
 				<include>${project.groupId}:*:zip:nupkg</include>
 			</includes>
 			<unpack>true</unpack>
+			<useProjectArtifact>false</useProjectArtifact>
 		</dependencySet>
 	</dependencySets>
 </assembly> 

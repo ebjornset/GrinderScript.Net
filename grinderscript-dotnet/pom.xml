@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>grinderscript-dotnet</artifactId>
 	<packaging>pom</packaging>
-	<name>GrinderScript.Net</name>
+	<name>GrinderScript.Net :: Packager</name>
 	<description>This module is used to package the various parts of GrinderScript.Net into one distributable package</description>
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
@@ -57,24 +57,86 @@
 			<type>zip</type>
 			<classifier>verifier</classifier>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-parent</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-core-j4n</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-external</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-framework</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-samples</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-scriptengine</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>grinderscript-dotnet-verifier</artifactId>
+			<version>${project.version}</version>
+			<type>zip</type>
+			<classifier>docs</classifier>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptors> 
-						<descriptor>${project.basedir}/src/main/assembly/binary.xml</descriptor> 
-						<descriptor>${project.basedir}/src/main/assembly/nupkg.xml</descriptor> 
-					</descriptors> 
-				</configuration>
 				<executions>
 					<execution>
-						<id>make-assembly</id>
+						<id>assembly-package</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
+						<configuration>
+							<descriptors> 
+								<descriptor>${project.basedir}/src/main/assembly/binary.xml</descriptor> 
+								<descriptor>${project.basedir}/src/main/assembly/nupkg.xml</descriptor> 
+							</descriptors> 
+						</configuration>
+					</execution>
+					<execution>
+						<id>assembly-post-site</id>
+						<phase>post-site</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors> 
+								<!-- Duplicated the binary descriptor to make sure the generated site is included in the docs -->
+								<descriptor>${project.basedir}/src/main/assembly/binary.xml</descriptor> 
+							</descriptors> 
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
