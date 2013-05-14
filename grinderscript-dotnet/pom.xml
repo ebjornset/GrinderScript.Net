@@ -219,7 +219,7 @@
 									<includes>${project.build.finalName}-*.zip</includes>
 									<url>sftp://frs.sourceforge.net</url>
 									<toDir>home/pfs/project/grindersdotnet/${project.version}</toDir>
-									<serverId>sourceforge</serverId>
+									<serverId>${deploy-to-sourceforge.serverId}</serverId>
 									<skip>${deploy-to-sourceforge.skip}</skip>
 								</configuration>
 							</execution>

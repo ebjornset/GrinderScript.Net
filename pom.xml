@@ -32,6 +32,7 @@
 		<github.global.server>github</github.global.server>
 		<site.basedir>${project.basedir}</site.basedir>
 		<site.documentation.baseurl>.</site.documentation.baseurl>
+		<deploy-to-sourceforge.serverId>sourceforge</deploy-to-sourceforge.serverId>
 		<!-- repositories begin -->
 		<repository.ext-release.id>ext-release-local</repository.ext-release.id>
 		<repository.ext-release.url>http://localhost:8081/artifactory/ext-release-local</repository.ext-release.url>
@@ -471,7 +472,7 @@
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
 				<configuration>
-					<message>Creating site for ${project.artifactId}, ${project.version}</message>
+					<message>Creating site for ${project.artifactId} ${project.version}</message>
 					<!-- this does the trick to place every module in the correct subfolder -->
 					<path>${project.distributionManagement.site.url}</path>
 					<merge>true</merge>
@@ -493,8 +494,6 @@
 				<configuration>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
-                    <pushChanges>true</pushChanges>
-                    <localCheckout>false</localCheckout>
 				</configuration>
 			</plugin>
 			<!--plugin>
@@ -573,7 +572,7 @@
 	</developers>
 	<distributionManagement>
 		<site>
-			<!-- This site is used dirung development to test site:stage, it's replased by the GitHub page site in the 'release-profile' below during the release -->
+			<!-- This site is used during development to test site:stage. During an actual release this is replased by the GitHub gh-pages site specified in the 'release-profile' below -->
 			<id>Homepage</id>
 			<name>Normal site deployment</name>
 			<url>http://GrinderScript.Net/</url>
@@ -621,7 +620,7 @@
 			</activation>
 			<distributionManagement>
 				<site>
-					<!-- This site is used by the GitHub site deployment during the actual release -->
+					<!-- This site is used by the GitHub gh-pages site deployment during the actual release -->
 					<id>github-pages-site</id>
 					<name>Deployment through GitHub's site deployment plugin</name>
 					<url>site</url>
