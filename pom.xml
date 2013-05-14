@@ -594,7 +594,7 @@
 		<url>http://localhost:8080/job/GrinderScript.Net_master_clean-install/</url>
 	</ciManagement>
 	<scm>
-        <url>https://github.com/ebjornset/GrinderScript.Net.git</url>
+        <url>https://github.com/ebjornset/GrinderScript.Net/tree/master/</url>
         <connection>scm:git:git://github.com/ebjornset/GrinderScript.Net.git</connection>
         <developerConnection>scm:git:git@github.com:ebjornset/GrinderScript.Net.git</developerConnection>
       <tag>HEAD</tag>
@@ -627,6 +627,32 @@
 					<url>site</url>
 				</site>
 			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-changes-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>announcement-generate</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>announcement-generate</goal>
+								</goals>
+								<configuration>
+									<maxEntries>5</maxEntries>
+									<introduction></introduction>
+									<announcementFile>CHANGES.txt</announcementFile>
+									<issueManagementSystems><issueManagementSystem>JIRA</issueManagementSystem></issueManagementSystems>
+									<urlDownload>http://download.grinderscript.net/${changes.version}</urlDownload>
+									<webUser>${changes.webUser}</webUser>
+									<webPassword>${changes.webPassword}</webPassword>
+									<runOnlyAtExecutionRoot>true</runOnlyAtExecutionRoot>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>
