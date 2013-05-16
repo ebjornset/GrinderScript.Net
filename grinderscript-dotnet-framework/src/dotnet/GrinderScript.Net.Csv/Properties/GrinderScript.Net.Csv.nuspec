@@ -10,9 +10,8 @@
     <projectUrl>http://GrinderScript.Net</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <!--dependencies>
+    <dependencies>
       <dependency id="GrinderScript.Net.Core" version="$version$" />
-      <dependency id="CsvHelper" version="1.17.0" />
-    </dependencies-->
+    </dependencies>
   </metadata>
 </package>
