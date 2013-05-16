@@ -24,6 +24,6 @@
 
 using System.Reflection;
 
-[assembly: AssemblyVersion("${dotnet.assembly.version}.${git.commitsCount}")]
-[assembly: AssemblyFileVersion("${dotnet.assembly.version}.${git.commitsCount}")]
-[assembly: AssemblyInformationalVersion("${dotnet.assembly.version}.${git.commitsCount}")]
+[assembly: AssemblyVersion("${dotnet.assembly.version.full}")]
+[assembly: AssemblyFileVersion("${dotnet.assembly.version.full}")]
+[assembly: AssemblyInformationalVersion("${dotnet.assembly.version.full}")]

@@ -239,7 +239,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 									<skip>${nuget-push-core.skip}</skip>
@@ -255,7 +255,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 									<skip>${nuget-push-csv.skip}</skip>
@@ -271,7 +271,7 @@
 									<executable>${nuget.directory}NuGet.exe</executable>
 									<arguments>
 										<argument>push</argument>
-										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version}.${git.commitsCount}.nupkg</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
 									</arguments>
 									<skip>${nuget-push-samples.skip}</skip>
@@ -300,7 +300,7 @@ if ( pom.properties.'release_tweet.skip' != "true" ) {
 
 	http.auth.oauth pom.properties.'twitter.oauth.consumerKey', pom.properties.'twitter.oauth.consumerSecret', pom.properties.'twitter.oauth.accessToken', pom.properties.'twitter.oauth.secretToken'
 
-	def msg = "GrinderScript.Net v ${project.version} is released. Download it from download.grinderscript.net. Have fun!"
+	def msg = "GrinderScript.Net ${project.version} is released. Download it from pom.properties.'downloadpage.versionurl'. Have fun!"
 
 	println "Tweeting the release of v ${project.version}..."
 

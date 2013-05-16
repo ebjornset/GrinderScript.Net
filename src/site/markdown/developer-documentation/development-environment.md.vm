@@ -3,7 +3,7 @@ Development environment for GrinderScript.Net
 
 GrinderScript.Net consists of parts written in .Net and in Java. Currently it only runs on Windows and you\'ll need a Windows machine for your development environment as well. 
 
-You download the source code as described in the [source repository page](./source-repository.html) 
+You download the source code as described in the [source repository page](../source-repository.html) 
 
 [Maven](http://maven.apache.org/) is used to build and package the distribution. You'll need Maven, JDK (Java Development Kit), .Net framework, Gallio and NuGet command line tools (NuGet.exe) installed on your development machine. The table below provide you the download links and minimum version to install. Follow the instructions on each download page to download and install the tools.
 

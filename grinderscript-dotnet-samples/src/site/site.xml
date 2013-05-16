@@ -54,14 +54,14 @@
     <body>
         <menu name="User documentation" >
             <item name="Introduction" href="${site.documentation.baseurl}/index.html" />
-            <item name="Installation" href="${site.documentation.baseurl}/installation.html" />
-            <item name="Writing load tests" href="${site.documentation.baseurl}/loadtests.html" />
-            <item name="Using data pools" href="${site.documentation.baseurl}/datapools.html" />
-            <item name="Composing test scenarios" href="${site.documentation.baseurl}/scenarios.html" />
-            <item name="grinder.properties" href="${site.documentation.baseurl}/properties.html" />
+            <item name="Installation" href="${site.documentation.baseurl}/user-documentation/installation.html" />
+            <item name="Writing load tests" href="${site.documentation.baseurl}/user-documentation/loadtests.html" />
+            <item name="Using data pools" href="${site.documentation.baseurl}/user-documentation/datapools.html" />
+            <item name="Composing test scenarios" href="${site.documentation.baseurl}/user-documentation/scenarios.html" />
+            <item name="grinder.properties" href="${site.documentation.baseurl}/user-documentation/properties.html" />
         </menu>
-        <menu name="Developer dokumentation" >
-				<item name="Environment" href="${site.documentation.baseurl}/development-environment.html" />
+        <menu name="Developer documentation" >
+				<item name="Environment" href="${site.documentation.baseurl}/developer-documentation/development-environment.html" />
         </menu>
         <menu ref="reports" />
 	</body>

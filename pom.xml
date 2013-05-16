@@ -10,8 +10,9 @@
 	<inceptionYear>2013</inceptionYear>
 	<url>http://GrinderScript.Net/</url>
 	<properties>
-		<dotnet.assembly.version>1.0.2</dotnet.assembly.version>
-		<git.commitsCount>28</git.commitsCount>
+		<dotnet.assembly.version>1.0.3</dotnet.assembly.version>
+		<git.commitsCount>32</git.commitsCount>
+		<dotnet.assembly.version.full>${dotnet.assembly.version}.${git.commitsCount}</dotnet.assembly.version.full>
 		<!-- Name pattern to recognize the test assemblies, so that unit tests 
 			are only launched on those, and so that those are excluded from code coverage. 
 			Several patterns may be specified using a ";" as delimiter -->
@@ -33,6 +34,8 @@
 		<site.basedir>${project.basedir}</site.basedir>
 		<site.documentation.baseurl>.</site.documentation.baseurl>
 		<deploy-to-sourceforge.serverId>sourceforge</deploy-to-sourceforge.serverId>
+		<downloadpage.baseurl>http://download.grinderscript.net/</downloadpage.baseurl>
+		<downloadpage.versionurl>${downloadpage.baseurl}${project.version}/</downloadpage.versionurl>
 		<!-- repositories begin -->
 		<repository.ext-release.id>ext-release-local</repository.ext-release.id>
 		<repository.ext-release.url>http://localhost:8081/artifactory/ext-release-local</repository.ext-release.url>
