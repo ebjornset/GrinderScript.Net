@@ -20,6 +20,7 @@
 		<nuget-push-samples.skip>${nuget-push.skip}</nuget-push-samples.skip>
 		<release_tweet.skip>false</release_tweet.skip>
 		<changes.jira.skip>true</changes.jira.skip>
+		<log4net.configuration>${project.basedir}/src/build/log4j.properties</log4net.configuration>
 	</properties>
 	<dependencies>
 		<dependency>

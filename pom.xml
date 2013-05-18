@@ -29,6 +29,8 @@
 		<!--sonar.skippedModules>clr,core-j4n,examples</sonar.skippedModules>
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
 		<sonar.gallio.coverage.tool>OpenCover</sonar.gallio.coverage.tool-->
+		<!-- Release arguments must be filled in from enviorment variables i Jenkins -->
+		<release.arguments></release.arguments>
 		<target-jdk.version>1.6</target-jdk.version>
 		<github.global.server>github</github.global.server>
 		<site.basedir>${project.basedir}</site.basedir>
@@ -495,6 +497,7 @@
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
+					<arguments>${release.arguments}</arguments>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
@@ -629,6 +632,12 @@
 					<url>site</url>
 				</site>
 			</distributionManagement>
+		</profile>
+		<profile>
+			<id>release-environment</id>
+			<properties>
+				<release.arguments>-Dchanges.webUser=${env.changes.webUser} -Dchanges.webPassword=${env.changes.webPassword} -Dtwitter.oauth.consumerKey=${env.twitter.oauth.consumerKey} -Dtwitter.oauth.consumerSecret=${env.twitter.oauth.consumerSecret} -Dtwitter.oauth.accessToken=${env.twitter.oauth.accessToken} -Dtwitter.oauth.secretToken=${env.twitter.oauth.secretToken} -Dnuget-push.skip=$%nuget-push.skip} -Dmaven.deploy.skip=${env.maven.deploy.skip} -Drelease_tweet.skip=${env.release_tweet.skip}</release.arguments>
+			</properties>
 		</profile>
 	</profiles>
 </project>
