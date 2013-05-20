@@ -12,5 +12,13 @@
 				<include>*/**</include> 
 			</includes> 
 		</fileSet> 
+		<fileSet> 
+			<!-- Just a dummy file to include, to prevent the assembly:single goal to fail when we are not producing a site -->
+			<directory>${project.basedir}/src/main/assembly</directory> 
+			<outputDirectory>docs/${project.artifactId}</outputDirectory> 
+			<includes> 
+				<include>docs.xml</include> 
+			</includes> 
+		</fileSet> 
 	</fileSets> 
 </assembly> 
