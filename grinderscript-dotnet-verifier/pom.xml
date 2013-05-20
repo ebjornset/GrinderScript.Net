@@ -199,17 +199,6 @@
 						<configuration>
 							<descriptors> 
 								<descriptor>${project.basedir}/src/main/assembly/verifier.xml</descriptor> 
-							</descriptors> 
-						</configuration>
-					</execution>
-					<execution>
-						<id>assembly-pots-site</id>
-						<phase>post-site</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors> 
 								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
 							</descriptors> 
 						</configuration>

@@ -107,17 +107,6 @@
 								<descriptor>${project.basedir}/src/main/assembly/lib.xml</descriptor> 
 								<descriptor>${project.basedir}/src/main/assembly/nupkg.xml</descriptor> 
 								<descriptor>${project.basedir}/src/main/assembly/resources.xml</descriptor> 
-							</descriptors> 
-						</configuration>
-					</execution>
-					<execution>
-						<id>assembly-post-site</id>
-						<phase>post-site</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors> 
 								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
 							</descriptors> 
 						</configuration>
@@ -142,22 +131,4 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<profiles>
-		<profile>
-			<id>release-profile</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

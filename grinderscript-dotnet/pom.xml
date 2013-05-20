@@ -126,19 +126,6 @@
 							</descriptors> 
 						</configuration>
 					</execution>
-					<execution>
-						<id>assembly-post-site</id>
-						<phase>post-site</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors> 
-								<!-- Duplicated the binary descriptor to make sure the generated site is included in the docs -->
-								<descriptor>${project.basedir}/src/main/assembly/binary.xml</descriptor> 
-							</descriptors> 
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
     	</plugins>

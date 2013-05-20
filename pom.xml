@@ -636,7 +636,7 @@
 		<profile>
 			<id>release-environment</id>
 			<properties>
-				<release.arguments>-Dchanges.webUser=${env.changes.webUser} -Dchanges.webPassword=${env.changes.webPassword} -Dtwitter.oauth.consumerKey=${env.twitter.oauth.consumerKey} -Dtwitter.oauth.consumerSecret=${env.twitter.oauth.consumerSecret} -Dtwitter.oauth.accessToken=${env.twitter.oauth.accessToken} -Dtwitter.oauth.secretToken=${env.twitter.oauth.secretToken} -Dnuget-push.skip=$%nuget-push.skip} -Dmaven.deploy.skip=${env.maven.deploy.skip} -Drelease_tweet.skip=${env.release_tweet.skip}</release.arguments>
+				<release.arguments>-Dchanges.webUser=${env.changes.webUser} -Dchanges.webPassword=${env.changes.webPassword} -Dtwitter.oauth.consumerKey=${env.twitter.oauth.consumerKey} -Dtwitter.oauth.consumerSecret=${env.twitter.oauth.consumerSecret} -Dtwitter.oauth.accessToken=${env.twitter.oauth.accessToken} -Dtwitter.oauth.secretToken=${env.twitter.oauth.secretToken} -Dnuget-push.skip=${env.nuget-push.skip} -Dmaven.deploy.skip=${env.maven.deploy.skip} -Drelease_tweet.skip=${env.release_tweet.skip}</release.arguments>
 			</properties>
 		</profile>
 	</profiles>
