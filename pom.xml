@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.grinderscript.dotnet</groupId>
 	<artifactId>grinderscript-dotnet-parent</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<packaging>pom</packaging>
 	<name>GrinderScript.Net</name>
 	<description>Parent Maven project for GrinderScript.Net, managing the dependencies and other build related stuff. It also contains the documentation, as a plain Maven site.</description>
@@ -30,7 +30,7 @@
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
 		<sonar.gallio.coverage.tool>OpenCover</sonar.gallio.coverage.tool-->
 		<!-- Release arguments must be filled in from enviorment variables i Jenkins -->
-		<release.arguments></release.arguments>
+		<release.arguments />
 		<target-jdk.version>1.6</target-jdk.version>
 		<github.global.server>github</github.global.server>
 		<site.basedir>${project.basedir}</site.basedir>
@@ -586,7 +586,7 @@
         <url>https://github.com/ebjornset/GrinderScript.Net/tree/master/</url>
         <connection>scm:git:git://github.com/ebjornset/GrinderScript.Net.git</connection>
         <developerConnection>scm:git:git@github.com:ebjornset/GrinderScript.Net.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v1.0.3</tag>
   </scm>
 	<licenses>
 		<license>
