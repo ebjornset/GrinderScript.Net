@@ -481,6 +481,7 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
 					<arguments>${release.arguments}</arguments>
+					<preparationGoals>clean site verify</preparationGoals>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
