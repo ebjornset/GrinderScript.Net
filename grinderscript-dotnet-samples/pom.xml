@@ -75,7 +75,6 @@
 						<configuration>
 							<descriptors> 
 								<descriptor>${project.basedir}/src/main/assembly/nupkg.xml</descriptor> 
-								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
 							</descriptors> 
 						</configuration>
 					</execution>

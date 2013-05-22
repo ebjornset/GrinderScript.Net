@@ -58,61 +58,26 @@
 			<type>zip</type>
 			<classifier>verifier</classifier>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-parent</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-core-j4n</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-external</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-framework</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-samples</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-scriptengine</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>grinderscript-dotnet-verifier</artifactId>
-			<version>${project.version}</version>
-			<type>zip</type>
-			<classifier>docs</classifier>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
+					<execution>
+						<id>assembly-prepare-package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<!-- collect site for all modules under target/docs so it can be included in the binary afterwards -->
+							<descriptors> 
+								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor>
+							</descriptors> 
+							<attach>false</attach>
+						</configuration>
+					</execution>
 					<execution>
 						<id>assembly-package</id>
 						<phase>package</phase>

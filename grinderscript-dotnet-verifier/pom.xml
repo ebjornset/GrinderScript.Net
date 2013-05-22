@@ -199,7 +199,6 @@
 						<configuration>
 							<descriptors> 
 								<descriptor>${project.basedir}/src/main/assembly/verifier.xml</descriptor> 
-								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
 							</descriptors> 
 						</configuration>
 					</execution>

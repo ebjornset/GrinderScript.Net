@@ -444,23 +444,6 @@
 				</executions>
 			</plugin>    
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>assembly-post-site</id>
-						<phase>post-site</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors> 
-								<descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor> 
-							</descriptors> 
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
 				<dependencies>
 					<dependency>

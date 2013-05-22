@@ -1,0 +1,2 @@
+Dummy file that is included in the docs folder by the docs.xml assembly descriptor in the parent module, 
+to prevent the assembly plugin from failing the build when the site is not generated.

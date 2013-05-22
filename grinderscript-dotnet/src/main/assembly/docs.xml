@@ -1,0 +1,31 @@
+<assembly> 
+	<id>docs</id> 
+	<formats> 
+		<format>dir</format> 
+	</formats> 
+	<includeBaseDirectory>false</includeBaseDirectory> 
+	<moduleSets>
+		<moduleSet>
+			<!-- Enable access to all projects in the current multimodule build! -->
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<sources>
+				<includeModuleDirectory>true</includeModuleDirectory>
+				<fileSets>
+					<fileSet>
+						<includes>
+							<include>**</include>
+						</includes>
+						<directory>${project.build.directory}/site</directory>
+					</fileSet>
+					<fileSet>
+						<!-- Make sure we have at least one file, otherwise the assembly plugin will fail the build when the site is not generated. (The packager module contains this dummy file) -->
+						<includes>
+							<include>dummy.txt</include>
+						</includes>
+						<directory>${project.basedir}/src/build</directory>
+					</fileSet>
+				</fileSets>
+			</sources>
+		</moduleSet>
+	</moduleSets>
+</assembly> 

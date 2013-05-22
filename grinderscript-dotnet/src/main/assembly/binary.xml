@@ -8,20 +8,28 @@
 		<dependencySet>
 			<includes>
 				<include>${project.groupId}:*:zip:lib</include>
-				<include>${project.groupId}:*:zip:docs</include>
 				<include>${project.groupId}:*:zip:verifier</include>
 			</includes>
 			<unpack>true</unpack>
 			<useProjectArtifact>false</useProjectArtifact>
 		</dependencySet>
 	</dependencySets>
-	<fileSets> 
-		<fileSet> 
-			<directory>${project.build.directory}/site</directory> 
-			<outputDirectory>docs/${project.artifactId}</outputDirectory> 
-			<includes> 
-				<include>*/**</include> 
-			</includes> 
-		</fileSet> 
-	</fileSets> 
+	<fileSets>
+		<fileSet>
+			<!-- Include site for all modules, collected by the docs descriptor -->
+			<outputDirectory>docs</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>
+			<directory>${project.build.directory}/${project.build.finalName}-docs</directory>
+		</fileSet>
+		<fileSet>
+			<!-- Include site for the parent by a hard coded path, since it's not included in the moduleSet used to collect the rest of the site stuff, and it's to much hazzle to use a dependncyset -->
+			<outputDirectory>docs</outputDirectory>
+			<includes>
+				<include>**</include>
+			</includes>
+			<directory>${project.basedir}/../target/site</directory>
+		</fileSet>
+	</fileSets>
 </assembly> 
