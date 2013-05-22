@@ -11,7 +11,7 @@
 	<url>http://GrinderScript.Net/</url>
 	<properties>
 		<dotnet.assembly.version>1.0.3</dotnet.assembly.version>
-		<git.commitsCount>43</git.commitsCount>
+		<git.commitsCount>45</git.commitsCount>
 		<dotnet.assembly.version.full>${dotnet.assembly.version}.${git.commitsCount}</dotnet.assembly.version.full>
 		<!-- Name pattern to recognize the test assemblies, so that unit tests 
 			are only launched on those, and so that those are excluded from code coverage. 
@@ -29,13 +29,19 @@
 		<!--sonar.skippedModules>clr,core-j4n,examples</sonar.skippedModules>
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
 		<sonar.gallio.coverage.tool>OpenCover</sonar.gallio.coverage.tool-->
+		<deploy-to-sourceforge.serverId>sourceforge</deploy-to-sourceforge.serverId>
+		<deploy-to-sourceforge.skip>false</deploy-to-sourceforge.skip>
+		<nuget-push.skip>false</nuget-push.skip>
+		<nuget-push-core.skip>${nuget-push.skip}</nuget-push-core.skip>
+		<nuget-push-csv.skip>${nuget-push.skip}</nuget-push-csv.skip>
+		<nuget-push-samples.skip>${nuget-push.skip}</nuget-push-samples.skip>
+		<release-tweet.skip>false</release-tweet.skip>
 		<!-- Release arguments must be filled in from enviorment variables i Jenkins -->
 		<release.arguments></release.arguments>
 		<target-jdk.version>1.6</target-jdk.version>
 		<github.global.server>github</github.global.server>
 		<site.basedir>${project.basedir}</site.basedir>
 		<site.documentation.baseurl>.</site.documentation.baseurl>
-		<deploy-to-sourceforge.serverId>sourceforge</deploy-to-sourceforge.serverId>
 		<downloadpage.baseurl>http://download.grinderscript.net/</downloadpage.baseurl>
 		<downloadpage.versionurl>${downloadpage.baseurl}${project.version}/</downloadpage.versionurl>
 		<!-- repositories begin -->
@@ -486,20 +492,6 @@
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
 			</plugin>
-			<!--plugin>
-				<artifactId>maven-scm-publish-plugin</artifactId>
-				<configuration>
-					<checkoutDirectory>${scmCheckout.path}</checkoutDirectory>
-					<content>${siteContent.path}</content>
-				</configuration>
-			</plugin-->
-			<!--plugin>
-				<artifactId>maven-pdf-plugin</artifactId>
-				<configuration>
-					<outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
-					<includeReports>false</includeReports>
-				</configuration>
-			</plugin-->
         </plugins>
 	</build>
 	<reporting>
@@ -510,7 +502,6 @@
 				<reportSets>
 					<reportSet>
 						<reports>
-							<!--report>index</report-->
 							<report>help</report>
 							<report>modules</report>
 							<report>project-team</report>
@@ -620,7 +611,7 @@
 		<profile>
 			<id>release-environment</id>
 			<properties>
-				<release.arguments>-Dchanges.webUser=${env.changes.webUser} -Dchanges.webPassword=${env.changes.webPassword} -Dtwitter.oauth.consumerKey=${env.twitter.oauth.consumerKey} -Dtwitter.oauth.consumerSecret=${env.twitter.oauth.consumerSecret} -Dtwitter.oauth.accessToken=${env.twitter.oauth.accessToken} -Dtwitter.oauth.secretToken=${env.twitter.oauth.secretToken} -Dnuget-push.skip=${env.nuget-push.skip} -Dmaven.deploy.skip=${env.maven.deploy.skip} -Drelease_tweet.skip=${env.release_tweet.skip}</release.arguments>
+				<release.arguments>-Dchanges.webUser=${env.CHANGES.WEBUSER} -Dchanges.webPassword=${env.CHANGES.WEBPASSWORD} -Dtwitter.oauth.consumerKey=${env.TWITTER.OAUTH.CONSUMERKEY} -Dtwitter.oauth.consumerSecret=${env.TWITTER.OAUTH.CONSUMERSECRET} -Dtwitter.oauth.accessToken=${env.TWITTER.OAUTH.ACCESSTOKEN} -Dtwitter.oauth.secretToken=${env.TWITTER.OAUTH.SECRETTOKEN} -Ddeploy-to-sourceforge.skip=${env.DEPLOY-TO-SOURCEFORGE.SKIP} -Dnuget-push.skip=${env.NUGET-PUSH.SKIP} -Dmaven.deploy.skip=${env.MAVEN.DEPLOY.SKIP} -Drelease-tweet.skip=${env.RELEASE-TWEET.SKIP}</release.arguments>
 			</properties>
 		</profile>
 	</profiles>

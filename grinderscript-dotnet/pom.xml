@@ -13,12 +13,6 @@
 	<properties>
 		<site.basedir>${project.parent.basedir}</site.basedir>
 		<site.documentation.baseurl>..</site.documentation.baseurl>
-		<deploy-to-sourceforge.skip>false</deploy-to-sourceforge.skip>
-		<nuget-push.skip>false</nuget-push.skip>
-		<nuget-push-core.skip>${nuget-push.skip}</nuget-push-core.skip>
-		<nuget-push-csv.skip>${nuget-push.skip}</nuget-push-csv.skip>
-		<nuget-push-samples.skip>${nuget-push.skip}</nuget-push-samples.skip>
-		<release_tweet.skip>false</release_tweet.skip>
 		<changes.jira.skip>true</changes.jira.skip>
 		<log4net.configuration>${project.basedir}/src/build/log4j.properties</log4net.configuration>
 	</properties>
@@ -248,7 +242,7 @@ import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.Method.*
 import static groovyx.net.http.ContentType.*
 
-if ( pom.properties.'release_tweet.skip' != "true" ) {
+if ( pom.properties.'release-tweet.skip' != "true" ) {
 	def http = new HTTPBuilder('https://api.twitter.com')
 
 	http.auth.oauth pom.properties.'twitter.oauth.consumerKey', pom.properties.'twitter.oauth.consumerSecret', pom.properties.'twitter.oauth.accessToken', pom.properties.'twitter.oauth.secretToken'
@@ -267,7 +261,7 @@ if ( pom.properties.'release_tweet.skip' != "true" ) {
 		}
 	}
 } else {
-	println "Not tweeting the release of v ${project.version}, since 'release_tweet.skip' == ${release_tweet.skip} "
+	println "Not tweeting the release of v ${project.version}, since 'release-tweet.skip' == ${release-tweet.skip} "
 }
 									</source>
 									<providerSelection>1.8</providerSelection>
