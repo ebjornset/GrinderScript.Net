@@ -188,6 +188,8 @@
 										<argument>push</argument>
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Core.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
+										<argument>-ApiKey</argument>
+										<argument>${nuget-push.apikey}</argument>
 									</arguments>
 									<skip>${nuget-push-core.skip}</skip>
 								</configuration>
@@ -204,6 +206,8 @@
 										<argument>push</argument>
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Csv.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
+										<argument>-ApiKey</argument>
+										<argument>${nuget-push.apikey}</argument>
 									</arguments>
 									<skip>${nuget-push-csv.skip}</skip>
 								</configuration>
@@ -220,6 +224,8 @@
 										<argument>push</argument>
 										<argument>${project.build.directory}\nupkg\GrinderScript.Net.Samples.${dotnet.assembly.version.full}.nupkg</argument>
 										<argument>-NonInteractive</argument>
+										<argument>-ApiKey</argument>
+										<argument>${nuget-push.apikey}</argument>
 									</arguments>
 									<skip>${nuget-push-samples.skip}</skip>
 								</configuration>
@@ -231,7 +237,7 @@
 						<artifactId>gmaven-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>release_tweet</id>
+								<id>release-tweet</id>
 								<phase>deploy</phase>
 								<goals>
 									<goal>execute</goal>

@@ -29,6 +29,17 @@
 		<!--sonar.skippedModules>clr,core-j4n,examples</sonar.skippedModules>
 		<sonar.scm.url>scm:git:file://D:/st33/svr-dta/git/GrinderScript.Net.git</sonar.scm.url>
 		<sonar.gallio.coverage.tool>OpenCover</sonar.gallio.coverage.tool-->
+
+		<!-- Must be provided during release begin -->
+		<nuget-push.apikey>nuget-push.apikey.must-be-provided-during-release</nuget-push.apikey>
+		<changes.webUser>changes.webUser.must-be-provided-during-release</changes.webUser>
+		<changes.webPassword>changes.webPassword.must-be-provided-during-release</changes.webPassword>
+		<twitter.oauth.consumerKey>twitter.oauth.consumerKey.must-be-provided-during-release</twitter.oauth.consumerKey>
+		<twitter.oauth.consumerSecret>twitter.oauth.consumerSecret.must-be-provided-during-release</twitter.oauth.consumerSecret>
+		<twitter.oauth.accessToken>twitter.oauth.accessToken.must-be-provided-during-release</twitter.oauth.accessToken>
+		<twitter.oauth.secretToken>twitter.oauth.secretToken.must-be-provided-during-release</twitter.oauth.secretToken>
+		<!-- Must be provided during release end -->
+		
 		<deploy-to-sourceforge.serverId>sourceforge</deploy-to-sourceforge.serverId>
 		<deploy-to-sourceforge.skip>false</deploy-to-sourceforge.skip>
 		<nuget-push.skip>false</nuget-push.skip>
@@ -611,7 +622,7 @@
 		<profile>
 			<id>release-environment</id>
 			<properties>
-				<release.arguments>-Dchanges.webUser=${env.CHANGES.WEBUSER} -Dchanges.webPassword=${env.CHANGES.WEBPASSWORD} -Dtwitter.oauth.consumerKey=${env.TWITTER.OAUTH.CONSUMERKEY} -Dtwitter.oauth.consumerSecret=${env.TWITTER.OAUTH.CONSUMERSECRET} -Dtwitter.oauth.accessToken=${env.TWITTER.OAUTH.ACCESSTOKEN} -Dtwitter.oauth.secretToken=${env.TWITTER.OAUTH.SECRETTOKEN} -Ddeploy-to-sourceforge.skip=${env.DEPLOY-TO-SOURCEFORGE.SKIP} -Dnuget-push.skip=${env.NUGET-PUSH.SKIP} -Dmaven.deploy.skip=${env.MAVEN.DEPLOY.SKIP} -Drelease-tweet.skip=${env.RELEASE-TWEET.SKIP}</release.arguments>
+				<release.arguments>-Dchanges.webUser=${env.CHANGES.WEBUSER} -Dchanges.webPassword=${env.CHANGES.WEBPASSWORD} -Dtwitter.oauth.consumerKey=${env.TWITTER.OAUTH.CONSUMERKEY} -Dtwitter.oauth.consumerSecret=${env.TWITTER.OAUTH.CONSUMERSECRET} -Dtwitter.oauth.accessToken=${env.TWITTER.OAUTH.ACCESSTOKEN} -Dtwitter.oauth.secretToken=${env.TWITTER.OAUTH.SECRETTOKEN} -Dnuget-push.apikey=${env.NUGET-PUSH.APIKEY} -Ddeploy-to-sourceforge.skip=${env.DEPLOY-TO-SOURCEFORGE.SKIP} -Dnuget-push.skip=${env.NUGET-PUSH.SKIP} -Dmaven.deploy.skip=${env.MAVEN.DEPLOY.SKIP} -Drelease-tweet.skip=${env.RELEASE-TWEET.SKIP}</release.arguments>
 			</properties>
 		</profile>
 	</profiles>
