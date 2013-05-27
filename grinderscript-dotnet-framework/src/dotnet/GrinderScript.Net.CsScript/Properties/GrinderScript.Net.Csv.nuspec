@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Eirik Bjornset</authors>
+    <owners>Eirik Bjornset</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>http://GrinderScript.Net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <dependencies>
+      <dependency id="GrinderScript.Net.Core" version="$version$" />
+    </dependencies>
+  </metadata>
+</package>

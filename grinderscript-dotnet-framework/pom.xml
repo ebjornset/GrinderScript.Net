@@ -60,6 +60,26 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>nupkg-csscript</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>${nuget.directory}NuGet.exe</executable>
+							<arguments>
+								<argument>pack</argument>
+								<argument>${project.basedir}/src/dotnet/GrinderScript.Net.CsScript/GrinderScript.Net.CsScript.csproj</argument>
+								<argument>-Symbols</argument>
+								<argument>-NonInteractive</argument>
+								<argument>-OutputDirectory</argument>
+								<argument>${project.build.directory}</argument>
+								<argument>-Verbosity</argument>
+								<argument>normal</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
 						<id>nupkg-csv</id>
 						<phase>prepare-package</phase>
 						<goals>
