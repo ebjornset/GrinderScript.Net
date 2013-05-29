@@ -31,7 +31,7 @@ namespace GrinderScript.Net.Core.Framework
         internal const string ScriptEngineTypeKey = KeyPrefix + ".scriptEngineType";
         internal const string BinFolderKey = KeyPrefix + ".binFolder";
         internal const string LaunchDebuggerKey = KeyPrefix + ".launchDebugger";
-        internal const string WorkerGroupKeyPrefix = KeyPrefix + ".scenarioWorker.";
+        internal const string ScenarioWorkerKeyPrefix = KeyPrefix + ".scenarioWorker.";
         internal const string VerificationWorkerTestsPrRunKey = KeyPrefix + ".verificationWorker.testsPrRun";
         internal const string DatapoolFactoryKeyPrefix = KeyPrefix + ".datapoolFactory.";
         internal const string DatapoolKeyPrefix = KeyPrefix + ".datapool.";

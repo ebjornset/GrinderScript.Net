@@ -1,5 +1,5 @@
 ################################################################################################
-### grinder.properties for the ScriptEngineThatCreateWorkerByCtor example
+### grinder.properties for the CsScript example
 ################################################################################################
 ### Load variation stuff
 ################################################################################################
@@ -20,18 +20,26 @@ grinder.processIncrementInterval=5000
 grinder.initialSleepTime=5000
 
 ################################################################################################
-### No actual test is configured, since the custom script engine don't use this functionality
+### Actual test
 ################################################################################################
+grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript
+
+################################################################################################
+### Test configuration stuff
+################################################################################################
+### The actual CsScript, location is relative to the assembly specified in 'grinder.script'
+################################################################################################
+grinderscript-dotnet.csScriptWorker.script=.\\Samples\\GrinderScript.Net\\Core\\WorkerThatLogs.cs
 
 ################################################################
 ## The assembly containing the tests. The location is relative to this 'grinder.properties'
 ################################################################
-grinder.script=..\\..\\..\\$rootnamespace$.dll
+grinder.script=..\\..\\..\\GrinderScript.Net.CsScript.dll
 
 ################################################################
 ## The actual script engine type to use. 
 ################################################################
-grinderscript-dotnet.scriptEngineType=$rootnamespace$.Samples.GrinderScript.Net.Core.ScriptEngineThatCreateWorkerByCtor, $rootnamespace$
+#grinderscript-dotnet.scriptEngineType=GrinderScript.Net.Core.DefaultScriptEngine, GrinderScript.Net.Core
 
 ################################################################
 ## Location of the folder where additional assemblies (dlls) can be found
@@ -56,7 +64,7 @@ grinderscript-dotnet.scriptEngineType=$rootnamespace$.Samples.GrinderScript.Net.
 ### JVM arguments passet to the worker processes
 ################################################################################################
 # Her you can control log levels, memory setting etc.
-grinder.jvm.arguments=-Dgrinder.logLevel=info -Xms64m -Xmx512m
+grinder.jvm.arguments=-Dgrinder.logLevel=info -Xms128m -Xmx512m
 
 ################################################################################################
 ### Log levels can be cached in the CLR, to minimize calls to the JVM to read these.

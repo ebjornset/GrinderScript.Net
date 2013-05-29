@@ -58,8 +58,8 @@
     <Compile Include="..\..\..\target\resources\CommonVersionInfo.cs">
       <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="CsScriptWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\GrinderScript.Net.Csv.nuspec">

@@ -27,13 +27,13 @@ using System.Globalization;
 
 namespace GrinderScript.Net.Core.Framework
 {
-    public class VerificationWorker: DefaultWorker
+    public class VerificationWorker : DefaultWorker
     {
         protected override void DefaultInitialize()
         {
             Logger.Info("DefaultInitialize: Enter");
             int testsPrRun = GetTestPrRunFromProperty();
-            ITest test = AddTest(1, "Dummytest used to verify that GrinderScript.Net works in The Grinder", () => {});
+            ITest test = AddTest(1, "Dummytest used to verify that GrinderScript.Net works in The Grinder", () => { });
             for (int i = 1; i < testsPrRun; i++)
             {
                 AddTest(test);

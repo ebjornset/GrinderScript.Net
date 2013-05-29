@@ -31,6 +31,8 @@ using System;
 
 [assembly: CLSCompliant(true)]
 
-[assembly: InternalsVisibleTo("GrinderScript.Net.Csv")]
 [assembly: InternalsVisibleTo("GrinderScript.Net.Core.UnitTests")]
+[assembly: InternalsVisibleTo("GrinderScript.Net.CsScript")]
+[assembly: InternalsVisibleTo("GrinderScript.Net.CsScript.UnitTests")]
+[assembly: InternalsVisibleTo("GrinderScript.Net.Csv")]
 [assembly: InternalsVisibleTo("GrinderScript.Net.Csv.UnitTests")]

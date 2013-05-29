@@ -29,7 +29,7 @@ grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.ScenarioWorker,
 ################################################################################################
 
 ################################################################
-## The assembly containing the tests. 
+## The assembly containing the tests. The location is relative to this 'grinder.properties' 
 ################################################################
 grinder.script=..\\..\\..\\$rootnamespace$.dll
 

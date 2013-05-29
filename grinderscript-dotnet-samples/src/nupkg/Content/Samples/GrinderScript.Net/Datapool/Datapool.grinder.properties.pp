@@ -31,7 +31,7 @@ grinderscript-dotnet.workerType=$rootnamespace$.Samples.GrinderScript.Net.Datapo
 ################################################################################################
 
 ################################################################
-## The assembly containing the tests. 
+## The assembly containing the tests. The location is relative to this 'grinder.properties' 
 ################################################################
 grinder.script=..\\..\\..\\$rootnamespace$.dll
 

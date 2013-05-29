@@ -20,7 +20,7 @@ You can turn of copying of the <i>GrinderScript.Net.Core.dll</i> to your output 
 <br/><br/>
 You <b>must</b> have a working Grinder installation with GrinderScript.Net to run these samples
 <br/><br/>
-Please notet that all examples is setup with info logging by default, since all the example tests does info logging. There is some overhead in logging, especially when writing to a visible command window. If you experiences very few TPS, you can try to minitmize the Grinder Agent window, or to set log level to <i>warn</i>. You change the log level with the <i>grinder.jvm.arguments</i> propery, which is almost at the bottom of the <i>*.grinder.properties</i> files.
+Please notet that all examples is setup with info logging by default, since all the example tests does info logging. There is some overhead in logging, especially when writing to a visible command window. If you experiences very few TPS, you can try to minitmize the Grinder Agent window, or to set log level to <i>off</i>. You change the log level with the <i>grinder.jvm.arguments</i> propery, which is almost at the bottom of the <i>*.grinder.properties</i> files.
 
 <h2>Overview of the examples</h2>
 
@@ -35,6 +35,9 @@ This example is configured in the <a href="./Datapool/Datapool.grinder.propertie
 
 <h3>Example 4 - A load test scenario</h3>
 This example is configured in the <a href="./Datapool/Scenario.grinder.properties" ><b>Datapool\Scenario.grinder.properties</b></a> file. It contains a scenario where all the worker types under the <a href="./Datapool" ><b>Datapool</b></a> folder are included. 
+
+<h3>Example 5 - A load test from a pure script file</h3>
+This example is configured in the <a href="./CsScript/CsScript.grinder.properties" ><b>CsScript\CsScript.grinder.properties</b></a> file. It set up a CsScriptWorker which runs the load test from the compiled example 2 above, <a href="./Core/WorkerThatLogs.cs" ><b>Core\WorkerThatLogs.cs</b></a> directly by <a href="http://www.csscript.net/" ><b>CsScript</b></a> in hosting mode with the <a href="http://www.mono-project.com/CSharp_Compiler" ><b>Mono.CSharp</b></a> "compiler as a service" engine. <div/>Please note that you should still build the project once so the relative paths in <i>CsScript.grinder.properties</i> to <i>GrinderScript.Net.CsScript.dll</i> and <i>WorkerThatLogs.cs</i> align properly. After you've built the project once you can open <b>Samples\GrinderScript.Net\CoreWorkerThatLogs.cs</b> from your <b>project output folder</b>, modify it, save it and run your load test again, to verify that your changes are in fact picked up immediately.
 
 <h2>How to use the examples</h2>
 Follow these six steps to explore the examples.
