@@ -58,10 +58,11 @@
             <item name="Writing load tests" href="${site.documentation.baseurl}/user-documentation/loadtests.html" />
             <item name="Using data pools" href="${site.documentation.baseurl}/user-documentation/datapools.html" />
             <item name="Composing test scenarios" href="${site.documentation.baseurl}/user-documentation/scenarios.html" />
+            <item name="Using pure .cs scripts" href="${site.documentation.baseurl}/user-documentation/pure-cs-scripts.html" />
             <item name="grinder.properties" href="${site.documentation.baseurl}/user-documentation/properties.html" />
         </menu>
         <menu name="Developer documentation" >
-				<item name="Environment" href="${site.documentation.baseurl}/developer-documentation/development-environment.html" />
+			<item name="Environment" href="${site.documentation.baseurl}/developer-documentation/development-environment.html" />
         </menu>
         <menu ref="reports" />
 	</body>

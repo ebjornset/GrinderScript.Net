@@ -20,21 +20,20 @@ grinder.processIncrementInterval=5000
 grinder.initialSleepTime=5000
 
 ################################################################################################
-### Actual test
+## Use GrinderScript.Net.CsScript as the assembly containing the tests. 
+## The location is relative to this 'grinder.properties'
+################################################################################################
+grinder.script=..\\..\\..\\GrinderScript.Net.CsScript.dll
+
+################################################################################################
+## Use GrinderScript.Nets CsScriptWorker as the actual test
 ################################################################################################
 grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript
 
 ################################################################################################
-### Test configuration stuff
-################################################################################################
-### The actual CsScript, location is relative to the assembly specified in 'grinder.script'
+## The actual .cs script file, location is relative to the assembly specified in 'grinder.script'
 ################################################################################################
 grinderscript-dotnet.csScriptWorker.script=.\\Samples\\GrinderScript.Net\\Core\\WorkerThatLogs.cs
-
-################################################################
-## The assembly containing the tests. The location is relative to this 'grinder.properties'
-################################################################
-grinder.script=..\\..\\..\\GrinderScript.Net.CsScript.dll
 
 ################################################################
 ## The actual script engine type to use. 
