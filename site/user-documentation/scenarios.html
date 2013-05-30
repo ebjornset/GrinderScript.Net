@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130530" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>GrinderScript.Net - Generated Reports</title>
-    <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
-    <link rel="stylesheet" href="./css/site.css" />
-    <link rel="stylesheet" href="./css/print.css" media="print" />
+    <title>GrinderScript.Net - </title>
+    <link rel="stylesheet" href="../css/apache-maven-fluido-1.3.0.min.css" />
+    <link rel="stylesheet" href="../css/site.css" />
+    <link rel="stylesheet" href="../css/print.css" media="print" />
 
       
-    <script type="text/javascript" src="./js/apache-maven-fluido-1.3.0.min.js"></script>
+    <script type="text/javascript" src="../js/apache-maven-fluido-1.3.0.min.js"></script>
 
     
             </head>
@@ -70,42 +70,40 @@
                                 
       <li>
     
-                          <a href="index.html" title="Introduction">
+                          <a href="../index.html" title="Introduction">
           <i class="none"></i>
         Introduction</a>
             </li>
                   
       <li>
     
-                          <a href="user-documentation/installation.html" title="Installation">
+                          <a href="../user-documentation/installation.html" title="Installation">
           <i class="none"></i>
         Installation</a>
             </li>
                   
       <li>
     
-                          <a href="user-documentation/loadtests.html" title="Writing load tests">
+                          <a href="../user-documentation/loadtests.html" title="Writing load tests">
           <i class="none"></i>
         Writing load tests</a>
             </li>
                   
       <li>
     
-                          <a href="user-documentation/datapools.html" title="Using data pools">
+                          <a href="../user-documentation/datapools.html" title="Using data pools">
           <i class="none"></i>
         Using data pools</a>
             </li>
                   
-      <li>
+      <li class="active">
     
-                          <a href="user-documentation/scenarios.html" title="Composing test scenarios">
-          <i class="none"></i>
-        Composing test scenarios</a>
-            </li>
+            <a href="#"><i class="none"></i>Composing test scenarios</a>
+          </li>
                   
       <li>
     
-                          <a href="user-documentation/properties.html" title="grinder.properties">
+                          <a href="../user-documentation/properties.html" title="grinder.properties">
           <i class="none"></i>
         grinder.properties</a>
             </li>
@@ -113,7 +111,7 @@
                                 
       <li>
     
-                          <a href="developer-documentation/development-environment.html" title="Environment">
+                          <a href="../developer-documentation/development-environment.html" title="Environment">
           <i class="none"></i>
         Environment</a>
             </li>
@@ -121,24 +119,17 @@
                                                                                                                                                                                                                                                                       
       <li>
     
-                          <a href="project-info.html" title="Project Information">
+                          <a href="../project-info.html" title="Project Information">
           <i class="icon-chevron-right"></i>
         Project Information</a>
                   </li>
-                                                                        
-      <li class="active">
-    
-            <a href="#"><i class="icon-chevron-down"></i>Project Reports</a>
-                  <ul class="nav nav-list">
-                      
+                                                                    
       <li>
     
-                          <a href="jira-report.html" title="JIRA Report">
-          <i class="none"></i>
-        JIRA Report</a>
-            </li>
-              </ul>
-        </li>
+                          <a href="../project-reports.html" title="Project Reports">
+          <i class="icon-chevron-right"></i>
+        Project Reports</a>
+                  </li>
             </ul>
                 
                     
@@ -172,7 +163,7 @@
         </div>
                    <div class="clear"></div>
                              <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
-        <img class="builtBy" alt="Built by Maven" src="./images/logos/maven-feather.png" />
+        <img class="builtBy" alt="Built by Maven" src="../images/logos/maven-feather.png" />
       </a>
                   </div>
           </div>
@@ -181,7 +172,18 @@
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            <div class="section"><h2>Generated Reports<a name="Generated_Reports"></a></h2><p>This document provides an overview of the various reports that are automatically generated by <a class="externalLink" href="http://maven.apache.org">Maven</a> . Each report is briefly described below.</p><div class="section"><h3>Overview<a name="Overview"></a></h3><table border="0" class="table table-striped"><tr class="a"><th>Document</th><th>Description</th></tr><tr class="b"><td><a href="jira-report.html">JIRA Report</a></td><td>Report on Issues from the JIRA Issue Tracking System.</td></tr></table></div></div>
+            <h1>Composing test scenarios with GrinderScript.Net</h1><p>When you arrive at this page you hopefully know a bit about how you write a load test with GrinderScript.Net, and also have an idea of how you'll vary the test data you use to make your test realistic. If you're still note comfortable with these elements of load testing we recommend that you (re)visit the description of <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">how to write load test</a>, or <a href="./datapools.html" title="Using data pools in GriderScript.Net page">how to vary test data using data pools</a> with GrinderScript.Net before you continue.</p><p>Composing test scenarios in GrinderScript.Net is merely a configuration exercise. The first step is to use the ready made <i>ScenarioWorker</i>, by specifiying the property <tt>grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.ScenarioWorker, GrinderScript.Net.Core</tt>. After that you must configure the worker types in the scenario, with their respective load factors. You wrap up your scenario by configuring your global scenario properties, like the need for randomizing the sequence of workers. You find the description of how to do this in the <a href="./properties.html#ScenarioComposition" title="Properties related to test scenario composition section in the GrinderScript.Net properties page">section about properties related to test scenario composition</a> in the description of the GrinderScript.Net properties.</p><p>Here is an example of how you can configure a load test scenario in <tt>grinder.properties</tt></p>
+<div class="source"><pre class="prettyprint">grinderscript-dotnet.scenarioWorker.1.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueOnce, GrinderScript.Net.Verifier
+grinderscript-dotnet.scenarioWorker.1.loadFactor=5
+
+grinderscript-dotnet.scenarioWorker.2.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueBeforeEachRun, GrinderScript.Net.Verifier
+grinderscript-dotnet.scenarioWorker.2.loadFactor=3
+
+grinderscript-dotnet.scenarioWorker.3.workerType=GrinderScript.Net.Verifier.Samples.GrinderScript.Net.Datapool.WorkerThatFetchDatapoolValueBeforeEachTest,GrinderScript.Net.Verifier
+
+grinderscript-dotnet.scenarioWorker.random=true
+grinderscript-dotnet.scenarioWorker.seed=123456
+</pre></div><p>In this example the scenario will load and run 9 worker instances, 5 <i>WorkerThatFetchDatapoolValueOnce</i> instances, 3 <i>WorkerThatFetchDatapoolValueBeforeEachRun</i> instances and 1 <i>WorkerThatFetchDatapoolValueBeforeEachTest</i> instance. </p><p>They will run in a random order, but the same random sequence will be used each time, since a seed is specified.</p><div class="section"><h2>What's next<a name="Whats_next"></a></h2><p>If youve followed the user documentation for GrinderScript.Net sequentially, your last piece of information is <a href="./properties.html" title="Complete list of properties used by GrinderScript.Net page">the complete list of properties</a> used by GrinderScript.Net. Otherwise you should check out <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">how to write load tests</a> with GrinderScript.Net.</p></div>
                   </div>
             </div>
           </div>
