@@ -5,7 +5,7 @@ If you feel that creating and compiling a C# load test project is to much overhe
 
 If you\'re not comfortable with how to write a load test with GrinderScript.Net, we recommend that you (re)visit the  description of [how to write load test](./loadtests.html "Writing load tests with GrinderScript.Net page") before you continue.
 
-You need the GrinderScript.Net.CsScript NuGet package installed to use this feature. If you've already installed the GrinderScript.Net.Samples package, you also have GrinderScript.Net.CsScript installed, otherwise you install it from the  Visual Studio *Package Manager Console* with the command
+You need the GrinderScript.Net.CsScript NuGet package installed to use this feature. If you\'ve already installed the GrinderScript.Net.Samples package, you also have GrinderScript.Net.CsScript installed, otherwise you install it from the  Visual Studio *Package Manager Console* with the command
 
 `install-package GrinderScript.Net.CsScript`
 
@@ -13,11 +13,11 @@ or by running NuGet.exe from the command line, e.g.:
 
 `C:\Util\NuGet.exe install GrinderScript.Net.CsScript -OutputDirectory C:\MySolution\ExternalLibs`
 
-Internally GrinderScript.Net use the excellent C# script engine [Cs-Script](http://www.csscript.net/ "Cs-Script home page")\'s hosting functionality to do all the hard work of dynamically loading and compiling your .cs file into code in the CLR. We uses the new [CS-Script Evaluator](http://www.csscript.net/help/evaluator.html "CS-Script Evaluator - Compiler As Service help page"), that is based on [Mono\'s "compiler as service"](http://www.mono-project.com/CSharp_Compiler "Mono CSharp Compiler home page"). You can use all the CS-Script features that are supported in hosted evaluator mode, with one limitation: Your .cs script file **must** contain a class that implements the `GrinderScript.Net.Core.IGrinderWorker` interface. Duck typing or scripts that contains only a method definition is currently not supported. Please consult the [CS-Script Documentation](http://www.csscript.net/Documentation.html "CS-Script Documentation page") if you want to learn more about CS-Script\'s  features. The good news is that you can implement your worker using any of the strategies described in the ["Writing load tests" page](./loadtests.html "Writing load tests with GrinderScript.Net page").
+Internally GrinderScript.Net use the excellent C# script engine [Cs-Script](http://www.csscript.net/ "Cs-Script home page")\'s hosting functionality to do all the hard work of dynamically loading and compiling your .cs file into code in the CLR. We uses the new [CS-Script Evaluator](http://www.csscript.net/help/evaluator.html "CS-Script Evaluator - Compiler As Service help page"), that is based on [Mono\'s "compiler as service"](http://www.mono-project.com/CSharp_Compiler "Mono CSharp Compiler home page"). You can use all the CS-Script features that are supported in hosted evaluator mode, with one limitation: Your .cs script file **must** contain a class that implements the `GrinderScript.Net.Core.IGrinderWorker` interface. Duck typing or scripts containing only a method definition is currently not supported. Please consult the [CS-Script Documentation](http://www.csscript.net/Documentation.html "CS-Script Documentation page") if you want to learn more about CS-Script\'s  features. The good news is that you can implement your worker using any of the strategies described in the ["Writing load tests" page](./loadtests.html "Writing load tests with GrinderScript.Net page").
 
-Beside writing your worker in the .cs script file, all you need is these 3 elements in your `grinder.properties`. 
+Beside writing your worker in the .cs script file, all you need to configure your `grinder.properties` following these three steps:
 
-1. Use *GrinderScript.Net.CsScript.dll* as the *grinder.script* property. The location is relative to your 'grinder.properties'.
+1. Use *GrinderScript.Net.CsScript.dll* as the *grinder.script* property. The location is relative to the location of your 'grinder.properties'.
 2. Use the ready made *CsScriptWorker* as the *grinderscript-dotnet.workerType* property.
 3. Configure the actual .cs script file with the *grinderscript-dotnet.csScriptWorker.script* property. The location is relative to the location of the assembly specified in the *grinder.script* property.
 

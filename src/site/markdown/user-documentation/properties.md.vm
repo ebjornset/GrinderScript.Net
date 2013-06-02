@@ -179,7 +179,7 @@ List of properties
         <td colspan="3"><strong>Properties for running .cs script files directly</strong></td>
     </tr>
     <tr>
-        <td colspan="3"><br/>grinder.script=GrinderScript.Net.CsScript.dll <br/>grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript</td>
+        <td colspan="3">Currently you only need to configure your cs script file and set these two properties with these fixed values:<br/>grinder.script=GrinderScript.Net.CsScript.dll <br/><br/>grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript<br/>The location of </td>
     </tr>
     <tr>
         <td><em>Property</em></td>
