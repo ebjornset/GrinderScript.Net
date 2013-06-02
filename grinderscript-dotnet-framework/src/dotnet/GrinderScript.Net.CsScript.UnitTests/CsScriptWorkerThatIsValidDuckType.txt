@@ -1,0 +1,17 @@
+﻿public class CsScriptWorkerThatIsValidDuckType
+{
+	public void Initialize()
+	{
+		// Noop
+	}
+
+	public void Run()
+	{
+		// Noop
+	}
+
+	public void Shutdown()
+	{
+		// Noop
+	}
+}

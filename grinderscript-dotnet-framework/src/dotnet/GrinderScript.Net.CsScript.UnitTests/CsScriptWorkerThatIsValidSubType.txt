@@ -1,0 +1,23 @@
+﻿using GrinderScript.Net.Core;
+
+public class CsScriptWorkerThatIsValidSubType : AbstractWorker, IProcessContextAware, IDatapoolManagerAware
+{
+    public IProcessContext ProcessContext { get; set; }
+
+    public IDatapoolManager DatapoolManager { get; set; }
+
+	protected override void OnInitialize()
+	{
+		Logger.Info("CsScriptWorkerThatIsValidSubType-OnInitialize");
+	}
+
+	protected override void OnRun()
+	{
+		Logger.Info("CsScriptWorkerThatIsValidSubType-OnRun");
+	}
+
+	protected override void OnShutdown()
+	{
+		Logger.Info("CsScriptWorkerThatIsValidSubType-OnShutdown");
+	}
+}

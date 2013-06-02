@@ -44,7 +44,7 @@ You need the GrinderScript.Net.Cvs NuGet package installed to load data pool val
 
 `install-package GrinderScript.Net.Csv`
 
-Internally we use the excellent open source framework [CsvHelper](https://github.com/JoshClose/CsvHelper "CsvHelper GitHub repository") to do the actual loading of the data pool values from the csv files, with the following configuration.
+Internally GrinderScript.Net use the excellent open source framework [CsvHelper](https://github.com/JoshClose/CsvHelper "CsvHelper GitHub repository") to do the actual loading of the data pool values from the csv files, with the following configuration.
 
 	new CsvConfiguration { AllowComments = true, Delimiter = ";", IsCaseSensitive = false, HasHeaderRecord = true};
 
@@ -230,6 +230,6 @@ Example of a worker that fetches a new value for each test call, without any reu
 
 What\'s next
 ----------------------
-When you\'re able to vary the test data in your load tests with data pools, you might want to dig into [how to compose test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page") with GrinderScript.Net. 
+When you\'re able to vary the test data in your load tests with data pools, you might want to dig into [how to compose test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page") with GrinderScript.Net or how you can [run your .cs files as load test scripts without compiling an assembly first](./pure-cs-scripts.html "Using pure .cs files as load test scripts in GrinderScript.Net page"). 
 
 You can also check out the [complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net or revisit the basics about [how to write load tests](./loadtests.html "Writing load tests with GrinderScript.Net page").

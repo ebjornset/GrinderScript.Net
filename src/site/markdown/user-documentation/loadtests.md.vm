@@ -28,6 +28,18 @@ You will probably not implement this interface from scratch, since GrinderScript
 
 When you register a test method in GrinderScript.Net it will be proxied by The Grinder as a JVM object that is returned to you as an *IGrinderTest* instance. Each time you call *Run()* on this proxy The Grinder will call your method, time the call duration, and update its statistics with the call metrics. A test method is just an Action, so any zero argument void method or lambda expression can be used. From each Run() you can call as many test methods as you need and also call them in loops if that makes sense in your test scenario.
 
+Running your worker in a load test
+--------------------
+
+Further down you\'ll find several ways to write your load test worker described. No matter how you choose to write your worker, running it in a load test is quite simple. Just follow these steps:
+
+1. Compile your load test project into an assembly
+2. Configure the *grinder.script* property with the name of your assembly, including the .dll extension
+3. Configure the *grinderscript-dotnet.workerType* property with the name of your worker type
+4. Start the load test run
+
+If this is to much ceremony for you, you can also skip the whole load test project and compilation step. Check out how to [run your .cs files as load test scripts directly](./pure-cs-scripts.html "Using pure .cs files as load test scripts in GrinderScript.Net page") if this sounds interesting.
+
 Writing a worker that inherits from GrinderScript.Net's DefaultWorker
 --------------------
 
@@ -205,4 +217,4 @@ Extending the *DefaultScriptEngine* or the *AstractScriptEngine* is much a matte
 
 What\'s next
 ----------------------
-By now you should understand how to write your load tests with GrinderScript.Net. The natural next step now is to learn how to [use data pools to varying test data](./datapools.html "Using data pools in GriderScript.Net page") or how to [compose workers into load test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page"). You can also check out the [complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net.
+By now you should understand how to write your load tests with GrinderScript.Net. The natural next step now is to learn how to [use data pools to varying test data](./datapools.html "Using data pools in GriderScript.Net page") or how to [compose workers into load test scenarios](./scenarios.html "Composing test scenarios with GrinderScript.Net page") or how to [run your .cs files as load test scripts without compiling an assembly first](./pure-cs-scripts.html "Using pure .cs files as load test scripts in GrinderScript.Net page"). You can also check out the [complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net.

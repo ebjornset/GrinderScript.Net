@@ -1,7 +1,7 @@
 Composing test scenarios with  GrinderScript.Net
 ====================
 
-When you arrive at this page you hopefully know a bit about how you write a load test with GrinderScript.Net, and also have an idea of how you\'ll vary the test data you use to make your test realistic. If you\'re still note comfortable with these elements of load testing we recommend that you (re)visit the  description of [how to write load test](./loadtests.html "Writing load tests with GrinderScript.Net page"), or [how to vary test data using data pools](./datapools.html "Using data pools in GriderScript.Net page") with GrinderScript.Net before you continue.
+When you arrive at this page you hopefully know a bit about how you write a load test with GrinderScript.Net, and also have an idea of how you\'ll vary the test data you use to make your test realistic. If you\'re still not comfortable with these elements of load testing we recommend that you (re)visit the  description of [how to write load test](./loadtests.html "Writing load tests with GrinderScript.Net page"), or [how to vary test data using data pools](./datapools.html "Using data pools in GriderScript.Net page") with GrinderScript.Net before you continue.
 
 Composing test scenarios in GrinderScript.Net is merely a configuration exercise. The first step is to use the ready made *ScenarioWorker*, by specifiying the property `grinderscript-dotnet.workerType=GrinderScript.Net.Core.Framework.ScenarioWorker, GrinderScript.Net.Core`. After that you must configure the worker types in the scenario, with their respective load factors. You wrap up your scenario by configuring your global scenario properties, like the need for randomizing the sequence of workers. You find the description of how to do this in the [section about properties related to test scenario composition](./properties.html#ScenarioComposition "Properties related to test scenario composition section in the GrinderScript.Net properties page") in the description of the GrinderScript.Net properties.
 
@@ -24,4 +24,6 @@ They will run in a random order, but the same random sequence will be used each 
 
 What\'s next
 ----------------------
-If you've followed the user documentation for GrinderScript.Net sequentially, your last piece of information is [the complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net. Otherwise you should check out [how to write load tests](./loadtests.html "Writing load tests with GrinderScript.Net page") with GrinderScript.Net.
+Now you\'ve learned how to compose workers into load test scenarios, you might want to learn how you can [run your .cs files as load test scripts without compiling an assembly first](./pure-cs-scripts.html "Using pure .cs files as load test scripts in GrinderScript.Net page"). 
+
+You can also check out the  [the complete list of properties](./properties.html "Complete list of properties used by GrinderScript.Net page") used by GrinderScript.Net. Otherwise you should check out [how to write load tests](./loadtests.html "Writing load tests with GrinderScript.Net page") with GrinderScript.Net.

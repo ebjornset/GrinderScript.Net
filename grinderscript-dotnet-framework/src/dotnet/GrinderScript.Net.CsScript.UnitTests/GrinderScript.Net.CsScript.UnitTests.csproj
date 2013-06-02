@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C309D538-C2A7-40EB-98CB-5EE5676C316F}</ProjectGuid>
+    <ProjectGuid>{0AF4FCAB-C8C7-44CB-94D6-62658A25BEF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GrinderScript.Net.Csv.UnitTests</RootNamespace>
-    <AssemblyName>GrinderScript.Net.Csv.UnitTests</AssemblyName>
+    <RootNamespace>GrinderScript.Net.CsScript.UnitTests</RootNamespace>
+    <AssemblyName>GrinderScript.Net.CsScript.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,8 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsvHelper">
-      <HintPath>..\..\..\target\packages\CsvHelper.1.17.0\lib\net40-client\CsvHelper.dll</HintPath>
+    <Reference Include="CSScriptLibrary">
+      <HintPath>..\..\..\target\packages\CS-Script.3.5.9.0\lib\net40\CSScriptLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CSharp">
+      <HintPath>..\..\..\target\packages\CS-Script.3.5.9.0\lib\net40\Mono.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\..\target\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
@@ -57,30 +60,39 @@
     <Compile Include="..\..\..\target\resources\CommonVersionInfo.cs">
       <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="CsvDatapoolValuesFactoryTests.cs" />
+    <Compile Include="CsScriptWorkerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="TestValues.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestValuesCsvFileWithADifferentNameThanTheType.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\GrinderScript.Net.Core.UnitTests\GrinderScript.Net.Core.UnitTests.csproj">
+      <Project>{493cd0c3-8ade-401d-bdcf-e942677cb64d}</Project>
+      <Name>GrinderScript.Net.Core.UnitTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GrinderScript.Net.Core\GrinderScript.Net.Core.csproj">
       <Project>{56a06c95-6fa9-4fda-8c72-34e07d87fce8}</Project>
       <Name>GrinderScript.Net.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GrinderScript.Net.Csv\GrinderScript.Net.Csv.csproj">
-      <Project>{0c9df856-5960-44cd-8a00-17c443c2e007}</Project>
-      <Name>GrinderScript.Net.Csv</Name>
+    <ProjectReference Include="..\GrinderScript.Net.CsScript\GrinderScript.Net.CsScript.csproj">
+      <Project>{af7300c6-3d73-4e23-bc04-3c8d0058d363}</Project>
+      <Name>GrinderScript.Net.CsScript</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CsScriptWorkerThatIsValidDuckType.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CsScriptWorkerThatIsInvalid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CsScriptWorkerThatIsValidSubType.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -6,25 +6,16 @@ This page contains a summary of all the properties used by GrinderScript.Net. Yo
 Some tips & tricks before you begin
 ------------------
 
-To start using GrinderScript.Net with Grinder you must specify the assembly containing your load tests in the **grinder.script** property. Please remember to include the **.dll** extension, otherwise Grinder will not bind your script to GrinderScript.Net, e.g. 
-
-`grinder.script=GrinderScript.Net.Verifier.dll`
-
-Please note that GrinderScript.Net requires that you use the DCR instrumentation engine in Grinder. Make sure the property `grinder.dcrinstrumentation=true` is present in your `grinder.properties` file, and everything will be fine.
-
-Remember to use \\\\ (two backslashes) when you specify a path separator in a property.
-
-The properties with **None** as the *Default value* in the table below are mandatory, the rest are optional. 
-
-It's recommended that you use an assembly qualified type name for type name properties, to make sure GrinderScript.Net can find and load the type from this symbolic name.
-
-These properties are plain Java properties, so you must specify them using the normal Java property format, see this [.properties file](http://en.wikipedia.org/wiki/.properties "Wikipedia: .properties") description if you\'re in doubt.
-
-Property names are case sensitive.
-
-You can use [these properties](./grinder.properties "Starting point for your grinder.properties") as a starting point for your own *grinder.properties* file.
-
-The Grinder does not require you to name your `grinder.properties` file *grinder.properties*, its just the default name used until you override it. You can select any property file in The Grinder Console, or specify a file name as an option in your Grinder Agent start up script. See [The Grinder user documentation](http://grinder.sourceforge.net/g3/manual.html "The Grinder's Complete User Guide") for further details.
+1. To start using GrinderScript.Net with Grinder you must specify the assembly containing your load tests in the **grinder.script** property. Please remember to include the **.dll** extension, otherwise Grinder will not bind your script to GrinderScript.Net, e.g. `grinder.script=GrinderScript.Net.Verifier.dll`
+2. Please note that GrinderScript.Net requires that you use the DCR instrumentation engine in Grinder. Make sure the property `grinder.dcrinstrumentation=true` is present in your `grinder.properties` file, and everything will be fine.
+3. Remember to use \\\\ (two backslashes) when you specify a path separator in a property.
+4. The properties with **None** as the *Default value* in the table below are mandatory, the rest are optional. 
+5. It's recommended that you use an assembly qualified type name for type name properties, to make sure GrinderScript.Net can find and load the type from this symbolic name.
+6. These properties are plain Java properties, so you must specify them using the normal Java property format, see this [.properties file](http://en.wikipedia.org/wiki/.properties "Wikipedia: .properties") description if you\'re in doubt.
+7. Property names are case sensitive.
+8. If you specify the same property several times the last line wins.
+8. You can use [these properties](./grinder.properties "Starting point for your grinder.properties") as a starting point for your own *grinder.properties* file.
+9. The Grinder does not require you to name your `grinder.properties` file *grinder.properties*, its just the default name used until you override it. You can select any property file in The Grinder Console, or specify a file name as an option in your Grinder Agent start up script. See [The Grinder user documentation](http://grinder.sourceforge.net/g3/manual.html "The Grinder's Complete User Guide") for further details.
 
 List of properties
 --------
@@ -178,6 +169,28 @@ List of properties
         <td>grinderscript-dotnet.agentCount</td>
         <td>How many load test agents are participating in thee load test? You must specify this if you use a data pool with distributionMode=ThreadUnique in a load test run with more than one load test agent. (You should think that The Grinder could provide this value, but we have not found a way to retrieve it from The Grinder yet...)</td>
         <td>1</td>
+    </tr>
+</table>
+
+<a id="CsScriptProperties"></a>
+
+<table>
+    <tr>
+        <td colspan="3"><strong>Properties for running .cs script files directly</strong></td>
+    </tr>
+    <tr>
+        <td colspan="3">Currently you only need to configure your cs script file and set these two properties with these fixed values:<br/>grinder.script=GrinderScript.Net.CsScript.dll <br/><br/>grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript<br/>The location of </td>
+    </tr>
+    <tr>
+        <td><em>Property</em></td>
+        <td><em>Description</em></td>
+        <td><em>Default value</em></td>
+    </tr>
+
+    <tr>
+        <td>grinderscript-dotnet.csScriptWorker.script</td>
+        <td>The actual .cs script file. The location is relative to the location of the assembly specified in 'grinder.script'</td>
+        <td>None</td>
     </tr>
 </table>
 

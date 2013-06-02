@@ -213,7 +213,7 @@ namespace GrinderScript.Net.Core.Framework
             return int.Parse(valueString, CultureInfo.CurrentCulture);
         }
 
-        private const string KeyPrefix = Constants.WorkerGroupKeyPrefix;
+        private const string KeyPrefix = Constants.ScenarioWorkerKeyPrefix;
 
         public IProcessContext ProcessContext { get; set; }
     }

@@ -50,15 +50,25 @@ You should get output similar to this (the version numbers might differ)
 
 >Attempting to resolve dependency 'CsvHelper (= 1.17.0)'.
 
+>Attempting to resolve dependency 'GrinderScript.Net.CsScript (≥ ${assemblyVersion})'.
+
+>Attempting to resolve dependency 'CS-Script (≥ 3.5.9.0)'.
+
 >Successfully installed 'GrinderScript.Net.Core ${assemblyVersion}'.
 
 >Successfully installed 'CsvHelper 1.17.0'.
 
 >Successfully installed 'GrinderScript.Net.Csv ${assemblyVersion}'.
 
+>Successfully installed 'CS-Script 3.5.9.0'.
+
+>Successfully installed 'GrinderScript.Net.CsScript ${assemblyVersion}'.
+ 
 >Successfully installed 'GrinderScript.Net.Samples ${assemblyVersion}'.
 
 The sample code can then be found under *C:\\MySolution\\ExternalLibs\\GrinderScript.Net.Samples.${assemblyVersion}\\Content*. The required assemblies are also found in separate folders under *C:\\MySolution\\ExternalLibs*. Include these into your Visual Studio project and follow the instructions in *C:\\MySolution\\ExternalLibs\\GrinderScript.Net.Samples.${assemblyVersion}\\Content\\Samples\\GrinderScript.Net\\README.html* to run the samples.
+
+Please note that CS-Script automatically installs a Scripting.cs with CS-Script examples in the root of your project. You can safely remove this file.
 
 The NuGet packages are also provided on the [GrinderScript.Net ${project.version} download page](${downloadPage} "GrinderScript.Net ${project.version} download page"). If you are unable to access the [NuGet Gallery](https://www.nuget.org "NuGet Gallery download page"), you could still download and extract *GrinderScript.Net-${project.version}-nupck.zip* from our download page, and feed the local copy to NuGet.exe with the **-Source** option. See the [NuGet command line reference](http://docs.nuget.org/docs/reference/command-line-reference "NuGet command line reference documentation") for usage details.
 

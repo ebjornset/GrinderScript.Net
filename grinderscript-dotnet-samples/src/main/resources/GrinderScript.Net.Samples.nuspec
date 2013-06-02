@@ -13,6 +13,7 @@
     <dependencies>
       <dependency id="GrinderScript.Net.Core" version="${dotnet.assembly.version.full}" />
       <dependency id="GrinderScript.Net.Csv" version="${dotnet.assembly.version.full}" />
+      <dependency id="GrinderScript.Net.CsScript" version="${dotnet.assembly.version.full}" />
     </dependencies>
   </metadata>
 </package>

@@ -25,7 +25,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("GrinderScript.Net.Core.UnitTests")]
-[assembly: AssemblyDescription("Unit tests for GrinderScript.Net.Core")]
+[assembly: AssemblyTitle("GrinderScript.Net.CsScript")]
+[assembly: AssemblyDescription("Support for writing load test as pure C# scripts using CS-Script for GrinderScript.Net")]
 
 [assembly: InternalsVisibleTo("GrinderScript.Net.CsScript.UnitTests")]

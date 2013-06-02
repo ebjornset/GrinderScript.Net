@@ -23,9 +23,6 @@
 #endregion
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("GrinderScript.Net.Core.UnitTests")]
-[assembly: AssemblyDescription("Unit tests for GrinderScript.Net.Core")]
-
-[assembly: InternalsVisibleTo("GrinderScript.Net.CsScript.UnitTests")]
+[assembly: AssemblyTitle("GrinderScript.Net.CsScript.UnitTests")]
+[assembly: AssemblyDescription("Unit tests for GrinderScript.Net.CsScript")]
