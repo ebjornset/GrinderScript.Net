@@ -75,10 +75,12 @@
         Introduction</a>
             </li>
                   
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Installation</a>
-          </li>
+                          <a href="../user-documentation/installation.html" title="Installation">
+          <i class="none"></i>
+        Installation</a>
+            </li>
                   
       <li>
     
@@ -101,12 +103,10 @@
         Composing test scenarios</a>
             </li>
                   
-      <li>
+      <li class="active">
     
-                          <a href="../user-documentation/pure-cs-scripts.html" title="Using pure .cs scripts">
-          <i class="none"></i>
-        Using pure .cs scripts</a>
-            </li>
+            <a href="#"><i class="none"></i>Using pure .cs scripts</a>
+          </li>
                   
       <li>
     
@@ -179,19 +179,18 @@
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            <h1>Installing GrinderScript.Net 1.1</h1><p>You download and install GrinderScript.Net in two parts</p>
+            <h1>Using pure .cs files as load test scripts in GrinderScript.Net</h1><p>If you feel that creating and compiling a C# load test project is to much overhead, you can now also run a pure .cs file directly as a load test script. </p><p>If you're not comfortable with how to write a load test with GrinderScript.Net, we recommend that you (re)visit the description of <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">how to write load test</a> before you continue.</p><p>You need the GrinderScript.Net.CsScript NuGet package installed to use this feature. If you've already installed the GrinderScript.Net.Samples package, you also have GrinderScript.Net.CsScript installed, otherwise you install it from the Visual Studio <i>Package Manager Console</i> with the command</p><p><tt>install-package GrinderScript.Net.CsScript</tt></p><p>or by running NuGet.exe from the command line, e.g.:</p><p><tt>C:\Util\NuGet.exe install GrinderScript.Net.CsScript -OutputDirectory C:\MySolution\ExternalLibs</tt></p><p>Internally GrinderScript.Net use the excellent C# script engine <a class="externalLink" href="http://www.csscript.net/" title="Cs-Script home page">Cs-Script</a>'s hosting functionality to do all the hard work of dynamically loading and compiling your .cs file into code in the CLR. We uses the new <a class="externalLink" href="http://www.csscript.net/help/evaluator.html" title="CS-Script Evaluator - Compiler As Service help page">CS-Script Evaluator</a>, that is based on <a class="externalLink" href="http://www.mono-project.com/CSharp_Compiler" title="Mono CSharp Compiler home page">Mono's compiler as service</a>. You can use all the CS-Script features that are supported in hosted evaluator mode, with one limitation: Your .cs script file <b>must</b> contain a class that implements the <tt>GrinderScript.Net.Core.IGrinderWorker</tt> interface. Duck typing or scripts containing only a method definition is currently not supported. Please consult the <a class="externalLink" href="http://www.csscript.net/Documentation.html" title="CS-Script Documentation page">CS-Script Documentation</a> if you want to learn more about CS-Script's features. The good news is that you can implement your worker using any of the strategies described in the <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">Writing load tests page</a>.</p><p>Beside writing your worker in the .cs script file, all you need to configure your <tt>grinder.properties</tt> following these three steps:</p>
 <ol style="list-style-type: decimal">
-  <li>The binary distribution is downloaded from the <a class="externalLink" href="http://download.grinderscript.net/1.1/" title="GrinderScript.Net 1.1 download page">GrinderScript.Net 1.1 download page</a>. This package must be installed into an existing installation of The Grinder, see instructions below.</li>
-  <li>The NuGet packages are installed into your load test project in Visual Studio with the NuGet Package Manager. You can also use the NuGet command line tool to install the packages if you are restricted from, or do not want to, use the Visual Studio NuGet Package Manager. See instructions below for both options.</li>
-</ol><div class="section"><h2>Installing the binary distribution into The Grinder<a name="Installing_the_binary_distribution_into_The_Grinder"></a></h2><p>Installing the binaries into The Grinder consist of these four steps:</p>
-<ol style="list-style-type: decimal">
-  <li>Download GrinderScript.Net-1.1-binaries.zip from <a class="externalLink" href="http://download.grinderscript.net/1.1/" title="GrinderScript.Net 1.1 download page">GrinderScript.Net 1.1 download page</a></li>
-  <li>Unzip the content of the archive with sub directories to your local hard drive.</li>
-  <li><p>Add the GrinderScript.Net <b>lib</b> folder to the <tt>classpath</tt> of your Grinder <b>Agent</b> start up script. E.g. if you extracted the binaries into <i>C:\tools\GrinderScript.Net-1.1</i> then you should use</p><p><tt>set CLASSPATH=C:\tools\GrinderScript.Net-1.1\lib\*;%CLASSPATH%</tt></p></li>
-  <li><p>Verify that The Grinder can run GrinderScript.Net load tests. The binaries distribution contains some example load tests in the <b>verifier</b> folder. See <b>C:\tools\GrinderScript.Net-1.1\verifier\README.html</b> for further instructions.</p></li>
-</ol></div><div class="section"><h2>Installing the NuGet packages into your load test project<a name="Installing_the_NuGet_packages_into_your_load_test_project"></a></h2><p>By now you should have verified that load tests written with GrinderScript.Net are working in The Grinder. Its now time to install the GrinderScript.Net NuGet packages into your load test project.</p></div><div class="section"><h2>Installing using the Visual Studio NuGet Package Manager<a name="Installing_using_the_Visual_Studio_NuGet_Package_Manager"></a></h2><p>This is the preferred way to start using GrinderScript.Net in your load test projects. Just open the <i>Package Manager Console</i>, make sure you select the correct project in the <i>Default project</i> drop down list and issue the command</p><p><tt>install-package GrinderScript.Net.Samples</tt></p><p>Visual Studio will open the packages <i>readme.txt</i> file when the installation is complete. Just follow the instructions here to get going!</p></div><div class="section"><h2>Installing using the NuGet command line tool<a name="Installing_using_the_NuGet_command_line_tool"></a></h2><p>If you have not installed the NuGet command line tool already, download it from <a class="externalLink" href="http://nuget.codeplex.com/releases/view/58939" title="NuGet command line tool download page">CodePlex</a>. Install it to a local folder, e.g. <i>C:\Util</i>. You install the GrinderScript.Net.Samples package into <i>C:\MySolution\ExternalLibs</i> by running NuGet.exe from the command line, e.g.:</p><p><tt>C:\Util\NuGet.exe install GrinderScript.Net.Samples -OutputDirectory C:\MySolution\ExternalLibs</tt></p><p>You should get output similar to this (the version numbers might differ)</p>
-<blockquote><p>Attempting to resolve dependency GrinderScript.Net.Core (= 1.1.0.56).</p><p>Attempting to resolve dependency GrinderScript.Net.Csv (= 1.1.0.56).</p><p>Attempting to resolve dependency CsvHelper (= 1.17.0).</p><p>Attempting to resolve dependency GrinderScript.Net.CsScript (&#x2265; 1.1.0.56).</p><p>Attempting to resolve dependency CS-Script (&#x2265; 3.5.9.0).</p><p>Successfully installed GrinderScript.Net.Core 1.1.0.56.</p><p>Successfully installed CsvHelper 1.17.0.</p><p>Successfully installed GrinderScript.Net.Csv 1.1.0.56.</p><p>Successfully installed CS-Script 3.5.9.0.</p><p>Successfully installed GrinderScript.Net.CsScript 1.1.0.56.</p><p>Successfully installed GrinderScript.Net.Samples 1.1.0.56.</p>
-</blockquote><p>The sample code can then be found under <i>C:\MySolution\ExternalLibs\GrinderScript.Net.Samples.1.1.0.56\Content</i>. The required assemblies are also found in separate folders under <i>C:\MySolution\ExternalLibs</i>. Include these into your Visual Studio project and follow the instructions in <i>C:\MySolution\ExternalLibs\GrinderScript.Net.Samples.1.1.0.56\Content\Samples\GrinderScript.Net\README.html</i> to run the samples.</p><p>Please note that CS-Script automatically installs a Scripting.cs with CS-Script examples in the root of your project. You can safely remove this file.</p><p>The NuGet packages are also provided on the <a class="externalLink" href="http://download.grinderscript.net/1.1/" title="GrinderScript.Net 1.1 download page">GrinderScript.Net 1.1 download page</a>. If you are unable to access the <a class="externalLink" href="https://www.nuget.org" title="NuGet Gallery download page">NuGet Gallery</a>, you could still download and extract <i>GrinderScript.Net-1.1-nupck.zip</i> from our download page, and feed the local copy to NuGet.exe with the <b>-Source</b> option. See the <a class="externalLink" href="http://docs.nuget.org/docs/reference/command-line-reference" title="NuGet command line reference documentation">NuGet command line reference</a> for usage details.</p></div><div class="section"><h2>What's next<a name="Whats_next"></a></h2><p>When you have completed the installation you are ready to write your first load tests. You might want to read the <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">introduction to writing load test with GrinderScript.Net</a>, before you explore your newly installed samples.</p></div>
+  <li>Use <i>GrinderScript.Net.CsScript.dll</i> as the <i>grinder.script</i> property. The location is relative to the location of your grinder.properties.</li>
+  <li>Use the ready made <i>CsScriptWorker</i> as the <i>grinderscript-dotnet.workerType</i> property.</li>
+  <li>Configure the actual .cs script file with the <i>grinderscript-dotnet.csScriptWorker.script</i> property. The location is relative to the location of the assembly specified in the <i>grinder.script</i> property.</li>
+</ol><p>Here is the interesting parts taken from the <tt>grinder.properties</tt> in the <i>GrinderScript.Net.Samples</i> CsScript example:</p>
+<div class="source"><pre class="prettyprint">grinder.script=..\\..\\..\\GrinderScript.Net.CsScript.dll
+
+grinderscript-dotnet.workerType=GrinderScript.Net.CsScript.CsScriptWorker, GrinderScript.Net.CsScript
+
+grinderscript-dotnet.csScriptWorker.script=.\\Samples\\GrinderScript.Net\\Core\\WorkerThatLogs.cs
+</pre></div><p>With this in place you can use a workflow where you write some load test script in a .cs file, save the file and then run it directly from the Grinder Console, in an iterative process. The Grinder Console will automatically distribute the changed script file to all your Grinder Agents.</p><div class="section"><h2>What's next<a name="Whats_next"></a></h2><p>If youve followed the user documentation for GrinderScript.Net sequentially, your last piece of information is <a href="./properties.html" title="Complete list of properties used by GrinderScript.Net page">the complete list of properties</a> used by GrinderScript.Net. Otherwise you should check out <a href="./loadtests.html" title="Writing load tests with GrinderScript.Net page">how to write load tests</a> with GrinderScript.Net.</p></div>
                   </div>
             </div>
           </div>
