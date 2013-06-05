@@ -10,8 +10,8 @@
 	<inceptionYear>2013</inceptionYear>
 	<url>http://GrinderScript.Net/</url>
 	<properties>
-		<dotnet.assembly.version>1.0.3</dotnet.assembly.version>
-		<git.commitsCount>45</git.commitsCount>
+		<dotnet.assembly.version>1.1.0</dotnet.assembly.version>
+		<git.commitsCount>56</git.commitsCount>
 		<dotnet.assembly.version.full>${dotnet.assembly.version}.${git.commitsCount}</dotnet.assembly.version.full>
 		<!-- Name pattern to recognize the test assemblies, so that unit tests 
 			are only launched on those, and so that those are excluded from code coverage. 
