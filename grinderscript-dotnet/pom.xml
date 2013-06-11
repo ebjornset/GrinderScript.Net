@@ -213,6 +213,24 @@
 								</configuration>
 							</execution>
 							<execution>
+								<id>nuget-push-csscript</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${nuget.directory}NuGet.exe</executable>
+									<arguments>
+										<argument>push</argument>
+										<argument>${project.build.directory}\nupkg\GrinderScript.Net.CsScript.${dotnet.assembly.version.full}.nupkg</argument>
+										<argument>-NonInteractive</argument>
+										<argument>-ApiKey</argument>
+										<argument>${nuget-push.apikey}</argument>
+									</arguments>
+									<skip>${nuget-push-csv.skip}</skip>
+								</configuration>
+							</execution>
+							<execution>
 								<id>nuget-push-samples</id>
 								<phase>deploy</phase>
 								<goals>
