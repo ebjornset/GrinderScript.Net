@@ -214,7 +214,7 @@
 							</execution>
 							<execution>
 								<id>nuget-push-csscript</id>
-								<phase>generate-sources</phase>
+								<phase>deploy</phase>
 								<goals>
 									<goal>exec</goal>
 								</goals>
